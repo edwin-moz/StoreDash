@@ -10,15 +10,13 @@ export default function Register({ setLoggedInUser }) {
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordMismatch, setPasswordMismatch] = useState();
-  const [registrationFailure, setRegistrationFailure] = useState(false);
   // hooks
   const navigate = useNavigate();
   // handles
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setPasswordMismatch(true);
+      window.alert("passwords dont match")
     } else {
       const newUser = {
         firstName,
@@ -33,7 +31,7 @@ export default function Register({ setLoggedInUser }) {
           setLoggedInUser(user);
           navigate("/");
         } else {
-          setRegistrationFailure(true);
+          window.alert("registration failed")
         }
       });
     }
@@ -41,45 +39,41 @@ export default function Register({ setLoggedInUser }) {
   // component return
   return (
     <div>
-      <form>
+      <form className="flex flex-col">
         <p>Sign Up</p>
         <lable>First Name</lable>
-        <input onChange={(e) => { setFirstName(e.target.value); }} type="text" value={firstName} />
+        <input className="border" onChange={(e) => { setFirstName(e.target.value); }} type="text" value={firstName} />
 
         <lable>Last Name</lable>
-        <input onChange={(e) => { setLastName(e.target.value); }} type="text" value={lastName} />
+        <input className="border" onChange={(e) => { setLastName(e.target.value); }} type="text" value={lastName} />
 
         <lable>Email</lable>
-        <input onChange={(e) => { setEmail(e.target.value); }} type="email" value={email} />
+        <input className="border" onChange={(e) => { setEmail(e.target.value); }} type="email" value={email} />
 
         <lable>User Name</lable>
-        <input onChange={(e) => { setUserName(e.target.value); }} type="text" value={userName} />
+        <input className="border" onChange={(e) => { setUserName(e.target.value); }} type="text" value={userName} />
 
         <lable>Address</lable>
-        <input onChange={(e) => { setAddress(e.target.value); }} type="text" value={address} />
+        <input className="border" onChange={(e) => { setAddress(e.target.value); }} type="text" value={address} />
 
         <lable>Password</lable>
-        <input invalid={passwordMismatch} onChange={(e) => {
-          setPasswordMismatch(false);
+        <input className="border" onChange={(e) => {
           setPassword(e.target.value);
         }} type="password" value={password} />
 
         <lable> Confirm Password</lable>
-        <input invalid={passwordMismatch} onChange={(e) => {
-          setPasswordMismatch(false);
+        <input className="border" onChange={(e) => {
           setConfirmPassword(e.target.value);
         }} type="password" value={confirmPassword} />
-        <p>Passwords do not match!</p>
 
-        <p hidden={!registrationFailure}>
-          Registration Failure
-        </p>
-        <button disabled={passwordMismatch} onClick={handleSubmit} >
+        <button onClick={handleSubmit} >
           Register
         </button>
+
         <p>
           Already signed up? Log in <Link to="/login">here</Link>
         </p>
+
       </form>
     </div>
   );
