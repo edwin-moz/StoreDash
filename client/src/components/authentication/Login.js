@@ -1,58 +1,39 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../managers/authManager";
-import { Button, FormFeedback, FormGroup, Input, Label } from "reactstrap";
+import { login } from "../../managers/authentication";
 
 export default function Login({ setLoggedInUser }) {
-  const navigate = useNavigate();
+  // state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [failedLogin, setFailedLogin] = useState(false);
-
+  // hooks
+  const navigate = useNavigate();
+  // handlers
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password).then((user) => {
       if (!user) {
-        setFailedLogin(true);
+        window.alert("invalid login")
       } else {
         setLoggedInUser(user);
         navigate("/");
       }
     });
   };
-
+  // return component
   return (
-    <div className="container" style={{ maxWidth: "500px" }}>
+    <div>
       <h3>Login</h3>
-      <FormGroup>
-        <Label>Email</Label>
-        <Input
-          invalid={failedLogin}
-          type="text"
-          value={email}
-          onChange={(e) => {
-            setFailedLogin(false);
-            setEmail(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label>Password</Label>
-        <Input
-          invalid={failedLogin}
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setFailedLogin(false);
-            setPassword(e.target.value);
-          }}
-        />
-        <FormFeedback>Login failed.</FormFeedback>
-      </FormGroup>
 
-      <Button color="primary" onClick={handleSubmit}>
+      <label>Email</label>
+      <input className="border" onChange={(e) => { setEmail(e.target.value); }} type="text" value={email} />
+
+      <label>Password</label>
+      <input className="border" onChange={(e) => { setPassword(e.target.value); }} type="password" value={password} />
+
+      <button className="border" onClick={handleSubmit}>
         Login
-      </Button>
+      </button>
       <p>
         Not signed up? Register <Link to="/register">here</Link>
       </p>
