@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { register } from "../../managers/authManager";
+import { register } from "../../managers/authentication";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, FormFeedback, FormGroup, Input, Label } from "reactstrap";
-
 export default function Register({ setLoggedInUser }) {
+  // state
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -11,15 +10,13 @@ export default function Register({ setLoggedInUser }) {
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [passwordMismatch, setPasswordMismatch] = useState();
   const [registrationFailure, setRegistrationFailure] = useState(false);
-
+  // hooks
   const navigate = useNavigate();
-
+  // handles
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (password !== confirmPassword) {
       setPasswordMismatch(true);
     } else {
@@ -41,98 +38,49 @@ export default function Register({ setLoggedInUser }) {
       });
     }
   };
-
+  // component return
   return (
-    <div className="container" style={{ maxWidth: "500px" }}>
-      <h3>Sign Up</h3>
-      <FormGroup>
-        <Label>First Name</Label>
-        <Input
-          type="text"
-          value={firstName}
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label>Last Name</Label>
-        <Input
-          type="text"
-          value={lastName}
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label>Email</Label>
-        <Input
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label>User Name</Label>
-        <Input
-          type="text"
-          value={userName}
-          onChange={(e) => {
-            setUserName(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label>Address</Label>
-        <Input
-          type="text"
-          value={address}
-          onChange={(e) => {
-            setAddress(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label>Password</Label>
-        <Input
-          invalid={passwordMismatch}
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPasswordMismatch(false);
-            setPassword(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label> Confirm Password</Label>
-        <Input
-          invalid={passwordMismatch}
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => {
-            setPasswordMismatch(false);
-            setConfirmPassword(e.target.value);
-          }}
-        />
-        <FormFeedback>Passwords do not match!</FormFeedback>
-      </FormGroup>
-      <p style={{ color: "red" }} hidden={!registrationFailure}>
-        Registration Failure
-      </p>
-      <Button
-        color="primary"
-        onClick={handleSubmit}
-        disabled={passwordMismatch}
-      >
-        Register
-      </Button>
-      <p>
-        Already signed up? Log in <Link to="/login">here</Link>
-      </p>
+    <div>
+      <form>
+        <p>Sign Up</p>
+        <lable>First Name</lable>
+        <input onChange={(e) => { setFirstName(e.target.value); }} type="text" value={firstName} />
+
+        <lable>Last Name</lable>
+        <input onChange={(e) => { setLastName(e.target.value); }} type="text" value={lastName} />
+
+        <lable>Email</lable>
+        <input onChange={(e) => { setEmail(e.target.value); }} type="email" value={email} />
+
+        <lable>User Name</lable>
+        <input onChange={(e) => { setUserName(e.target.value); }} type="text" value={userName} />
+
+        <lable>Address</lable>
+        <input onChange={(e) => { setAddress(e.target.value); }} type="text" value={address} />
+
+        <lable>Password</lable>
+        <input invalid={passwordMismatch} onChange={(e) => {
+          setPasswordMismatch(false);
+          setPassword(e.target.value);
+        }} type="password" value={password} />
+
+        <lable> Confirm Password</lable>
+        <input invalid={passwordMismatch} onChange={(e) => {
+          setPasswordMismatch(false);
+          setConfirmPassword(e.target.value);
+        }} type="password" value={confirmPassword} />
+        <p>Passwords do not match!</p>
+
+        <p hidden={!registrationFailure}>
+          Registration Failure
+        </p>
+        <button disabled={passwordMismatch} onClick={handleSubmit} >
+          Register
+        </button>
+        <p>
+          Already signed up? Log in <Link to="/login">here</Link>
+        </p>
+      </form>
     </div>
   );
 }
