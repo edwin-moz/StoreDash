@@ -1,5 +1,5 @@
 namespace StoreDash.Models.DTOs;
-public class Store
+public class StoreDTO
 {
     public int Id { get; set; }
     public bool Active { get; set; }
