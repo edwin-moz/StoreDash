@@ -14,12 +14,11 @@ namespace StoreDash.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController : ControllerBase
+public class AuthorizationController : ControllerBase
 {
     private StoreDashDbContext _dbContext;
     private UserManager<IdentityUser> _userManager;
-
-    public AuthController(StoreDashDbContext context, UserManager<IdentityUser> userManager)
+    public AuthorizationController(StoreDashDbContext context, UserManager<IdentityUser> userManager)
     {
         _dbContext = context;
         _userManager = userManager;

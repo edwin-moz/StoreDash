@@ -9,7 +9,7 @@ public class StoreDashDbContext : IdentityDbContext<IdentityUser>
     private readonly IConfiguration _configuration;
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<Distributor> Distributors { get; set; }
-    public DbSet<Inventory> InventoryList { get; set; }
+    public DbSet<Inventory> Inventories { get; set; }
     public DbSet<InventoryOrder> InventoryOrders { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Product> Products { get; set; }
@@ -95,7 +95,6 @@ public class StoreDashDbContext : IdentityDbContext<IdentityUser>
             new Inventory{Id = 19, Available = true, DistributorId = 1, Price = 1.99M, ProductId = 19, Stock= 9999},
             new Inventory{Id = 20, Available = true, DistributorId = 1, Price = 1.99M, ProductId = 20, Stock= 9999},
             new Inventory{Id = 21, Available = true, DistributorId = 2, Price = 1.99M, ProductId = 21, Stock= 9999},
-            new Inventory{Id = 22, Available = true, DistributorId = 2, Price = 2.35M, ProductId = 22, Stock = 9999},
             new Inventory{Id = 23, Available = true, DistributorId = 2, Price = 1.75M, ProductId = 23, Stock = 9999},
             new Inventory{Id = 24, Available = true, DistributorId = 2, Price = 3.45M, ProductId = 24, Stock = 9999},
             new Inventory{Id = 25, Available = true, DistributorId = 2, Price = 2.10M, ProductId = 25, Stock = 9999},
@@ -215,7 +214,6 @@ public class StoreDashDbContext : IdentityDbContext<IdentityUser>
             new Inventory{Id = 139, Available = true, DistributorId = 7, Price = 2.95M, ProductId = 139, Stock = 9999},
             new Inventory{Id = 140, Available = true, DistributorId = 7, Price = 4.10M, ProductId = 140, Stock = 9999},
             new Inventory{Id = 141, Available = true, DistributorId = 8, Price = 3.00M, ProductId = 1, Stock = 9999},
-            new Inventory{Id = 142, Available = true, DistributorId = 8, Price = 3.15M, ProductId = 1, Stock = 9999},
             new Inventory{Id = 143, Available = true, DistributorId = 8, Price = 2.90M, ProductId = 2, Stock = 9999},
             new Inventory{Id = 144, Available = true, DistributorId = 8, Price = 3.40M, ProductId = 3, Stock = 9999},
             new Inventory{Id = 145, Available = true, DistributorId = 8, Price = 2.80M, ProductId = 4, Stock = 9999},
@@ -235,8 +233,6 @@ public class StoreDashDbContext : IdentityDbContext<IdentityUser>
             new Inventory{Id = 159, Available = true, DistributorId = 8, Price = 2.95M, ProductId = 18, Stock = 9999},
             new Inventory{Id = 160, Available = true, DistributorId = 8, Price = 4.10M, ProductId = 19, Stock = 9999},
             new Inventory{Id = 161, Available = true, DistributorId = 9, Price = 3.00M, ProductId = 20, Stock = 9999},
-            new Inventory{Id = 161, Available = true, DistributorId = 9, Price = 3.15M, ProductId = 21, Stock = 9999},
-            new Inventory{Id = 162, Available = true, DistributorId = 9, Price = 2.90M, ProductId = 22, Stock = 9999},
             new Inventory{Id = 163, Available = true, DistributorId = 9, Price = 3.40M, ProductId = 23, Stock = 9999},
             new Inventory{Id = 164, Available = true, DistributorId = 9, Price = 2.80M, ProductId = 24, Stock = 9999},
             new Inventory{Id = 165, Available = true, DistributorId = 9, Price = 3.25M, ProductId = 25, Stock = 9999},
@@ -302,7 +298,7 @@ public class StoreDashDbContext : IdentityDbContext<IdentityUser>
             new Inventory{Id = 225, Available = true, DistributorId = 14, Price = 6.45M, ProductId = 85, Stock = 9999},
             new Inventory{Id = 226, Available = true, DistributorId = 14, Price = 12.75M, ProductId = 86, Stock = 9999},
             new Inventory{Id = 227, Available = true, DistributorId = 14, Price = 4.50M, ProductId = 87, Stock = 9999},
-            new Inventory{Id = 228, Available = true, DistributorId = 24, Price = 9.95M, ProductId = 88, Stock = 9999},
+            new Inventory{Id = 228, Available = true, DistributorId = 14, Price = 9.95M, ProductId = 88, Stock = 9999},
             new Inventory{Id = 229, Available = true, DistributorId = 14, Price = 3.25M, ProductId = 89, Stock = 9999},
             new Inventory{Id = 230, Available = true, DistributorId = 14, Price = 7.80M, ProductId = 90, Stock = 9999},
             new Inventory{Id = 231, Available = true, DistributorId = 14, Price = 11.60M, ProductId = 91, Stock = 9999},
@@ -355,7 +351,6 @@ public class StoreDashDbContext : IdentityDbContext<IdentityUser>
             new Inventory{Id = 278, Available = true, DistributorId = 16, Price = 8.99M, ProductId = 138, Stock = 9999},
             new Inventory{Id = 279, Available = true, DistributorId = 16, Price = 6.25M, ProductId = 139, Stock = 9999},
             new Inventory{Id = 280, Available = true, DistributorId = 17, Price = 10.75M, ProductId = 140, Stock = 9999},
-            new Inventory{Id = 280, Available = true, DistributorId = 17, Price = 10.75M, ProductId = 1, Stock = 9999},
             new Inventory{Id = 281, Available = true, DistributorId = 17, Price = 6.20M, ProductId = 1, Stock = 9999},
             new Inventory{Id = 282, Available = true, DistributorId = 17, Price = 9.99M, ProductId = 2, Stock = 9999},
             new Inventory{Id = 283, Available = true, DistributorId = 17, Price = 4.75M, ProductId = 3, Stock = 9999},
@@ -397,7 +392,6 @@ public class StoreDashDbContext : IdentityDbContext<IdentityUser>
             new Inventory{Id = 319, Available = true, DistributorId = 18, Price = 6.25M, ProductId = 19, Stock = 9999},
             new Inventory{Id = 320, Available = true, DistributorId = 19, Price = 10.75M, ProductId = 20, Stock = 9999},
             new Inventory{Id = 321, Available = true, DistributorId = 19, Price = 6.20M, ProductId = 21, Stock = 9999},
-            new Inventory{Id = 322, Available = true, DistributorId = 19, Price = 9.99M, ProductId = 22, Stock = 9999},
             new Inventory{Id = 323, Available = true, DistributorId = 19, Price = 4.75M, ProductId = 23, Stock = 9999},
             new Inventory{Id = 324, Available = true, DistributorId = 19, Price = 7.50M, ProductId = 24, Stock = 9999},
             new Inventory{Id = 325, Available = true, DistributorId = 19, Price = 5.80M, ProductId = 25, Stock = 9999},
