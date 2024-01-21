@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import { Views } from "./views/views"
-import { tryGetLoggedInUser } from "./managers/authentication";
+import { tryGetLoggedInUser } from "./managers/authentication"
 
 function App() {
   // state
@@ -13,14 +13,16 @@ function App() {
   }
   // use effect
   useEffect(() => { handletryGetLoggedInUser() }, [])
+  // if logged in user is undefined
+  if (loggedInUser === undefined) {
+    return
+  }
   // component return
   return (
-    loggedInUser && (
-      <div className="App">
-        <Views loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
-      </div>
-    )
-  );
+    <div className="App">
+      <Views loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+    </div>
+  )
 }
 
 export default App;

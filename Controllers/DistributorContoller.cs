@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StoreDash.Data;
 using StoreDash.Models;
 using StoreDash.Models.DTOs;
@@ -17,7 +18,7 @@ public class DistributorController : ControllerBase
         _dbContext = context;
     }
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetDistributors()
     {
         List<Distributor> distributors = _dbContext.Distributors.ToList();
@@ -33,5 +34,37 @@ public class DistributorController : ControllerBase
                 Zipcode = distributor.Zipcode,
             })
         );
+    }
+    [HttpGet("{distributorId}")]
+    // [Authorize]
+    public IActionResult GetDistributor(int distributorId)
+    {
+        Distributor? distributor = _dbContext.Distributors
+        .Include((distributor) => distributor.Inventories)
+        .ToList()
+        .SingleOrDefault((distributor) => distributor.Id == distributorId);
+        if (distributor == null)
+        {
+            return BadRequest();
+        }
+        return Ok(new DistributorDTO
+        {
+            Id = distributor.Id,
+            Active = distributor.Active,
+            City = distributor.City,
+            Name = distributor.Name,
+            State = distributor.State,
+            Street = distributor.Street,
+            Zipcode = distributor.Zipcode,
+            Inventories = distributor.Inventories?.Select((inventory) => new InventoryDTO
+            {
+                Id = inventory.Id,
+                Available = inventory.Available,
+                DistributorId = inventory.DistributorId,
+                Price = inventory.Price,
+                ProductId = inventory.ProductId,
+                Stock = inventory.Stock,
+            }).ToList()
+        });
     }
 }
