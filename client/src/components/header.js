@@ -7,6 +7,10 @@ const links = [
         to: "/"
     },
     {
+        name: "Orders",
+        to: "/orders"
+    },
+    {
         name: "Stores",
         to: "/stores"
     },
@@ -20,7 +24,7 @@ export const Header = ({ setLoggedInUser }) => {
     const handleLogout = () => {
         logout().then(() => {
             setLoggedInUser(null)
-            
+
         })
     }
     return (
