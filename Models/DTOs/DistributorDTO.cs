@@ -16,5 +16,5 @@ public class DistributorDTO
             return address;
         }
     }
-    public List<Inventory>? Inventories { get; set; }
+    public List<InventoryDTO>? Inventories { get; set; }
 }
