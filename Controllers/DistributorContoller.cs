@@ -41,6 +41,7 @@ public class DistributorController : ControllerBase
     {
         Distributor? distributor = _dbContext.Distributors
         .Include((distributor) => distributor.Inventories)
+        .ThenInclude((inventory) => inventory.Product)
         .ToList()
         .SingleOrDefault((distributor) => distributor.Id == distributorId);
         if (distributor == null)
@@ -63,6 +64,14 @@ public class DistributorController : ControllerBase
                 DistributorId = inventory.DistributorId,
                 Price = inventory.Price,
                 ProductId = inventory.ProductId,
+                Product = new ProductDTO
+                {
+                    Id = inventory.Product.Id,
+                    Available = inventory.Product.Available,
+                    ImageUrl = inventory.Product.ImageUrl,
+                    Name = inventory.Product.Name,
+                    TypeId = inventory.Product.TypeId,
+                },
                 Stock = inventory.Stock,
             }).ToList()
         });
