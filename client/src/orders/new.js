@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getDistributor } from "../managers/distributors"
-export const NewOrder = () => {
+import { getStores } from "../managers/stores"
+import { placeOrder } from "../managers/orders"
+export const NewOrder = ({ loggedInUser }) => {
     // hooks
     const { distributorId } = useParams()
     // state
     const [distributor, setDistributor] = useState({})
     const [orderInventory, setOrderInventory] = useState([])
     const [orderTotal, setOrderTotal] = useState(0)
+    const [stores, setStores] = useState([])
+    const [chosenStoreId, setChosenStoreId] = useState(0)
     // handle function to get distributor
     const handleGetDistributor = () => {
         getDistributor(distributorId).then(setDistributor)
@@ -42,12 +46,40 @@ export const NewOrder = () => {
             })
         }
     }
+    // handle function to get stores
+    const handleGetStores = () => {
+        getStores(loggedInUser.id).then(setStores)
+    }
+    // handle function for the chosen store
+    const handleChosenStore = (event) => {
+        const storeId = event.target.value * 1
+        setChosenStoreId(storeId)
+    }
+    // handle function to place order
+    const handlePlaceOrder = () => {
+        const order = {
+            storeId: chosenStoreId,
+            inventoryOrders: orderInventory
+        }
+        placeOrder(order)
+    }
     // use effect
-    useEffect(() => { handleGetDistributor() }, [distributorId])
+    useEffect(() => {
+        handleGetDistributor()
+        handleGetStores()
+    }, [distributorId, loggedInUser])
     // component return
     return (
         <div className="flex">
             <div>
+                <div>
+                    <select onChange={handleChosenStore}>
+                        <option>choose a store</option>
+                        {stores.map((store, index) => (
+                            <option key={index} value={store.id}>{store.name}</option>
+                        ))}
+                    </select>
+                </div>
                 <ul className="flex flex-wrap">
                     {distributor.inventories?.map((inventory, index) => (
                         <li className="border flex flex-col items-center" key={index}>
@@ -78,7 +110,7 @@ export const NewOrder = () => {
                         </div>
                     </div>
                     <div>
-                        <button>place order</button>
+                        <button onClick={handlePlaceOrder}>place order</button>
                     </div>
                     <div>
                         <ul>
