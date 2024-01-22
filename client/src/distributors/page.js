@@ -2,7 +2,6 @@ import { getDistributors } from "../managers/distributors"
 import { useEffect, useState } from "react"
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom"
-
 // component
 export const Distributors = () => {
     // state
