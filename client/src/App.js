@@ -20,7 +20,7 @@ function App() {
   // component return
   return (
     <div className="App">
-      <Views loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+      <Views loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} handletryGetLoggedInUser={handletryGetLoggedInUser} />
     </div>
   )
 }

@@ -5,7 +5,19 @@ export const getStores = (userId) => {
 export const addStore = (store) => {
     return fetch(api, {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(store)
+    })
+}
+export const editStore = (store) => {
+    return fetch(`${api}/${store.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(store)
+    })
+}
+export const deleteStore = (storeId) => {
+    return fetch(`${api}/${storeId}`, {
+        method: "DELETE"
     })
 }

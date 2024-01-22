@@ -8,7 +8,8 @@ import { NewOrder } from "../orders/new"
 import { Orders } from "../orders/page"
 import { Stores } from "../stores/page"
 import { NewStore } from "../stores/new"
-export const Views = ({ loggedInUser, setLoggedInUser }) => {
+import { Profile } from "../profile/page"
+export const Views = ({ loggedInUser, setLoggedInUser, handletryGetLoggedInUser }) => {
     return (
         <Routes>
             <Route path="/" element={
@@ -43,6 +44,13 @@ export const Views = ({ loggedInUser, setLoggedInUser }) => {
                     <Route path="new" element={
                         <AuthorizedRoute loggedInUser={loggedInUser}>
                             <NewStore loggedInUser={loggedInUser} />
+                        </AuthorizedRoute>
+                    } />
+                </Route>
+                <Route path="profile">
+                    <Route index element={
+                        <AuthorizedRoute loggedInUser={loggedInUser}>
+                            <Profile loggedInUser={loggedInUser} handletryGetLoggedInUser={handletryGetLoggedInUser} />
                         </AuthorizedRoute>
                     } />
                 </Route>
