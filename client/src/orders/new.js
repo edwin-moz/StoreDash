@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getDistributor } from "../managers/distributors"
 import { getStores } from "../managers/stores"
 import { placeOrder } from "../managers/orders"
 export const NewOrder = ({ loggedInUser }) => {
     // hooks
     const { distributorId } = useParams()
+    const navigate = useNavigate()
     // state
     const [distributor, setDistributor] = useState({})
     const [orderInventory, setOrderInventory] = useState([])
@@ -61,7 +62,9 @@ export const NewOrder = ({ loggedInUser }) => {
             storeId: chosenStoreId,
             inventoryOrders: orderInventory
         }
-        placeOrder(order)
+        placeOrder(order).then(() => {
+            navigate("/orders")
+        })
     }
     // use effect
     useEffect(() => {
@@ -71,26 +74,32 @@ export const NewOrder = ({ loggedInUser }) => {
     // component return
     return (
         <div className="flex">
-            <div>
-                <div>
-                    <select onChange={handleChosenStore}>
-                        <option>choose a store</option>
-                        {stores.map((store, index) => (
-                            <option key={index} value={store.id}>{store.name}</option>
-                        ))}
-                    </select>
+            <div className="px-10">
+                <div className="flex justify-between py-10">
+                    <div className="self-center">
+                        <h1 className="text-3xl text-gray-900">{distributor.name}</h1>
+                    </div>
+                    <div className="flex gap-3 items-center">
+                        <p className="self-end">choose a store:</p>
+                        <select className="border h-[2rem] rounded text-center text-gray-600 w-[10rem]" onChange={handleChosenStore}>
+                            <option>choose a store</option>
+                            {stores.map((store, index) => (
+                                <option key={index} value={store.id}>{store.name}</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-                <ul className="flex flex-wrap">
+                <ul className="flex flex-wrap gap-5 pb-10">
                     {distributor.inventories?.map((inventory, index) => (
-                        <li className="border flex flex-col items-center" key={index}>
+                        <li className="flex flex-col items-center w-[7rem]" key={index}>
                             <div>
                                 <img className="h-[5rem]" src={inventory.product?.imageUrl} alt="" />
                             </div>
                             <div>
-                                <p>{inventory.product?.name}</p>
+                                <p className="text-gray-400 text-center">{inventory.product?.name}</p>
                             </div>
                             <div>
-                                <p>${inventory.price}</p>
+                                <p className="text-gray-900">${inventory.price.toFixed(2)}</p>
                             </div>
                             <div>
                                 <input onChange={handleOrderIventory} type="checkbox" value={inventory.id} />
@@ -99,36 +108,36 @@ export const NewOrder = ({ loggedInUser }) => {
                     ))}
                 </ul>
             </div>
-            <div>
-                <section>
-                    <div className="flex flex-col">
+            <div className="border-l-2 p-5">
+                <div className="flex flex-col w-[20rem]">
+                    <div className="flex justify-between">
                         <div>
                             <p>subtotal: <span>({orderInventory.length} items)</span></p>
                         </div>
                         <div>
-                            <p>${orderTotal.toLocaleString()}</p>
+                            <p>${orderTotal.toFixed(2)}</p>
                         </div>
                     </div>
-                    <div>
-                        <button onClick={handlePlaceOrder}>place order</button>
+                    <div className="flex my-3">
+                        <button className="bg-emerald-500 border h-10 hover:bg-emerald-400 rounded-full text-white transition w-full" onClick={handlePlaceOrder}>place order</button>
                     </div>
                     <div>
-                        <ul>
+                        <ul className="flex flex-col overflow-scroll h-[30rem]">
                             {orderInventory.map((oi, index) => (
-                                <li className="border flex flex-col" key={index}>
-                                    <div className="flex">
-                                        <div>
+                                <li className="flex flex-col py-3" key={index}>
+                                    <div className="flex gap-3 ml-10">
+                                        {/* <div>
                                             <input type="checkbox" />
-                                        </div>
+                                        </div> */}
                                         <div className="self-center">
-                                            <img className="w-[8rem]" src={distributor.inventories?.find((inventory) => inventory.id === oi.inventoryId).product.imageUrl} alt="" />
+                                            <img className="w-[5rem]" src={distributor.inventories?.find((inventory) => inventory.id === oi.inventoryId).product.imageUrl} alt="" />
                                         </div>
                                         <div className="flex flex-col">
                                             <div>
                                                 <p>{distributor.inventories?.find((inventory) => inventory.id === oi.inventoryId).product.name}</p>
                                             </div>
                                             <div>
-                                                <p>${distributor.inventories?.find((inventory) => inventory.id === oi.inventoryId).price}</p>
+                                                <p>${distributor.inventories?.find((inventory) => inventory.id === oi.inventoryId).price.toFixed(2)}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +145,7 @@ export const NewOrder = ({ loggedInUser }) => {
                             ))}
                         </ul>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     )

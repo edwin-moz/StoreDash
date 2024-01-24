@@ -9,6 +9,7 @@ import { Orders } from "../orders/page"
 import { Stores } from "../stores/page"
 import { NewStore } from "../stores/new"
 import { Profile } from "../profile/page"
+import { Footer } from "../components/footer"
 export const Views = ({ loggedInUser, setLoggedInUser, handletryGetLoggedInUser }) => {
     return (
         <Routes>
@@ -16,6 +17,7 @@ export const Views = ({ loggedInUser, setLoggedInUser, handletryGetLoggedInUser 
                 <>
                     <Header setLoggedInUser={setLoggedInUser} />
                     <Outlet />
+                    <Footer />
                 </>
             }>
                 <Route index element={
@@ -23,15 +25,15 @@ export const Views = ({ loggedInUser, setLoggedInUser, handletryGetLoggedInUser 
                         <Distributors />
                     </AuthorizedRoute>
                 } />
+                <Route path=":distributorId" element={
+                    <AuthorizedRoute loggedInUser={loggedInUser}>
+                        <NewOrder loggedInUser={loggedInUser} />
+                    </AuthorizedRoute>
+                } />
                 <Route path="orders">
                     <Route index element={
                         <AuthorizedRoute loggedInUser={loggedInUser}>
                             <Orders loggedInUser={loggedInUser} />
-                        </AuthorizedRoute>
-                    } />
-                    <Route path=":distributorId" element={
-                        <AuthorizedRoute loggedInUser={loggedInUser}>
-                            <NewOrder loggedInUser={loggedInUser} />
                         </AuthorizedRoute>
                     } />
                 </Route>

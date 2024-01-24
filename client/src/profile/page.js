@@ -39,57 +39,52 @@ export const Profile = ({ loggedInUser, handletryGetLoggedInUser }) => {
         handleSetUser()
     }, [loggedInUser])
     return (
-        <div className="flex justify-center">
-            <div>
-                <div>
+        <div className="bg-gray-100 w-screen">
+            <div className="flex flex-col p-10">
+                <div className="pb-10">
                     <div>
-                        <p>profile</p>
+                        <p className="text-4xl">Profile</p>
                     </div>
                 </div>
-                <div className="flex">
-                    <div className="border">
-                        <div>
-                            <div>
-                                <p>first name:</p>
-                                <p>{loggedInUser.firstName}</p>
+                <div className="flex flex-wrap justify-between">
+                    <div>
+                        <div className="flex flex-col justify-between h-full">
+                            <div className="flex">
+                                <p className="text-gray-500">First name: <span className="text-lg text-gray-900">{loggedInUser.firstName}</span></p>
                             </div>
                             <div>
-                                <p>last name:</p>
-                                <p>{loggedInUser.lastName}</p>
+                                <p className="text-gray-500">Last name: <span className="text-lg text-gray-900">{loggedInUser.lastName}</span></p>
                             </div>
                             <div>
-                                <p>address:</p>
-                                <p>{loggedInUser.address}</p>
+                                <p className="text-gray-500">Address: <span className="text-lg text-gray-900">{loggedInUser.address}</span></p>
                             </div>
                             <div>
-                                <p>email:</p>
-                                <p>{loggedInUser.email}</p>
+                                <p className="text-gray-500">Email: <span className="text-lg text-gray-900">{loggedInUser.email}</span></p>
                             </div>
                             <div>
-                                <p>username:</p>
-                                <p>{loggedInUser.userName}</p>
+                                <p className="text-gray-500">Username: <span className="text-lg text-gray-900">{loggedInUser.userName}</span></p>
                             </div>
                         </div>
                     </div>
-                    <div className="border">
-                        <form>
+                    <div className="flex justify-end">
+                        <form className="bg-white border p-5">
                             <div>
-                                <p>edit your profile</p>
+                                <p className="text-xl">Update your information</p>
                             </div>
                             <div>
-                                <p>first name:</p>
-                                <input className="border" defaultValue={user.firstName} name="firstName" onChange={handleEditForm} placeholder="edit new first name" type="text" />
+                                <p>First name:</p>
+                                <input className="border h-8 rounded text-center w-60" defaultValue={user.firstName} name="firstName" onChange={handleEditForm} placeholder="Edit your first name" type="text" />
                             </div>
                             <div>
-                                <p>last name:</p>
-                                <input className="border" defaultValue={user.lastName} name="lastName" onChange={handleEditForm} placeholder="edit new last name" type="text" />
+                                <p>Last name:</p>
+                                <input className="border h-8 rounded text-center w-60" defaultValue={user.lastName} name="lastName" onChange={handleEditForm} placeholder="Edit your last name" type="text" />
                             </div>
                             <div>
-                                <p>address</p>
-                                <input className="border" defaultValue={user.address} name="address" onChange={handleEditForm} placeholder="edit new address" type="text" />
+                                <p>Address:</p>
+                                <textarea className="border h-24 p-1 rounded w-96" defaultValue={user.address} name="address" onChange={handleEditForm} placeholder="Edit your address" type="text" />
                             </div>
                             <div>
-                                <button onClick={handleEditUser}>edit profile</button>
+                                <button className="active:scale-95 bg-emerald-600 px-3 py-1 rounded-md text-gray-100" onClick={handleEditUser}>Update</button>
                             </div>
                         </form>
                     </div>

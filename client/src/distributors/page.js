@@ -1,6 +1,6 @@
 import { getDistributors } from "../managers/distributors"
 import { useEffect, useState } from "react"
-import { FaRegStar, FaStar } from "react-icons/fa";
+// import { FaRegStar, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom"
 // component
 export const Distributors = () => {
@@ -13,33 +13,40 @@ export const Distributors = () => {
     // useEffect
     useEffect(() => { handleGetDistributors() }, [])
     return (
-        <ul className="flex flex-wrap">
-            {distributors.map((distributor) => (
-                <li className="border flex">
-                    <div>
+        <div className="bg-gray-100 font-sans">
+            <div>
+                <div className="p-10">
+                    <h1 className="font-bold text-3xl">Distributors</h1>
+                </div>
+            </div>
+            <ul className="flex flex-wrap gap-5 px-10 pb-10">
+                {distributors.map((distributor) => (
+                    <li className="bg-white border p-5 rounded-md drop-shadow-sm w-[20rem]">
                         <div>
-                            <p className="hover:underline text-blue-500">
-                                <Link to={`${distributor.id}`}>
-                                    {distributor.name}
-                                </Link>
-                            </p>
+                            <div>
+                                <p>
+                                    <Link className="font-semibold hover:underline text-blue-700" to={`${distributor.id}`}>
+                                        {distributor.name}
+                                    </Link>
+                                </p>
+                            </div>
+                            <div>
+                                <p className="font-medium text-gray-500">
+                                    {distributor.city}, {distributor.state}
+                                </p>
+                            </div>
                         </div>
-                        <div>
+                        {/* <div>
                             <p>
-                                {distributor.city}, {distributor.state}
+                                <FaRegStar />
                             </p>
-                        </div>
-                    </div>
-                    <div>
-                        <p>
-                            <FaRegStar />
-                        </p>
-                        <p className="text-yellow-300">
-                            <FaStar />
-                        </p>
-                    </div>
-                </li>
-            ))}
-        </ul>
+                            <p className="text-yellow-300">
+                                <FaStar />
+                            </p>
+                        </div> */}
+                    </li>
+                ))}
+            </ul>
+        </div>
     )
 }
