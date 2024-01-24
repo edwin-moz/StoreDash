@@ -10,27 +10,27 @@ export const Orders = ({ loggedInUser }) => {
     // useEffect
     useEffect(() => { handleGetOrders() }, [loggedInUser])
     return (
-        <div className="flex flex-col items-center">
-            <div>
+        <div className="bg-gray-100 flex flex-col items-center">
+            <div className="w-2/3">
                 <div className="flex justify-between">
-                    <div>
-                        <h1>Orders</h1>
+                    <div className="py-10">
+                        <h1 className="text-3xl">Orders</h1>
                     </div>
-                    <div className="flex">
+                    {/* <div className="flex">
                         <p>filter by:</p>
                         <select>
                             <option>default</option>
                         </select>
-                    </div>
+                    </div> */}
                 </div>
                 <div>
-                    <ul className="flex flex-col">
+                    <ul className="flex flex-col gap-5 pb-10">
                         {orders.map((order, index) => (
-                            <li className="border">
-                                <div className="border-b flex gap-5 ">
+                            <li className="bg-white border rounded-lg" key={index}>
+                                <div className="border-b flex justify-between p-3">
                                     <div>
                                         <p>placed on:</p>
-                                        <p>{order.date}</p>
+                                        <p>{new Date(order.date).toLocaleDateString()}</p>
                                     </div>
                                     <div>
                                         <p>total:</p>
@@ -41,14 +41,14 @@ export const Orders = ({ loggedInUser }) => {
                                         <p>{order.store.name}</p>
                                     </div>
                                     <div>
-                                        <p>order #{order.id}</p>
-                                        <p>{order.fulfilled ? "fulfilled" : "pending"}</p>
+                                        <p>order # {order.id}</p>
+                                        {/* <p>{order.fulfilled ? "fulfilled" : "pending"}</p> */}
                                     </div>
                                 </div>
                                 <div>
-                                    <ul>
+                                    <ul className="px-5">
                                         {order.inventoryOrders.map((inventoryOrder, index) => (
-                                            <li className="flex justify-between items-center">
+                                            <li className="flex justify-between items-center p-3">
                                                 <div>
                                                     <img className="h-16" src={inventoryOrder.inventory.product.imageUrl} alt="" />
                                                 </div>
@@ -65,11 +65,11 @@ export const Orders = ({ loggedInUser }) => {
                                         ))}
                                     </ul>
                                 </div>
-                                <div>
+                                {/* <div>
                                     <div>
                                         <button>cancel order</button>
                                     </div>
-                                </div>
+                                </div> */}
                             </li>
                         ))}
                     </ul>
