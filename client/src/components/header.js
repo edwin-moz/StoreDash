@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
 import { logout } from "../managers/authentication"
+import { motion } from "framer-motion"
 
 const links = [
     {
         name: "Distributors",
-        to: "/"
+        to: "/",
     },
     {
         name: "Orders",
@@ -31,14 +32,14 @@ export const Header = ({ setLoggedInUser }) => {
             <nav className="border-b-2">
                 <ul className="flex h-[5rem] items-center justify-around">
                     <Link to="/">
-                        <li className="flex items-center">
-                            <img className="h-20" src="./StoreDashLogo.png" alt="" />
-                            <p className="font-light text-xl tracking-widest text-emerald-600">STOREDASH</p>
-                        </li>
+                        <motion.li animate={{ x: 0 }} initial={{x:-200}} className="flex items-center">
+                            <img className="h-20" src="./Store.png" alt="" />
+                            <p className="font-medium text-xl tracking-widest text-emerald-600">STOREDASH</p>
+                        </motion.li>
                     </Link>
                     {links.map((link, index) => (
                         <li key={index}>
-                            <p className="text-gray-900">
+                            <p className="text-gray-950">
                                 <Link to={`${link.to}`}>{link.name}</Link>
                             </p>
                         </li>

@@ -57,7 +57,7 @@ export const Views = ({ loggedInUser, setLoggedInUser, handletryGetLoggedInUser 
                     } />
                 </Route>
             </Route>
-            <Route path="register" element={<Register />} />
+            <Route path="register" element={<Register setLoggedInUser={setLoggedInUser} />} />
             <Route path="login" element={<Login setLoggedInUser={setLoggedInUser} />} />
         </Routes>
     )

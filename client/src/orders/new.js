@@ -77,7 +77,10 @@ export const NewOrder = ({ loggedInUser }) => {
             <div className="px-10">
                 <div className="flex justify-between py-10">
                     <div className="self-center">
-                        <h1 className="text-3xl text-gray-900">{distributor.name}</h1>
+                        <h1 className="text-3xl text-gray-900 tracking-wide">{distributor.name}</h1>
+                    </div>
+                    <div className="self-center">
+                        <p>in stock</p>
                     </div>
                     <div className="flex gap-3 items-center">
                         <p className="self-end">choose a store:</p>
@@ -89,19 +92,19 @@ export const NewOrder = ({ loggedInUser }) => {
                         </select>
                     </div>
                 </div>
-                <ul className="flex flex-wrap gap-5 pb-10">
+                <ul className="flex flex-wrap justify-evenly pb-10">
                     {distributor.inventories?.map((inventory, index) => (
-                        <li className="flex flex-col items-center w-[7rem]" key={index}>
-                            <div>
+                        <li className="grid grid-rows-[2fr, 1fr, 1fr, 1fr] items-center w-[7rem]" key={index}>
+                            <div className="flex justify-center row-span-2">
                                 <img className="h-[5rem]" src={inventory.product?.imageUrl} alt="" />
                             </div>
-                            <div>
-                                <p className="text-gray-400 text-center">{inventory.product?.name}</p>
+                            <div className="row-span-1 text-center">
+                                <p className="text-gray-400">{inventory.product?.name}</p>
                             </div>
-                            <div>
+                            <div className="row-span-1 text-center">
                                 <p className="text-gray-900">${inventory.price.toFixed(2)}</p>
                             </div>
-                            <div>
+                            <div className="row-span-1 text-center">
                                 <input onChange={handleOrderIventory} type="checkbox" value={inventory.id} />
                             </div>
                         </li>

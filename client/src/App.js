@@ -19,7 +19,7 @@ function App() {
   }
   // component return
   return (
-    <div className="App">
+    <div className="flex flex-col font-gothic font-semibold justify-between h-screen relative text-gray-950 w-screen">
       <Views loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} handletryGetLoggedInUser={handletryGetLoggedInUser} />
     </div>
   )
