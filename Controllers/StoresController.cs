@@ -22,6 +22,7 @@ public class StoreController : ControllerBase
     {
         List<Store> stores = _dbContext.Stores
         .Where((store) => store.UserId == userId)
+        .OrderBy((store) => store.Name)
         .ToList();
         return Ok(stores.Select((store) => new StoreDTO
         {

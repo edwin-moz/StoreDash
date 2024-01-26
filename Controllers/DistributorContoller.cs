@@ -21,7 +21,9 @@ public class DistributorController : ControllerBase
     [Authorize]
     public IActionResult GetDistributors()
     {
-        List<Distributor> distributors = _dbContext.Distributors.ToList();
+        List<Distributor> distributors = _dbContext.Distributors
+        .OrderBy((distributor) => distributor.Name)
+        .ToList();
         return Ok(
             distributors.Select((distributor) => new DistributorDTO
             {
@@ -48,6 +50,7 @@ public class DistributorController : ControllerBase
         {
             return BadRequest();
         }
+        distributor.Inventories = distributor.Inventories.OrderBy((inventory) => inventory.Product.Name).ToList();
         return Ok(new DistributorDTO
         {
             Id = distributor.Id,
