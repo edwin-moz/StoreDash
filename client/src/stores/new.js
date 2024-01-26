@@ -36,8 +36,8 @@ export const NewStore = ({ loggedInUser, handleGetStores, setDisplayAddStore }) 
     }
     // component return
     return (
-        <div className="flex justify-center">
-            <form className="border bg-white flex flex-col gap-3 items-center p-5 rounded-lg w-full">
+        <div className="flex justify-center right-0">
+            <form className="border-l border-y bg-white flex flex-col gap-3 items-center p-5 rounded-lg w-full">
                 <div className="py-3">
                     <p className="text-2xl">Add a new store</p>
                 </div>

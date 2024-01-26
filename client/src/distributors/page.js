@@ -13,15 +13,16 @@ export const Distributors = () => {
     // useEffect
     useEffect(() => { handleGetDistributors() }, [])
     return (
-        <div className="bg-gray-100 font-sans">
+        <div>
             <div>
-                <div className="p-10">
-                    <h1 className="font-bold text-3xl">Distributors</h1>
+                <div className="flex items-center gap-5 p-10">
+                    <h1 className="font-bold text-3xl tracking-wide">Distributors</h1>
+
                 </div>
             </div>
             <ul className="flex flex-wrap gap-5 px-10 pb-10">
                 {distributors.map((distributor) => (
-                    <li className="bg-white border p-5 rounded-md drop-shadow-sm w-[20rem]">
+                    <li className="border p-5 rounded-md drop-shadow-sm w-[20rem]">
                         <div>
                             <div>
                                 <p>

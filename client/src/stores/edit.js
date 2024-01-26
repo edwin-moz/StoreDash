@@ -49,7 +49,7 @@ export const EditStore = ({ chosenStore, handleGetStores, setDisplayEditStore })
     }, [chosenStore])
     // component return
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center right-10">
             <form className="border bg-white flex flex-col gap-3 items-center p-5 rounded-lg w-full">
                 <div className="py-3">
                     <p className="text-2xl">edit store</p>

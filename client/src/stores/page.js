@@ -23,12 +23,12 @@ export const Stores = ({ loggedInUser }) => {
     //use effect
     useEffect(() => { handleGetStores() }, [loggedInUser])
     return (
-        <div className="bg-gray-100">
+        <div>
             <div className="p-10">
                 <div className="mb-10">
                     <div className="flex justify-between">
                         <div>
-                            <h1 className="text-4xl">Stores</h1>
+                            <h1 className="text-4xl tracking-wide">My Stores</h1>
                         </div>
                         <div>
                             <button className="active:scale-95 active:shadow bg-emerald-600 text-gray-100 px-3 py-2 rounded-lg shadow-md" onClick={() => {
@@ -41,7 +41,7 @@ export const Stores = ({ loggedInUser }) => {
                     </div>
                 </div>
                 <div className="flex">
-                    <ul className="flex gap-5 flex-wrap">
+                    <ul className="flex flex-col justify-between w-full">
                         {stores.map((store, index) => (
                             <li className="bg-white border h-[8rem] p-3 rounded-md shadow-sm w-[20rem]" key={index}>
                                 <div className="flex justify-between">

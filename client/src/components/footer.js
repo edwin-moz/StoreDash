@@ -7,8 +7,8 @@ export const Footer = () => {
                         <p className="text-2xl text-gray-900 italic">StoreDash</p>
                     </div>
                     <div>
-                        <p>Grim Hex</p>
-                        <p>Yela, Crusader 0.1706° S, 146.0000° E</p>
+                        <p>505 Deaderick Street</p>
+                        <p>Nashville, TN 37243</p>
                     </div>
                 </div>
                 <div className="self-center">

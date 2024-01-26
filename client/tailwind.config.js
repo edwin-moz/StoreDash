@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      gothic: ['gothic']
+    }
   },
   plugins: [],
 }
