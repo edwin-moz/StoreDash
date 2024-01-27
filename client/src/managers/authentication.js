@@ -1,5 +1,4 @@
-const _apiUrl = "/api/authorization";
-
+const _apiUrl = "/api/authorization"
 export const login = (email, password) => {
   return fetch(_apiUrl + "/login", {
     method: "POST",
@@ -9,25 +8,22 @@ export const login = (email, password) => {
     },
   }).then((res) => {
     if (res.status !== 200) {
-      return Promise.resolve(null);
+      return Promise.resolve(null)
     } else {
-      return tryGetLoggedInUser();
+      return tryGetLoggedInUser()
     }
-  });
-};
-
+  })
+}
 export const logout = () => {
-  return fetch(_apiUrl + "/logout");
-};
-
+  return fetch(_apiUrl + "/logout")
+}
 export const tryGetLoggedInUser = () => {
   return fetch(_apiUrl + "/me").then((res) => {
-    return res.status === 401 ? Promise.resolve(null) : res.json();
-  });
-};
-
+    return res.status === 401 ? Promise.resolve(null) : res.json()
+  })
+}
 export const register = (userProfile) => {
-  userProfile.password = btoa(userProfile.password);
+  userProfile.password = btoa(userProfile.password)
   return fetch(_apiUrl + "/register", {
     credentials: "same-origin",
     method: "POST",
@@ -35,5 +31,5 @@ export const register = (userProfile) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(userProfile),
-  }).then(() => tryGetLoggedInUser());
-};
+  }).then(() => tryGetLoggedInUser())
+} 
