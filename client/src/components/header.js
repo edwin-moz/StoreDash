@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { logout } from "../managers/authentication"
 import { motion } from "framer-motion"
-
+// nav links
 const links = [
     {
         name: "Distributors",
@@ -18,7 +18,7 @@ const links = [
     {
         name: "Profile",
         to: "/profile"
-    },
+    }
 ]
 export const Header = ({ setLoggedInUser }) => {
     // handle function to log out
@@ -28,27 +28,27 @@ export const Header = ({ setLoggedInUser }) => {
         })
     }
     return (
-        <header className="font-sans font-semibold">
+        <header>
             <nav className="border-b-2">
                 <ul className="flex h-[5rem] items-center justify-around">
                     <Link to="/">
-                        <motion.li animate={{ x: 0 }} initial={{x:-200}} className="flex items-center">
-                            <img className="h-20" src="./Store.png" alt="" />
-                            <p className="font-medium text-xl tracking-widest text-emerald-600">STOREDASH</p>
+                        <motion.li animate={{ x: 0 }} initial={{ x: -200 }} className="flex items-center">
+                            <img className="h-[5rem]" src="./Store.png" alt="" />
+                            <p className="text-emerald-600 text-2xl tracking-widest">STOREDASH</p>
                         </motion.li>
                     </Link>
                     {links.map((link, index) => (
-                        <li key={index}>
-                            <p className="text-gray-950">
-                                <Link to={`${link.to}`}>{link.name}</Link>
-                            </p>
-                        </li>
+                        <motion.li animate={{ y: 0 }} initial={{ y: -100 }} key={index}>
+                            <Link to={`${link.to}`}>
+                                <p className="text-gray-950 tracking-widest">{link.name}</p>
+                            </Link>
+                        </motion.li>
                     ))}
-                    <li className="bg-gray-300 rounded-full px-3 py-1">
-                        <button onClick={handleLogout}>Logout</button>
-                    </li>
+                    <motion.li animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }}>
+                        <button className="bg-gray-300 px-3 py-1 rounded-full" onClick={handleLogout}>Logout</button>
+                    </motion.li>
                 </ul>
             </nav>
-        </header >
+        </header>
     )
 }
