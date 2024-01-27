@@ -1,4 +1,5 @@
 const api = "/api/order"
+// function to post a new order
 export const placeOrder = (order) => {
     return fetch(api, {
         method: "POST",
@@ -6,7 +7,7 @@ export const placeOrder = (order) => {
         body: JSON.stringify(order)
     })
 }
+// function to get all of the logged in user's ordes
 export const getOrders = (userId) => {
-    console.log("🚀 ~ getOrders ~ userId:", userId)
     return fetch(`${api}/${userId}`).then((response) => response.json())
 }
