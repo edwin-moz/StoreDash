@@ -1,6 +1,7 @@
 import { editUser } from "../managers/user"
+import { motion } from "framer-motion"
 
-export const EditProfile = ({ user, setUser, handletryGetLoggedInUser }) => {
+export const EditProfile = ({ user, setUser, handletryGetLoggedInUser, setDisplayEditForm }) => {
     // handle function for edit form
     const handleEditForm = (event) => {
         const name = event.target.name
@@ -24,21 +25,18 @@ export const EditProfile = ({ user, setUser, handletryGetLoggedInUser }) => {
         })
     }
     return (
-        <div>
-            <form className="flex flex-col h-full justify-between">
-                <p className="text-xl font-bold font-mono">Update your information</p>
-                <p className="font-normal">First name: *</p>
-                <input className="bg-gray-100 border h-8 rounded text-center font-normal w-60" defaultValue={user.firstName} name="firstName" onChange={handleEditForm} placeholder="Edit your first name" type="text" />
-                <p className="font-normal">Last name: *</p>
-                <input className="bg-gray-100 border h-8 rounded text-center font-normal w-60" defaultValue={user.lastName} name="lastName" onChange={handleEditForm} placeholder="Edit your last name" type="text" />
-                <p className="font-normal">Address: *</p>
-                <textarea className="bg-gray-100 border h-24 p-1 rounded font-normal w-96" defaultValue={user.address} name="address" onChange={handleEditForm} placeholder="Edit your address" type="text" />
-                <div className="flex justify-between gap-5">
-                    <button className="active:scale-95 bg-gray-300 rounded-md w-full">Cancel</button>
-                    <button className="active:scale-95 bg-emerald-600 h-10 rounded-md text-gray-100 w-full" onClick={handleEditUser}>Update</button>
-                </div>
-            </form>
-        </div>
-
+        <motion.div animate={{ x: 0 }} className="flex flex-col w-[25rem]" initial={{ x: 300 }}>
+            <p className="text-xl">Update your information</p>
+            <p className="mt-3">First name: *</p>
+            <input className="border h-10 rounded text-center" defaultValue={user.firstName} name="firstName" onChange={handleEditForm} placeholder="Edit your first name" type="text" />
+            <p className="mt-3">Last name: *</p>
+            <input className="border h-10 rounded text-center" defaultValue={user.lastName} name="lastName" onChange={handleEditForm} placeholder="Edit your last name" type="text" />
+            <p className="mt-3">Address: *</p>
+            <textarea className="border p-1 rounded" defaultValue={user.address} name="address" onChange={handleEditForm} placeholder="Edit your address" rows={2} />
+            <div className="flex gap-5 mt-3">
+                <button className="active:scale-95 bg-gray-300 h-10 rounded-md w-full" onClick={() => setDisplayEditForm(false)}>Cancel</button>
+                <button className="active:scale-95 bg-emerald-600 h-10 hover:bg-emerald-700 rounded-md text-gray-100 w-full" onClick={handleEditUser}>Update</button>
+            </div>
+        </motion.div>
     )
 }
