@@ -9,13 +9,18 @@ export const NewOrder = ({ loggedInUser }) => {
     const navigate = useNavigate()
     // state
     const [distributor, setDistributor] = useState({})
+    const [distributorToDisplay, setDistributorToDisplay] = useState({})
     const [orderInventory, setOrderInventory] = useState([])
     const [orderTotal, setOrderTotal] = useState(0)
     const [stores, setStores] = useState([])
     const [chosenStoreId, setChosenStoreId] = useState(0)
+    const [searchProduct, setSearchProduct] = useState("")
     // handle function to get distributor
     const handleGetDistributor = () => {
-        getDistributor(distributorId).then(setDistributor)
+        getDistributor(distributorId).then((data) => {
+            setDistributor(data)
+            setDistributorToDisplay(data)
+        })
     }
     // handle function for the new order
     const handleOrderIventory = (event) => {
@@ -66,6 +71,17 @@ export const NewOrder = ({ loggedInUser }) => {
             navigate("/orders")
         })
     }
+    // handle function to set search product
+    const handleSetSearchProduct = (event) => {
+        const value = event.target.value
+        setSearchProduct(value)
+    }
+    // handle function to search for a product name
+    const handleSearchProduct = () => {
+        const copy = { ...distributor }
+        copy.inventories = distributor.inventories.filter((inventory) => inventory.product.name.toLowerCase().includes(searchProduct))
+        setDistributorToDisplay(copy)
+    }
     // use effect
     useEffect(() => {
         handleGetDistributor()
@@ -80,7 +96,8 @@ export const NewOrder = ({ loggedInUser }) => {
                         <h1 className="text-3xl text-gray-900 tracking-wide">{distributor.name}</h1>
                     </div>
                     <div className="self-center">
-                        <p>in stock</p>
+                        <input className="border h-[2rem] rounded text-center text-gray-600 w-[20rem]" defaultValue={searchProduct} onChange={handleSetSearchProduct} placeholder="Search by product name..." type="search" value={searchProduct} />
+                        <button onClick={handleSearchProduct}>search</button>
                     </div>
                     <div className="flex gap-3 items-center">
                         <p className="self-end">choose a store:</p>
@@ -93,7 +110,7 @@ export const NewOrder = ({ loggedInUser }) => {
                     </div>
                 </div>
                 <ul className="flex flex-wrap justify-evenly pb-10">
-                    {distributor.inventories?.map((inventory, index) => (
+                    {distributorToDisplay.inventories?.map((inventory, index) => (
                         <li className="grid grid-rows-[2fr, 1fr, 1fr, 1fr] items-center w-[7rem]" key={index}>
                             <div className="flex justify-center row-span-2">
                                 <img className="h-[5rem]" src={inventory.product?.imageUrl} alt="" />
