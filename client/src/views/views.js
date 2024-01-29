@@ -10,14 +10,15 @@ import { Stores } from "../stores/page"
 import { NewStore } from "../stores/new"
 import { Profile } from "../profile/page"
 import { Footer } from "../components/footer"
+import { Admin } from "../admin/page"
 export const Views = ({ loggedInUser, setLoggedInUser, handletryGetLoggedInUser }) => {
     return (
         <Routes>
             <Route path="/" element={
                 <>
-                    <Header setLoggedInUser={setLoggedInUser} />
+                    <Header loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
                     <Outlet />
-                    <Footer />
+                    {/* <Footer /> */}
                 </>
             }>
                 <Route index element={
@@ -53,6 +54,13 @@ export const Views = ({ loggedInUser, setLoggedInUser, handletryGetLoggedInUser 
                     <Route index element={
                         <AuthorizedRoute loggedInUser={loggedInUser}>
                             <Profile loggedInUser={loggedInUser} handletryGetLoggedInUser={handletryGetLoggedInUser} />
+                        </AuthorizedRoute>
+                    } />
+                </Route>
+                <Route path="admin">
+                    <Route index element={
+                        <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
+                            <Admin />
                         </AuthorizedRoute>
                     } />
                 </Route>
