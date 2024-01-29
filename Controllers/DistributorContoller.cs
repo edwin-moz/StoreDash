@@ -38,7 +38,7 @@ public class DistributorController : ControllerBase
         );
     }
     [HttpGet("{distributorId}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetDistributor(int distributorId)
     {
         Distributor? distributor = _dbContext.Distributors
@@ -78,5 +78,45 @@ public class DistributorController : ControllerBase
                 Stock = inventory.Stock,
             }).ToList()
         });
+    }
+    [HttpPost]
+    [Authorize]
+    public IActionResult AddDistributor(Distributor distributor)
+    {
+        distributor.Active = true;
+        _dbContext.Distributors.Add(distributor);
+        _dbContext.SaveChanges();
+        return Created($"api/distributor/{distributor.Id}", distributor);
+    }
+    [HttpPut("{distributorId}")]
+    [Authorize]
+    public IActionResult EditDistributor(int distributorId, Distributor distributor)
+    {
+        Distributor? distributorToEdit = _dbContext.Distributors.SingleOrDefault((distributor) => distributor.Id == distributorId);
+        if (distributorToEdit == null)
+        {
+            return BadRequest();
+        }
+        distributorToEdit.Active = distributor.Active;
+        distributorToEdit.City = distributor.City;
+        distributorToEdit.Name = distributor.Name;
+        distributorToEdit.State = distributor.State;
+        distributorToEdit.Street = distributor.Street;
+        distributorToEdit.Zipcode = distributor.Zipcode;
+        _dbContext.SaveChanges();
+        return NoContent();
+    }
+    [HttpDelete("{distributorId}")]
+    [Authorize]
+    public IActionResult DeleteDistributor(int distributorId)
+    {
+        Distributor? distributor = _dbContext.Distributors.SingleOrDefault((distributor) => distributor.Id == distributorId);
+        if (distributor == null)
+        {
+            return BadRequest();
+        }
+        _dbContext.Distributors.Remove(distributor);
+        _dbContext.SaveChanges();
+        return NoContent();
     }
 }

@@ -47,7 +47,7 @@ export const Header = ({ loggedInUser, setLoggedInUser }) => {
                             </Link>
                         </motion.li>
                     ))}
-                    {loggedInUser.roles.includes("Admin") && (
+                    {loggedInUser?.roles.includes("Admin") && (
                         <motion.li animate={{ y: 0 }} initial={{ y: -100 }}>
                             <Link to="admin">
                                 <p className="text-gray-950 tracking-widest">Admin</p>
