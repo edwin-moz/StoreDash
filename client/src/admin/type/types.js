@@ -82,7 +82,6 @@ export const Types = ({ types, handleGetTypes }) => {
                 </div>
                 <button className="bg-emerald-600 h-[3rem] rounded-full shadow-md text-2xl text-white" onClick={handleEditType}>Edit</button>
             </div>
-            {/* <li className="bg-yellow-500">4</li> */}
         </div>
     )
 }
