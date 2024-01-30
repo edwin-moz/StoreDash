@@ -1,5 +1,5 @@
-import { Products } from "./products/products"
-import { Types } from "./type/types"
+import { Products } from "./products/page"
+import { Types } from "./type/page"
 import { getTypes } from "../managers/types"
 import { useEffect, useState } from "react"
 import { Menu } from "./menu/menu"
@@ -18,7 +18,8 @@ export const Admin = () => {
         handleGetTypes()
     }, [])
     return (
-        <div className="flex flex-col h-lvh">
+        <div className="flex flex-col">
+            <div className="bg-stone-100 fixed z-[-999] h-screen w-screen"></div>
             {menuToDisplay === "" && <motion.p animate={{ opacity: 1 }} className="flex h-full items-center justify-center text-4xl w-full" initial={{ opacity: 0 }} transition={{ duration: 2 }}>Select one of the menu options to begin...</motion.p>}
             {menuToDisplay === "Products" && <Products types={types} />}
             {menuToDisplay === "Types" && <Types types={types} handleGetTypes={handleGetTypes} />}

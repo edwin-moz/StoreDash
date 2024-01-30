@@ -31,7 +31,7 @@ export const Header = ({ loggedInUser, setLoggedInUser }) => {
         })
     }
     return (
-        <header>
+        <header className="bg-white relative">
             <nav className="border-b-2">
                 <ul className="flex h-[5rem] items-center justify-around">
                     <Link to="/">

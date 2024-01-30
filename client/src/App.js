@@ -18,9 +18,9 @@ function App() {
   }
   // component return
   return (
-    <div className="flex flex-col font-gothic justify-between h-screen text-gray-950 w-screen">
+    // <div className="flex flex-col font-gothic justify-between h-screen text-gray-950 w-screen">
       <Views loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} handletryGetLoggedInUser={handletryGetLoggedInUser} />
-    </div>
+    // </div>
   )
 }
 
