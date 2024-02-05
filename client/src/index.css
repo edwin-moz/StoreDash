@@ -14,3 +14,6 @@
 .label-layout {
     @apply absolute bg-white left-3 px-1 pointer-events-none text-xs text-gray-500 -top-2;
 }
+.button-primary {
+    @apply active:scale-95 active:translate-y-1 bg-emerald-700 px-3 py-2 rounded-full shadow text-white transition;
+}

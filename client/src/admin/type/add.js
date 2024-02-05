@@ -24,7 +24,7 @@ export const AddProduct = ({ type, setType, handleGetTypes }) => {
                     <label className="label-layout peer-focus:text-gray-950">* Name</label>
                 </div>
             </div>
-            <button className="active:scale-95 active:translate-y-1 bg-emerald-700 h-[3rem] rounded-full shadow-md text-2xl text-white transition" onClick={handleAddType}>Add</button>
+            <button className="button-primary text-2xl" onClick={handleAddType}>Add</button>
         </div>
     )
 }

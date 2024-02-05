@@ -78,9 +78,7 @@ export default function Register({ setLoggedInUser }) {
             }} type="password" value={confirmPassword} />
           </div>
         </div>
-        <div className="my-3 self-end">
-          <button className="active:scale-95 active:shadown-sm active:translate-y-1 bg-emerald-700 border px-4 py-2 rounded-full shadow-md text-white transition" onClick={handleSubmit}>Register</button>
-        </div>
+        <button className="button-primary self-end" onClick={handleSubmit}>Register</button>
         <p>Already signed up?<Link className="hover:underline text-blue-500" to="/login"> Log in here</Link></p>
       </form>
     </div>

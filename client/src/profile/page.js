@@ -36,7 +36,7 @@ export const Profile = ({ loggedInUser, handletryGetLoggedInUser }) => {
                         <p className="text-gray-500">Username:</p>
                         <p className="text-gray-950 text-lg">{loggedInUser.userName}</p>
                     </div>
-                    <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[14rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => setDisplayEditForm(true)}>Edit my profile</button>
+                    <button className="button-primary w-[10rem]" onClick={() => setDisplayEditForm(true)}>Edit my profile</button>
                 </motion.div>
             )}
             {displayEditForm && (
