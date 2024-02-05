@@ -13,11 +13,17 @@ public class OrderDTO
         get
         {
             decimal total = 0M;
-            foreach (InventoryOrderDTO inventoryOrder in InventoryOrders)
+            if (InventoryOrders != null)
             {
-                decimal price = inventoryOrder.Inventory.Price;
-                int quantity = inventoryOrder.Quantity;
-                total += price * quantity;
+                foreach (InventoryOrderDTO inventoryOrder in InventoryOrders)
+                {
+                    if (inventoryOrder.Inventory != null)
+                    {
+                        decimal price = inventoryOrder.Inventory.Price;
+                        int quantity = inventoryOrder.Quantity;
+                        total += price * quantity;
+                    }
+                }
             }
             return total;
         }
