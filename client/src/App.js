@@ -18,9 +18,10 @@ function App() {
   }
   // component return
   return (
-    // <div className="flex flex-col font-gothic justify-between h-screen text-gray-950 w-screen">
+    <div>
+      <div className="bg-stone-100 fixed top-0 bottom-0 left-0 right-0 -z-[999]"></div>
       <Views loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} handletryGetLoggedInUser={handletryGetLoggedInUser} />
-    // </div>
+    </div>
   )
 }
 

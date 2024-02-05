@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { EditProfile } from "./edit"
+import { motion } from "framer-motion"
 export const Profile = ({ loggedInUser, handletryGetLoggedInUser }) => {
     // state
     const [user, setUser] = useState({})
@@ -18,24 +19,29 @@ export const Profile = ({ loggedInUser, handletryGetLoggedInUser }) => {
         handleSetUser()
     }, [loggedInUser])
     return (
-        <div className="flex flex-col">
-            <div className="ml-10 my-10">
-                <p className="text-3xl">My Profile</p>
-            </div>
-            <div className="flex flex-wrap justify-between mx-10">
-                <div className="flex flex-col">
+        <div className="flex flex-col gap-10 min-h-[87vh] p-10">
+            <motion.p animate={{ x: 0 }} initial={{ x: -180 }} className="text-3xl">My Profile</motion.p>
+            {!displayEditForm && (
+                <motion.div animate={{ x: 0 }} initial={{ x: -100 }} className="flex flex-col">
                     <p className="text-xl">Your information</p>
-                    <p className="my-3 text-gray-500">First name: <span className="text-gray-950 text-lg">{loggedInUser.firstName}</span></p>
-                    <p className="text-gray-500">Last name: <span className="text-gray-900 text-lg">{loggedInUser.lastName}</span></p>
-                    <p className="my-3 text-gray-500">Address: <span className="text-gray-950 text-lg">{loggedInUser.address}</span></p>
-                    <p className="text-gray-500">Email: <span className="text-gray-950 text-lg">{loggedInUser.email}</span></p>
-                    <p className="my-3 text-gray-500">Username: <span className="text-gray-950 text-lg">{loggedInUser.userName}</span></p>
-                    <button className="active:scale-95 bg-emerald-600 h-10 hover:bg-emerald-700 rounded-md text-gray-100" onClick={() => setDisplayEditForm(true)}>Edit my profile</button>
-                </div>
-                {displayEditForm && (
-                    <EditProfile user={user} setUser={setUser} handletryGetLoggedInUser={handletryGetLoggedInUser} setDisplayEditForm={setDisplayEditForm} />
-                )}
-            </div>
+                    <div className="grid grid-cols-[1fr,2fr] py-5 self-start">
+                        <p className="text-gray-500">First name:</p>
+                        <p className="text-gray-950 text-lg">{loggedInUser.firstName}</p>
+                        <p className="text-gray-500">Last name:</p>
+                        <p className="text-gray-900 text-lg">{loggedInUser.lastName}</p>
+                        <p className="text-gray-500">Address:</p>
+                        <p className="text-gray-950 text-lg">{loggedInUser.address}</p>
+                        <p className="text-gray-500">Email:</p>
+                        <p className="text-gray-950 text-lg">{loggedInUser.email}</p>
+                        <p className="text-gray-500">Username:</p>
+                        <p className="text-gray-950 text-lg">{loggedInUser.userName}</p>
+                    </div>
+                    <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[14rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => setDisplayEditForm(true)}>Edit my profile</button>
+                </motion.div>
+            )}
+            {displayEditForm && (
+                <EditProfile user={user} setUser={setUser} handletryGetLoggedInUser={handletryGetLoggedInUser} displayEditForm={displayEditForm} setDisplayEditForm={setDisplayEditForm} />
+            )}
         </div>
     )
 }
