@@ -9,7 +9,7 @@
     }
 }
 .input-layout {
-    @apply border border-emerald-700 outline-emerald-700 pl-2 py-2 rounded w-96;
+    @apply border border-emerald-700 outline-emerald-700 pl-2 py-2 rounded;
 }
 .label-layout {
     @apply absolute bg-white left-3 px-1 pointer-events-none text-xs text-gray-500 -top-2;
