@@ -8,3 +8,9 @@
         src: url('../public/Century\ Gothic/centurygothic.ttf') format('truetype');
     }
 }
+.input-layout {
+    @apply border border-emerald-700 outline-emerald-700 pl-2 py-2 rounded w-96;
+}
+.label-layout {
+    @apply absolute bg-white left-3 px-1 pointer-events-none text-xs text-gray-500 -top-2;
+}
