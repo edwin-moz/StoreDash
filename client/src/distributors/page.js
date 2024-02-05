@@ -14,7 +14,7 @@ export const Distributors = () => {
     return (
         <div className="flex flex-col min-h-[87vh]">
             <div className="p-10">
-                <h1 className="font-bold text-3xl tracking-wide">Distributors</h1>
+                <h1 className="font-bold text-3xl text-gray-950 tracking-wide">Distributors</h1>
             </div>
             <ul className="flex flex-wrap gap-5 pb-10 px-10">
                 {distributors.map((distributor) => (

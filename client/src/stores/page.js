@@ -30,7 +30,7 @@ export const Stores = ({ loggedInUser }) => {
     return (
         <div className="p-10 min-h-[87vh]">
             <div className="flex flex-wrap gap-10 justify-between">
-                <motion.h1 animate={{ x: 0 }} initial={{ x: -210 }} className="text-4xl tracking-wide">My Stores</motion.h1>
+                <motion.h1 animate={{ x: 0 }} initial={{ x: -210 }} className="font-bold text-4xl text-gray-950 tracking-wide">My Stores</motion.h1>
                 <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => {
                     setDisplayAddStore(true)
                     setDisplayEditStore(false)

@@ -72,13 +72,13 @@ export const NewOrder = ({ loggedInUser }) => {
             <div className="flex flex-col w-full">
                 <motion.div animate={{ opacity: 1 }} className="px-5 sm:px-10 py-3" initial={{ opacity: 0 }} transition={{ duration: 1 }}>
                     <p>Welcome to</p>
-                    <h1 className="text-3xl text-gray-900 tracking-wide">{distributor.name}</h1>
+                    <h1 className="font-bold text-3xl text-gray-950 tracking-wide">{distributor.name}</h1>
                 </motion.div>
                 {!storeChosen && (
                     <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ delay: 0.5, duration: 1 }} className="flex flex-col flex-grow gap-5 items-center justify-center">
-                        <p>Select a store to begin...</p>
+                        <p>Select your store to begin</p>
                         <select className="border-2 h-[3rem] focus:border-2 hover:border-blue-500 rounded-full text-center text-gray-950 w-[30rem]" onChange={handleChosenStore}>
-                            <option>choose a store</option>
+                            <option>Choose your store</option>
                             {stores.map((store, index) => (
                                 <option key={index} value={store.id}>{store.name}</option>
                             ))}
@@ -101,7 +101,7 @@ export const NewOrder = ({ loggedInUser }) => {
                                 )}
                             </div>
                         </motion.div>
-                        <motion.ul animate={{scale:1}} initial={{scale:0}} className="gap-5 grid grid-cols-3 md:grid-cols-5 pb-10">
+                        <motion.ul animate={{ scale: 1 }} initial={{ scale: 0 }} className="gap-5 grid grid-cols-3 md:grid-cols-5 pb-10">
                             {distributorToDisplay.inventories?.map((inventory, index) => (
                                 <li className="gap-3 grid grid-rows-[2fr, 1fr]" key={index}>
                                     <div className="flex justify-center">

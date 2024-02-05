@@ -24,7 +24,7 @@ export const Orders = ({ loggedInUser }) => {
     return (
         <div className="flex flex-col w-full min-h-[87vh]">
             <motion.div animate={{ x: 0 }} initial={{ x: -190 }} className="p-10">
-                <h1 className="text-3xl tracking-wide">My Orders</h1>
+                <h1 className="font-bold text-3xl text-gray-950 tracking-wide">My Orders</h1>
             </motion.div>
             <motion.ul animate={{ x: 0 }} initial={{ x: 1500 }} className="flex flex-col gap-5 pb-10 px-10">
                 {orders.map((order, index) => (
