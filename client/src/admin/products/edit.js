@@ -22,7 +22,7 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
     // handle function to edit product
     const handleEditProduct = () => {
         editProduct(productToEdit).then(() => {
-            setProductToEdit({})
+            setProductToEdit({ typeId: 'defaultOption' })
             handleGetProducts()
         })
     }
@@ -33,11 +33,6 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
                 <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProductToEdit({})}>Clear fields</button>
             </div>
             <div className="flex flex-col justify-center gap-y-3">
-                {/* <div className="flex flex-wrap gap-3">
-                    <label>Availability</label>
-                    <input checked={productToEdit.available} name="available" onChange={handleEditProductForm} type="checkbox" />
-                </div> */}
-                {/* add product image url form */}
                 <div className="w-72">
                     <div className="relative w-full min-w-[200px] h-10">
                         <input className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t- focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900" name="imageUrl" onChange={handleEditProductForm} placeholder=" " type="text" value={productToEdit.imageUrl || ""} />
@@ -46,7 +41,6 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
                         </label>
                     </div>
                 </div>
-                {/* add product name form */}
                 <div className="w-72">
                     <div className="relative w-full min-w-[200px] h-10">
                         <input className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t- focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900" name="name" onChange={handleEditProductForm} placeholder=" " type="text" value={productToEdit.name || ""} />
@@ -55,16 +49,9 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
                         </label>
                     </div>
                 </div>
-                {/* add product select type form */}
                 <div className="relative h-10 w-72 min-w-[200px]">
-                    <select className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" name="typeId" onChange={handleEditProductForm}>
-                        {/* test this!!! */}
-                        {productToEdit.typeId ? (
-                            <option value={productToEdit.typeId}>{types.find((type) => type.id === productToEdit.typeId)?.name}</option>
-                        ) : (
-                            <option defaultValue={0}>Select a Type</option>
-                        )}
-                        {/* test this!!! */}
+                    <select className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" defaultValue={0} name="typeId" onChange={handleEditProductForm} value={productToEdit.typeId}>
+                        <option value={0}>Select a Type</option>
                         {types.map((type, index) => (
                             <option key={index} value={type.id}>{type.name}</option>
                         ))}

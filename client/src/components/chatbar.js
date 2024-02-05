@@ -36,7 +36,7 @@ export const ChatBar = ({ loggedInUser }) => {
                                 </div>
                                 <div className="flex gap-2 justify-end items-center">
                                     <p>{loggedInUser.firstName[0]}. {loggedInUser.lastName}</p>
-                                    <img className="bg-gray-500 h-4 rounded-full scale-x-[-1] w-4" src="https://datepsychology.com/wp-content/uploads/2022/09/gigachad.jpg" alt="" />
+                                    <div className="bg-blue-500 h-4 rounded-full scale-x-[-1] w-4"></div>
                                 </div>
                                 <div className="bg-gray-500 max-w-[15rem] px-3 py-1 rounded-r-md rounded-t-md">
                                     <p className="text-white">{message.openAiMessage}</p>

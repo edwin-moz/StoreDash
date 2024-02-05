@@ -21,6 +21,7 @@ export const AddDistributor = ({ distributor, setDistributor, handleGetDistribut
     // handle function to add distributor
     const handleAddDistributor = () => {
         addDistributor(distributor).then(() => {
+            setDistributor({})
             handleGetDistributors()
         })
     }
