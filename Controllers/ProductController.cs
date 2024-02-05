@@ -32,6 +32,7 @@ public class ProductController : ControllerBase
     [Authorize]
     public IActionResult AddProduct(Product product)
     {
+        product.Available = true;
         _dbContext.Products.Add(product);
         _dbContext.SaveChanges();
         return Created($"api/product/{product.Id}", product);

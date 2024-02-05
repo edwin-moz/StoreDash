@@ -27,14 +27,14 @@ export const Distributors = () => {
             <ul className="flex flex-col gap-3 min-h-[80vh] max-h-[80vh] overflow-y-scroll">
                 {distributors.map((distributor, index) => (
                     <li className="gap-3 grid grid-cols-[2fr,1fr,1fr,1fr] items-center" key={index}>
-                        <div className="bg-white border col-span-2 grid grid-cols-2 items-center p-5 rounded-lg shadow">
+                        <div className="bg-white border col-span-2 grid grid-cols-2 max-h-[10rem] p-5 rounded-lg shadow">
                             <div className="flex flex-col">
-                                <p className="truncate">{distributor.name}</p>
+                                <p className="text-blue-500 truncate">{distributor.name}</p>
                                 <p>{distributor.active ? "Active" : "Unactive"}</p>
                             </div>
                             <div>
                                 <p className="truncate">{distributor.street}</p>
-                                <div className="flex">
+                                <div className="flex flex-wrap">
                                     <p></p>
                                     <p>{distributor.city}, {distributor.state} {distributor.zipcode}</p>
                                 </div>
