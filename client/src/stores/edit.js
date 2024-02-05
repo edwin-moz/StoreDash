@@ -75,16 +75,12 @@ export const EditStore = ({ chosenStore, handleGetStores, setDisplayEditStore })
                     <label className="label-layout peer-focus:text-gray-950">* Zipcode</label>
                 </div>
             </div>
-            <div className="flex justify-between w-full">
-                <div>
-                    <button className="active:scale-95 active:translate-y-1 bg-gray-600 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={(event) => {
-                        event.preventDefault()
-                        setDisplayEditStore(false)
-                    }}>Cancel</button>
-                </div>
-                <div>
-                    <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={handleEditStore}>Update</button>
-                </div>
+            <div className="flex gap-3 w-full">
+                <button className="button-secondary w-full" onClick={(event) => {
+                    event.preventDefault()
+                    setDisplayEditStore(false)
+                }}>Cancel</button>
+                <button className="button-primary w-full" onClick={handleEditStore}>Update</button>
             </div>
         </motion.form>
     )

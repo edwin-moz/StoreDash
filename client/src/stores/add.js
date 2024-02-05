@@ -61,8 +61,8 @@ export const AddStore = ({ loggedInUser, handleGetStores, setDisplayAddStore }) 
                     <label className="label-layout peer-focus:text-gray-950">* Zipcode</label>
                 </div>
             </div>
-            <div className="flex justify-between w-full">
-                <button className="active:scale-95 active:translate-y-1 bg-gray-600 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => setDisplayAddStore(false)}>Cancel</button>
+            <div className="flex gap-3 w-full">
+                <button className="button-secondary w-full" onClick={() => setDisplayAddStore(false)}>Cancel</button>
                 <button className="button-primary w-full" onClick={handleAddStore}>Submit</button>
             </div>
         </motion.form>
