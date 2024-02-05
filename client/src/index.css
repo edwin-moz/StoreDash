@@ -17,3 +17,6 @@
 .button-primary {
     @apply active:scale-95 active:translate-y-1 bg-emerald-700 px-3 py-2 rounded-full shadow text-white transition;
 }
+.button-secondary {
+    @apply active:scale-95 active:translate-y-1 bg-gray-600 px-3 py-2 rounded-full shadow text-white transition;
+}
