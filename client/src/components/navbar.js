@@ -39,7 +39,7 @@ export const Navbar = ({ loggedInUser, setLoggedInUser }) => {
                         <p className="font-bold text-emerald-600 text-2xl tracking-widest">STOREDASH</p>
                     </motion.li>
                 </Link>
-                <div className="flex flex-grow flex-wrap gap-5 justify-around">
+                <div className="flex flex-grow flex-wrap gap-5 items-center justify-around">
                     {links.map((link, index) => (
                         <motion.li animate={{ y: 0 }} initial={{ y: -100 }} key={index}>
                             <Link to={`${link.to}`}>
@@ -55,7 +55,7 @@ export const Navbar = ({ loggedInUser, setLoggedInUser }) => {
                         </motion.li>
                     )}
                     <motion.li animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }}>
-                        <button className="bg-gray-300 px-3 py-1 rounded-full text-gray-950" onClick={handleLogout}>Logout</button>
+                        <button className="button-secondary" onClick={handleLogout}>Logout</button>
                     </motion.li>
                 </div>
             </ul>

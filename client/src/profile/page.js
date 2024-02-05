@@ -19,8 +19,9 @@ export const Profile = ({ loggedInUser, handletryGetLoggedInUser }) => {
         handleSetUser()
     }, [loggedInUser])
     return (
-        <div className="flex flex-col gap-10 min-h-[87vh] p-10">
+        <div className="flex flex-col min-h-[87vh] p-10">
             <motion.p animate={{ x: 0 }} initial={{ x: -180 }} className="font-bold text-3xl text-gray-950 tracking-wide">My Profile</motion.p>
+            <div className="border-t mb-10 mt-10"></div>
             {!displayEditForm && (
                 <motion.div animate={{ x: 0 }} initial={{ x: -100 }} className="flex flex-col">
                     <p className="text-xl">Your information</p>

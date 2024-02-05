@@ -33,7 +33,7 @@ export const Footer = ({ loggedInUser }) => {
                     </div>
                     <input className="bg-white border-2 border-white focus:bg-stone-100 focus:border-2 focus:border-blue-500 h-10 outline-none px-3 rounded-md" name='email' onChange={handleEmailForm} placeholder="Your email" type="email" value={email.email || ""} />
                     <textarea className="bg-white border-2 border-white focus:bg-stone-100 focus:border-2 focus:border-blue-500 h-32 outline-none p-3 rounded-md" name='message' onChange={handleEmailForm} placeholder="Your message" value={email.message || ""} />
-                    <button className="active:scale-95 active:translate-y-1 bg-emerald-700 md:self-end shadow-md text-white transition px-4 py-2 rounded-full" type='submit'>Send</button>
+                    <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 self-end text-white tracking-wider transition w-full" type='submit'>Send</button>
                 </form>
             </div>
             <div className="flex flex-wrap items-center gap-5 h-[20vh] px-10">
