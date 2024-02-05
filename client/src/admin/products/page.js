@@ -25,36 +25,34 @@ export const Products = ({ types }) => {
         handleGetProducts()
     }, [])
     return (
-        <div className="gap-5 grid grid-cols-[2fr,1fr] mx-10 my-10">
-            <div className="flex flex-col flex-wrap rounded-lg overflow-hidden">
-                <ul className="flex flex-col gap-3 h-[37.5rem] overflow-y-scroll">
-                    {products.map((product, index) => (
-                        <li className="gap-3 grid grid-cols-[2fr,1fr,1fr,1fr] items-center text-center" key={index}>
-                            <div className="bg-white border col-span-2 grid grid-cols-3 items-center rounded-lg shadow-md">
-                                <div className="p-5">
-                                    <img className="border-2 border-emerald-600 h-20 object-cover rounded-full w-20" src={product.imageUrl} alt="" />
-                                </div>
-                                <div className="flex flex-col">
-                                    <p className="font-medium text-xl truncate">{product.name}</p>
-                                    <p className="">{types.find((type) => type.id === product.typeId)?.name}</p>
-                                </div>
-                                <div>
-                                    <p className="">{product.available ? "Available" : "Not Available"}</p>
-                                    <Link to={`${product.imageUrl}`}>
-                                        <p className="hover:underline text-blue-500 truncate">View Item</p>
-                                    </Link>
-                                </div>
+        <div className="gap-5 grid grid-cols-[2fr,1fr]">
+            <ul className="flex flex-col gap-3 max-h-[80vh] min-h-[80vh] overflow-y-scroll">
+                {products.map((product, index) => (
+                    <li className="gap-3 grid grid-cols-[2fr,1fr,1fr,1fr] group items-center text-center" key={index}>
+                        <div className="bg-white border col-span-2 grid grid-cols-3 items-center rounded-lg shadow">
+                            <div className="p-5">
+                                <img className="border-2 border-emerald-600 h-20 object-cover rounded-full w-20" src={product.imageUrl} alt="" />
                             </div>
-                            <button className="bg-emerald-600/20 hover:border-2 hover:border-emerald-600 rounded-lg self-stretch text-emerald-800 text-xl" onClick={() => handleProductToEdit(product)}>
-                                Edit
-                            </button>
-                            <button className="bg-red-500/20 hover:border-2 hover:border-red-600 rounded-lg self-stretch text-xl text-red-800" onClick={() => handleDeleteProduct(product.id)}>
-                                Delete
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                            <div className="flex flex-col">
+                                <p className="font-medium text-xl truncate">{product.name}</p>
+                                <p className="">{types.find((type) => type.id === product.typeId)?.name}</p>
+                            </div>
+                            <div>
+                                <p className="">{product.available ? "Available" : "Not Available"}</p>
+                                <Link className="hover:underline text-blue-500 truncate" to={`${product.imageUrl}`}>
+                                    View Item
+                                </Link>
+                            </div>
+                        </div>
+                        <button className="bg-emerald-700/20 hover:border-2 hover:border-emerald-600 rounded-lg self-stretch text-emerald-800 text-xl" onClick={() => handleProductToEdit(product)}>
+                            Edit
+                        </button>
+                        <button className="bg-red-500/20 hover:border-2 hover:border-red-600 rounded-lg self-stretch text-xl text-red-800" onClick={() => handleDeleteProduct(product.id)}>
+                            Delete
+                        </button>
+                    </li>
+                ))}
+            </ul>
             <div className="gap-5 grid">
                 <NewProduct handleGetProducts={handleGetProducts} types={types} />
                 <EditProduct handleGetProducts={handleGetProducts} productToEdit={productToEdit} setProductToEdit={setProductToEdit} types={types} />

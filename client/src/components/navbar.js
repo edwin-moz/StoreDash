@@ -20,7 +20,7 @@ const links = [
         to: "/profile"
     }
 ]
-export const Header = ({ loggedInUser, setLoggedInUser }) => {
+export const Navbar = ({ loggedInUser, setLoggedInUser }) => {
     // hooks
     const navigate = useNavigate()
     // handle function to log out
@@ -31,15 +31,15 @@ export const Header = ({ loggedInUser, setLoggedInUser }) => {
         })
     }
     return (
-        <header className="bg-white relative">
-            <nav className="border-b-2">
-                <ul className="flex h-[5rem] items-center justify-around">
-                    <Link to="/">
-                        <motion.li animate={{ x: 0 }} initial={{ x: -200 }} className="flex items-center">
-                            <img className="h-[5rem]" src="./Store.png" alt="" />
-                            <p className="text-emerald-600 text-2xl tracking-widest">STOREDASH</p>
-                        </motion.li>
-                    </Link>
+        <nav className="bg-white border-b-2">
+            <ul className="flex flex-wrap gap-5 min-h-[5rem] items-center justify-around p-3">
+                <Link to="/">
+                    <motion.li animate={{ x: 0 }} initial={{ x: -200 }} className="flex items-center">
+                        <img className="h-[5rem]" src="./Store.png" alt="" />
+                        <p className="font-bold text-emerald-600 text-2xl tracking-widest">STOREDASH</p>
+                    </motion.li>
+                </Link>
+                <div className="flex flex-grow flex-wrap gap-5 justify-around">
                     {links.map((link, index) => (
                         <motion.li animate={{ y: 0 }} initial={{ y: -100 }} key={index}>
                             <Link to={`${link.to}`}>
@@ -48,17 +48,17 @@ export const Header = ({ loggedInUser, setLoggedInUser }) => {
                         </motion.li>
                     ))}
                     {loggedInUser?.roles.includes("Admin") && (
-                        <motion.li animate={{ y: 0 }} initial={{ y: -100 }}>
+                        <motion.li animate={{ y: 0 }} className="flex justify-end" initial={{ y: -100 }}>
                             <Link to="admin">
                                 <p className="text-gray-950 tracking-widest">Admin</p>
                             </Link>
                         </motion.li>
                     )}
                     <motion.li animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }}>
-                        <button className="bg-gray-300 px-3 py-1 rounded-full" onClick={handleLogout}>Logout</button>
+                        <button className="bg-gray-300 px-3 py-1 rounded-full text-gray-950" onClick={handleLogout}>Logout</button>
                     </motion.li>
-                </ul>
-            </nav>
-        </header>
+                </div>
+            </ul>
+        </nav>
     )
 }

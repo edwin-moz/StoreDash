@@ -1,56 +1,28 @@
 import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { getDistributor } from "../managers/distributors"
 import { getStores } from "../managers/stores"
-import { placeOrder } from "../managers/orders"
+import { motion } from "framer-motion"
+import { Cart } from "./cart"
 export const NewOrder = ({ loggedInUser }) => {
     // hooks
     const { distributorId } = useParams()
-    const navigate = useNavigate()
     // state
     const [distributor, setDistributor] = useState({})
+    const [storeChosen, setStoreChosen] = useState(false)
     const [distributorToDisplay, setDistributorToDisplay] = useState({})
     const [orderInventory, setOrderInventory] = useState([])
     const [orderTotal, setOrderTotal] = useState(0)
     const [stores, setStores] = useState([])
     const [chosenStoreId, setChosenStoreId] = useState(0)
     const [searchProduct, setSearchProduct] = useState("")
+    const [displayCart, setDisplayCart] = useState(false)
     // handle function to get distributor
     const handleGetDistributor = () => {
         getDistributor(distributorId).then((data) => {
             setDistributor(data)
             setDistributorToDisplay(data)
         })
-    }
-    // handle function for the new order
-    const handleOrderIventory = (event) => {
-        const value = event.target.value * 1
-        const checked = event.target.checked
-        if (checked) {
-            setOrderInventory(() => {
-                const copy = [...orderInventory]
-                copy.push({
-                    inventoryId: value,
-                    quantity: 1
-                })
-                return copy
-            })
-            setOrderTotal(() => {
-                let copy = orderTotal
-                copy += distributor.inventories.find((inventory) => inventory.id === value).price
-                return copy
-            })
-        } else if (!checked) {
-            setOrderInventory(() => {
-                const filteredOrderInventory = orderInventory.filter((oi) => oi.inventoryId !== value)
-                return filteredOrderInventory
-            })
-            setOrderTotal(() => {
-                let copy = orderTotal
-                copy -= distributor.inventories.find((inventory) => inventory.id === value).price
-                return copy
-            })
-        }
     }
     // handle function to get stores
     const handleGetStores = () => {
@@ -60,16 +32,7 @@ export const NewOrder = ({ loggedInUser }) => {
     const handleChosenStore = (event) => {
         const storeId = event.target.value * 1
         setChosenStoreId(storeId)
-    }
-    // handle function to place order
-    const handlePlaceOrder = () => {
-        const order = {
-            storeId: chosenStoreId,
-            inventoryOrders: orderInventory
-        }
-        placeOrder(order).then(() => {
-            navigate("/orders")
-        })
+        setStoreChosen(true)
     }
     // handle function to set search product
     const handleSetSearchProduct = (event) => {
@@ -82,6 +45,22 @@ export const NewOrder = ({ loggedInUser }) => {
         copy.inventories = distributor.inventories.filter((inventory) => inventory.product.name.toLowerCase().includes(searchProduct))
         setDistributorToDisplay(copy)
     }
+    // handle function to add to cart
+    const handleAddToCart = (inventory) => {
+        const copy = [...orderInventory]
+        copy.push({
+            inventoryId: inventory.id,
+            quantity: 1
+        })
+        setOrderInventory(copy)
+        setOrderTotal(orderTotal + inventory.price)
+    }
+    // handle function to remove from cart
+    const handleRemoveFromCart = (inventory) => {
+        const copy = orderInventory.filter((orderInventory) => orderInventory.inventoryId !== inventory.id)
+        setOrderInventory(copy)
+        setOrderTotal(orderTotal - inventory.price)
+    }
     // use effect
     useEffect(() => {
         handleGetDistributor()
@@ -89,84 +68,66 @@ export const NewOrder = ({ loggedInUser }) => {
     }, [distributorId, loggedInUser])
     // component return
     return (
-        <div className="flex">
-            <div className="px-10">
-                <div className="flex justify-between py-10">
-                    <div className="self-center">
-                        <h1 className="text-3xl text-gray-900 tracking-wide">{distributor.name}</h1>
-                    </div>
-                    <div className="self-center">
-                        <input className="border h-[2rem] rounded text-center text-gray-600 w-[20rem]" defaultValue={searchProduct} onChange={handleSetSearchProduct} placeholder="Search by product name..." type="search" value={searchProduct} />
-                        <button onClick={handleSearchProduct}>search</button>
-                    </div>
-                    <div className="flex gap-3 items-center">
-                        <p className="self-end">choose a store:</p>
-                        <select className="border h-[2rem] rounded text-center text-gray-600 w-[10rem]" onChange={handleChosenStore}>
+        <div className="grid grid-cols-1 min-h-[87vh] md:flex">
+            <div className="flex flex-col w-full">
+                <motion.div animate={{ opacity: 1 }} className="px-5 sm:px-10 py-3" initial={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <p>Welcome to</p>
+                    <h1 className="text-3xl text-gray-900 tracking-wide">{distributor.name}</h1>
+                </motion.div>
+                {!storeChosen && (
+                    <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ delay: 0.5, duration: 1 }} className="flex flex-col flex-grow gap-5 items-center justify-center">
+                        <p>Select a store to begin...</p>
+                        <select className="border-2 h-[3rem] focus:border-2 hover:border-blue-500 rounded-full text-center text-gray-950 w-[30rem]" onChange={handleChosenStore}>
                             <option>choose a store</option>
                             {stores.map((store, index) => (
                                 <option key={index} value={store.id}>{store.name}</option>
                             ))}
                         </select>
-                    </div>
-                </div>
-                <ul className="flex flex-wrap justify-evenly pb-10">
-                    {distributorToDisplay.inventories?.map((inventory, index) => (
-                        <li className="grid grid-rows-[2fr, 1fr, 1fr, 1fr] items-center w-[7rem]" key={index}>
-                            <div className="flex justify-center row-span-2">
-                                <img className="h-[5rem]" src={inventory.product?.imageUrl} alt="" />
+                    </motion.div>
+                )}
+                {storeChosen && (
+                    <div className="flex flex-col gap-5 flex-grow">
+                        <motion.div animate={{ x: 0 }} initial={{ x: -1300 }} className="md:bg-emerald-900 md:py-10">
+                            <div className="flex flex-wrap gap-5 px-5 sm:px-10">
+                                <input className="border-2 focus:border-blue-500 h-[3rem] outline-none px-5 rounded-full flex flex-grow text-gray-950" defaultValue={searchProduct} onChange={handleSetSearchProduct} placeholder="Search by product name..." type="search" value={searchProduct} />
+                                <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={handleSearchProduct}>Search</button>
+                                <button className="active:scale-95 active:translate-y-1 bg-gray-600 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => {
+                                    setStoreChosen(false)
+                                    setDisplayCart(false)
+                                    setOrderInventory([])
+                                }}>Back</button>
+                                {!displayCart && (
+                                    <button className="active:scale-95 active:translate-y-1 bg-gray-600 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => setDisplayCart(true)}>Cart</button>
+                                )}
                             </div>
-                            <div className="row-span-1 text-center">
-                                <p className="text-gray-400">{inventory.product?.name}</p>
-                            </div>
-                            <div className="row-span-1 text-center">
-                                <p className="text-gray-900">${inventory.price.toFixed(2)}</p>
-                            </div>
-                            <div className="row-span-1 text-center">
-                                <input onChange={handleOrderIventory} type="checkbox" value={inventory.id} />
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="border-l-2 p-5">
-                <div className="flex flex-col w-[20rem]">
-                    <div className="flex justify-between">
-                        <div>
-                            <p>subtotal: <span>({orderInventory.length} items)</span></p>
-                        </div>
-                        <div>
-                            <p>${orderTotal.toFixed(2)}</p>
-                        </div>
-                    </div>
-                    <div className="flex my-3">
-                        <button className="bg-emerald-500 border h-10 hover:bg-emerald-400 rounded-full text-white transition w-full" onClick={handlePlaceOrder}>place order</button>
-                    </div>
-                    <div>
-                        <ul className="flex flex-col overflow-scroll h-[30rem]">
-                            {orderInventory.map((oi, index) => (
-                                <li className="flex flex-col py-3" key={index}>
-                                    <div className="flex gap-3 ml-10">
-                                        {/* <div>
-                                            <input type="checkbox" />
-                                        </div> */}
-                                        <div className="self-center">
-                                            <img className="w-[5rem]" src={distributor.inventories?.find((inventory) => inventory.id === oi.inventoryId).product.imageUrl} alt="" />
-                                        </div>
-                                        <div className="flex flex-col">
-                                            <div>
-                                                <p>{distributor.inventories?.find((inventory) => inventory.id === oi.inventoryId).product.name}</p>
-                                            </div>
-                                            <div>
-                                                <p>${distributor.inventories?.find((inventory) => inventory.id === oi.inventoryId).price.toFixed(2)}</p>
-                                            </div>
+                        </motion.div>
+                        <motion.ul animate={{scale:1}} initial={{scale:0}} className="gap-5 grid grid-cols-3 md:grid-cols-5 pb-10">
+                            {distributorToDisplay.inventories?.map((inventory, index) => (
+                                <li className="gap-3 grid grid-rows-[2fr, 1fr]" key={index}>
+                                    <div className="flex justify-center">
+                                        <img className="h-[5rem] object-cover rounded-full text-center w-[5rem]" src={inventory.product?.imageUrl} alt="" />
+                                    </div>
+                                    <div className="flex flex-col gap-1">
+                                        <p className="text-center text-gray-500">{inventory.product?.name}</p>
+                                        <p className="text-center text-gray-950">{inventory.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+                                        <div className="flex flex-wrap justify-center">
+                                            {/* <input onChange={handleOrderIventory} type="checkbox" value={inventory.id} /> */}
+                                            {orderInventory.some((oi) => oi.inventoryId === inventory.id) ? (
+                                                <button className="active:scale-95 active:shadow-sm active:translate-y-1 bg-gray-600 px-3 py-2 rounded-full shadow-md text-white transition" onClick={() => handleRemoveFromCart(inventory)}>Remove from cart</button>
+                                            ) : (
+                                                <button className="active:scale-95 active:shadow-sm active:translate-y-1 bg-emerald-700 px-3 py-2 rounded-full shadow-md text-white transition" onClick={() => handleAddToCart(inventory)}>Add to cart</button>
+                                            )}
                                         </div>
                                     </div>
                                 </li>
                             ))}
-                        </ul>
+                        </motion.ul>
                     </div>
-                </div>
+                )}
             </div>
+            {displayCart && (
+                <Cart chosenStoreId={chosenStoreId} distributor={distributor} orderInventory={orderInventory} orderTotal={orderTotal} />
+            )}
         </div>
     )
 }

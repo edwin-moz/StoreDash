@@ -27,10 +27,10 @@ export const NewProduct = ({ handleGetProducts, types }) => {
     }
     // component return
     return (
-        <div className="bg-white border flex flex-col p-5 rounded-lg">
+        <div className="bg-white border flex flex-col p-5 rounded-lg shadow">
             <div className="flex flex-wrap justify-between mb-3">
-                <p className="font-semibold text-xl">New product</p>
-                <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-600/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProduct({})}>Clear fields</button>
+                <p className="font-semibold text-xl">Add product</p>
+                <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProduct({})}>Clear fields</button>
             </div>
             <div className="flex flex-col justify-center gap-y-3">
                 {/* add product image url form */}
@@ -62,7 +62,7 @@ export const NewProduct = ({ handleGetProducts, types }) => {
                         Select a Type
                     </label>
                 </div>
-                <button className="bg-emerald-600 h-[3rem] rounded-full shadow-md text-2xl text-white" onClick={handleAddProduct}>Add</button>
+                <button className="active:scale-95 active:translate-y-1 bg-emerald-700 h-[3rem] rounded-full shadow-md text-2xl text-white transition" onClick={handleAddProduct}>Add</button>
             </div>
         </div>
     )

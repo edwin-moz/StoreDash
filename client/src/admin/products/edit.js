@@ -27,10 +27,10 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
         })
     }
     return (
-        <div className="bg-white border flex flex-col p-5 rounded-lg">
+        <div className="bg-white border flex flex-col p-5 rounded-lg shadow">
             <div className="flex flex-wrap justify-between mb-3">
                 <p className="font-semibold text-xl">Edit a product</p>
-                <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-600/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProductToEdit({})}>Clear fields</button>
+                <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProductToEdit({})}>Clear fields</button>
             </div>
             <div className="flex flex-col justify-center gap-y-3">
                 {/* <div className="flex flex-wrap gap-3">
@@ -73,7 +73,7 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
                         Select a Type
                     </label>
                 </div>
-                <button className="bg-emerald-600 h-[3rem] rounded-full shadow-md text-2xl text-white" onClick={handleEditProduct}>Edit</button>
+                <button className="active:scale-95 active:translate-y-1 bg-emerald-700 h-[3rem] rounded-full shadow-md text-2xl text-white transition" onClick={handleEditProduct}>Edit</button>
             </div>
         </div>
     )

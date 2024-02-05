@@ -3,22 +3,24 @@ import Register, { } from "../components/authentication/Register"
 import { Distributors } from "../distributors/page"
 import { AuthorizedRoute } from "../components/authentication/AuthorizedRoute"
 import Login from "../components/authentication/Login"
-import { Header } from "../components/header"
+import { Navbar } from "../components/navbar"
 import { NewOrder } from "../orders/new"
 import { Orders } from "../orders/page"
 import { Stores } from "../stores/page"
-import { NewStore } from "../stores/new"
+import { AddStore } from "../stores/add"
 import { Profile } from "../profile/page"
 import { Footer } from "../components/footer"
 import { Admin } from "../admin/page"
+import { ChatBar } from "../components/chatbar"
 export const Views = ({ loggedInUser, setLoggedInUser, handletryGetLoggedInUser }) => {
     return (
         <Routes>
             <Route path="/" element={
                 <>
-                    <Header loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+                    <Navbar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
                     <Outlet />
-                    {/* <Footer /> */}
+                    <Footer loggedInUser={loggedInUser} />
+                    <ChatBar loggedInUser={loggedInUser} />
                 </>
             }>
                 <Route index element={
@@ -46,7 +48,7 @@ export const Views = ({ loggedInUser, setLoggedInUser, handletryGetLoggedInUser 
                     } />
                     <Route path="new" element={
                         <AuthorizedRoute loggedInUser={loggedInUser}>
-                            <NewStore loggedInUser={loggedInUser} />
+                            <AddStore loggedInUser={loggedInUser} />
                         </AuthorizedRoute>
                     } />
                 </Route>

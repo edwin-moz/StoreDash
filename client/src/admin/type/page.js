@@ -15,24 +15,22 @@ export const Types = ({ types, handleGetTypes }) => {
         })
     }
     return (
-        <div className="gap-5 grid grid-cols-[2fr,1fr] m-10">
-            <div className="flex flex-col flex-wrap overflow-hidden rounded-lg">
-                <ul className="col-span-3 gap-3 grid grid-cols-[2fr,1fr,1fr] h-[28rem] overflow-y-scroll">
-                    {types.map((type, index) => (
-                        <li className="col-span-3 grid grid-cols-subgrid" key={index}>
-                            <div className="bg-white flex items-center justify-center p-5 rounded-lg shadow-sm">
-                                <p className="font-medium text-xl">{type.name}</p>
-                            </div>
-                            <button className="bg-emerald-600/20 hover:border-2 hover:border-emerald-600 rounded-lg self-stretch text-emerald-800 text-xl" onClick={() => setTypeToEdit(type)}>
-                                Edit
-                            </button>
-                            <button className="bg-red-500/20 hover:border-2 hover:border-red-600 rounded-lg self-stretch text-xl text-red-800" onClick={() => handleDeleteType(type.id)}>
-                                Delete
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+        <div className="gap-5 grid grid-cols-[2fr,1fr]">
+            <ul className="gap-3 grid grid-cols-[2fr,1fr,1fr] max-h-[80vh] min-h-[80vh] overflow-y-scroll">
+                {types.map((type, index) => (
+                    <li className="col-span-3 grid grid-cols-subgrid" key={index}>
+                        <div className="bg-white flex items-center justify-center p-5 rounded-lg shadow">
+                            <p className="font-medium text-xl">{type.name}</p>
+                        </div>
+                        <button className="bg-emerald-700/20 hover:border-2 hover:border-emerald-600 rounded-lg self-stretch text-emerald-800 text-xl" onClick={() => setTypeToEdit(type)}>
+                            Edit
+                        </button>
+                        <button className="bg-red-500/20 hover:border-2 hover:border-red-600 rounded-lg self-stretch text-xl text-red-800" onClick={() => handleDeleteType(type.id)}>
+                            Delete
+                        </button>
+                    </li>
+                ))}
+            </ul>
             <div className="gap-5 grid">
                 <AddProduct type={type} setType={setType} handleGetTypes={handleGetTypes} />
                 <EditProduct handleGetTypes={handleGetTypes} typeToEdit={typeToEdit} setTypeToEdit={setTypeToEdit} />
