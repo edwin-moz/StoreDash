@@ -27,7 +27,8 @@ export const AddStore = ({ loggedInUser, handleGetStores, setDisplayAddStore }) 
         }
     }
     // handle function to add store
-    const handleAddStore = () => {
+    const handleAddStore = (event) => {
+        event.preventDefault()
         const copy = { ...store }
         copy.userId = loggedInUser.id
         addStore(copy).then(() => {
