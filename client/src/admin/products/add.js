@@ -55,7 +55,7 @@ export const NewProduct = ({ handleGetProducts, types }) => {
                     </select>
                     <label className="label-layout peer-focus:text-gray-950">* Type</label>
                 </div>
-                <button className="active:scale-95 active:translate-y-1 bg-emerald-700 h-[3rem] rounded-full shadow-md text-2xl text-white transition" onClick={handleAddProduct}>Add</button>
+                <button className="button-primary text-2xl" onClick={handleAddProduct}>Add</button>
             </form>
         </div>
     )

@@ -59,7 +59,7 @@ export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, handl
                         <label className="label-layout peer-focus:text-gray-950">* Zipcode</label>
                     </div>
                 </div>
-                <button className="active:scale-95 active:translate-y-1 bg-emerald-700 h-[3rem] rounded-full shadow-md text-2xl text-white transition" onClick={handleEditDistributor}>Edit</button>
+                <button className="button-primary text-2xl" onClick={handleEditDistributor}>Edit</button>
             </div>
         </div>
     )

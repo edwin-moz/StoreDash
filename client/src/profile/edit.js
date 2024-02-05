@@ -43,7 +43,7 @@ export const EditProfile = ({ user, setUser, handletryGetLoggedInUser, setDispla
                 </div>
                 <div className="flex flex-wrap md:flex-nowrap gap-5">
                     <button className="active:scale-95 active:translate-y-1 bg-gray-500 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => setDisplayEditForm(false)}>Cancel</button>
-                    <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={handleEditUser}>Update</button>
+                    <button className="button-primary w-full" onClick={handleEditUser}>Update</button>
                 </div>
             </div>
         </motion.div>

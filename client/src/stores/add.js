@@ -63,7 +63,7 @@ export const AddStore = ({ loggedInUser, handleGetStores, setDisplayAddStore }) 
             </div>
             <div className="flex justify-between w-full">
                 <button className="active:scale-95 active:translate-y-1 bg-gray-600 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => setDisplayAddStore(false)}>Cancel</button>
-                <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={handleAddStore}>Submit</button>
+                <button className="button-primary w-full" onClick={handleAddStore}>Submit</button>
             </div>
         </motion.form>
     )

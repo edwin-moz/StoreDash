@@ -55,7 +55,7 @@ export const AddInventory = ({ handleGetDistributor, inventory, setInventory }) 
                     <input className="input-layout peer w-full" name="price" onChange={handleAddInventoryForm} required type="number" value={inventory.price || ""} />
                     <label className="label-layout peer-focus:text-gray-950">* Price</label>
                 </div>
-                <button className="active:scale-95 active:translate-y-1 bg-emerald-700 px-5 py-2 rounded-full shadow text-2xl text-white transition" onClick={handleAddInventory}>Add</button>
+                <button className="button-primary text-2xl w-full" onClick={handleAddInventory}>Add</button>
             </div>
         </div>
     )

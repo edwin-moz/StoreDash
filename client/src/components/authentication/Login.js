@@ -47,9 +47,9 @@ export default function Login({ setLoggedInUser }) {
           </div>
         </div>
         <div className="my-3 self-end">
-          <button className="active:scale-95 active:shadown-sm active:translate-y-1 bg-emerald-700 px-4 py-2 rounded-full text-white transition shadow-md shadow-black/50" onClick={handleSubmit}>Login</button>
+          <button className="button-primary" onClick={handleSubmit}>Login</button>
         </div>
-        <p>Not signed up?<Link className="hover:underline text-blue-500" to="/register"> Register here</Link></p>
+        <p>Not signed up? <Link className="hover:underline text-blue-500" to="/register">Register here</Link></p>
       </motion.div>
     </div>
   );

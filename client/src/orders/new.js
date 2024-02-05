@@ -115,7 +115,7 @@ export const NewOrder = ({ loggedInUser }) => {
                                             {orderInventory.some((oi) => oi.inventoryId === inventory.id) ? (
                                                 <button className="active:scale-95 active:shadow-sm active:translate-y-1 bg-gray-600 px-3 py-2 rounded-full shadow-md text-white transition" onClick={() => handleRemoveFromCart(inventory)}>Remove from cart</button>
                                             ) : (
-                                                <button className="active:scale-95 active:shadow-sm active:translate-y-1 bg-emerald-700 px-3 py-2 rounded-full shadow-md text-white transition" onClick={() => handleAddToCart(inventory)}>Add to cart</button>
+                                                <button className="button-primary" onClick={() => handleAddToCart(inventory)}>Add to cart</button>
                                             )}
                                         </div>
                                     </div>

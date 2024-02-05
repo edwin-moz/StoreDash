@@ -50,7 +50,7 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
                     </select>
                     <label className="label-layout peer-focus:text-gray-950">* Type</label>
                 </div>
-                <button className="active:scale-95 active:translate-y-1 bg-emerald-700 h-[3rem] rounded-full shadow-md text-2xl text-white transition" onClick={handleEditProduct}>Edit</button>
+                <button className="button-primary text-2xl" onClick={handleEditProduct}>Edit</button>
             </div>
         </div>
     )
