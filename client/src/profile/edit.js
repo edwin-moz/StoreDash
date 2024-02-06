@@ -30,16 +30,16 @@ export const EditProfile = ({ user, setUser, handletryGetLoggedInUser, setDispla
         <motion.div animate={{ x: 0 }} initial={{ x: -100 }} className="self-start">
             <div className="bg-white border flex flex-col gap-5 p-5 rounded">
                 <div className="relative">
-                    <input className="input-layout peer" name="firstName" onChange={handleEditForm} type="text" value={user.firstName || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* First name</label>
+                    <input className="input-layout peer" id="firstName" name="firstName" onChange={handleEditForm} type="text" value={user.firstName || ""} />
+                    <label className="label-layout peer-focus:text-gray-950" htmlFor="firstName">* First name</label>
                 </div>
                 <div className="relative">
-                    <input className="input-layout peer" name="lastName" onChange={handleEditForm} type="text" value={user.lastName || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Last name</label>
+                    <input className="input-layout peer" id="lastName" name="lastName" onChange={handleEditForm} type="text" value={user.lastName || ""} />
+                    <label className="label-layout peer-focus:text-gray-950" htmlFor="lastName">* Last name</label>
                 </div>
                 <div className="relative">
-                    <textarea className="input-layout peer w-full" name="address" onChange={handleEditForm} rows={2} type="text" value={user.address || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Address</label>
+                    <textarea autoComplete="address" className="input-layout peer w-full" id="address" name="address" onChange={handleEditForm} rows={2} type="text" value={user.address || ""} />
+                    <label className="label-layout peer-focus:text-gray-950" htmlFor="address">* Address</label>
                 </div>
                 <div className="flex flex-wrap md:flex-nowrap gap-5">
                     <button className="button-secondary w-full" onClick={() => setDisplayEditForm(false)}>Cancel</button>

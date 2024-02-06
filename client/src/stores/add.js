@@ -41,25 +41,25 @@ export const AddStore = ({ loggedInUser, handleGetStores, setDisplayAddStore }) 
         <motion.form animate={{ x: 0 }} initial={{ x: 400 }} className="border bg-white flex-col hidden gap-3 md:flex p-5 rounded-lg">
             <p><span className="text-emerald-600">*</span> indicates required field</p>
             <div className="relative">
-                <input className="input-layout peer" name="name" onChange={handleStoreForm} type="text" value={store.name || ""} />
-                <label className="label-layout peer-focus:text-gray-950">* Name</label>
+                <input className="input-layout peer" id="store-name" name="name" onChange={handleStoreForm} type="text" value={store.name || ""} />
+                <label className="label-layout peer-focus:text-gray-950" htmlFor="store-name">* Name</label>
             </div>
             <div className="relative">
-                <input className="input-layout peer w-full" name="street" onChange={handleStoreForm} type="text" value={store.street || ""} />
-                <label className="label-layout peer-focus:text-gray-950">* Street</label>
+                <input className="input-layout peer w-full" id="street" name="street" onChange={handleStoreForm} type="text" value={store.street || ""} />
+                <label className="label-layout peer-focus:text-gray-950" htmlFor="street">* Street</label>
             </div>
             <div className="flex gap-3">
                 <div className="relative">
-                    <input className="input-layout peer w-full" name="city" onChange={handleStoreForm} type="text" value={store.city || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* City</label>
+                    <input className="input-layout peer w-full" id="city" name="city" onChange={handleStoreForm} type="text" value={store.city || ""} />
+                    <label className="label-layout peer-focus:text-gray-950" htmlFor="city">* City</label>
                 </div>
                 <div className="relative">
-                    <input className="input-layout peer w-full" name="state" onChange={handleStoreForm} type="text" value={store.state || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* State</label>
+                    <input className="input-layout peer w-full" id="state" name="state" onChange={handleStoreForm} type="text" value={store.state || ""} />
+                    <label className="label-layout peer-focus:text-gray-950" htmlFor="state">* State</label>
                 </div>
                 <div className="relative">
-                    <input className="input-layout peer w-full" name="zipcode" onChange={handleStoreForm} type="number" value={store.zipcode || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Zipcode</label>
+                    <input className="input-layout peer w-full" id="zipcode" name="zipcode" onChange={handleStoreForm} type="number" value={store.zipcode || ""} />
+                    <label className="label-layout peer-focus:text-gray-950" htmlFor="zipcode">* Zipcode</label>
                 </div>
             </div>
             <div className="flex gap-3 w-full">

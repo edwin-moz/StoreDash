@@ -45,6 +45,15 @@ export const NewOrder = ({ loggedInUser }) => {
         copy.inventories = distributor.inventories.filter((inventory) => inventory.product.name.toLowerCase().includes(searchProduct))
         setDistributorToDisplay(copy)
     }
+    // handle back button
+    const handleBackButton = () => {
+        setSearchProduct("")
+        setDistributorToDisplay(distributor)
+        setOrderTotal(0)
+        setStoreChosen(false)
+        setDisplayCart(false)
+        setOrderInventory([])
+    }
     // handle function to add to cart
     const handleAddToCart = (inventory) => {
         const copy = [...orderInventory]
@@ -77,7 +86,7 @@ export const NewOrder = ({ loggedInUser }) => {
                 {!storeChosen && (
                     <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ delay: 0.5, duration: 1 }} className="flex flex-col flex-grow gap-5 items-center justify-center">
                         <p>Select your store to begin</p>
-                        <select className="border-2 h-[3rem] focus:border-2 hover:border-blue-500 rounded-full text-center text-gray-950 w-[30rem]" onChange={handleChosenStore}>
+                        <select className="border-2 h-[3rem] focus:border-2 hover:border-blue-500 rounded-full text-center text-gray-950 w-[30rem]" name="stores" onChange={handleChosenStore}>
                             <option>Choose your store</option>
                             {stores.map((store, index) => (
                                 <option key={index} value={store.id}>{store.name}</option>
@@ -89,15 +98,15 @@ export const NewOrder = ({ loggedInUser }) => {
                     <div className="flex flex-col gap-5 flex-grow">
                         <motion.div animate={{ x: 0 }} initial={{ x: -1300 }} className="md:bg-emerald-900 md:py-10">
                             <div className="flex flex-wrap gap-5 px-5 sm:px-10">
-                                <input className="border-2 focus:border-blue-500 h-[3rem] outline-none px-5 rounded-full flex flex-grow text-gray-950" defaultValue={searchProduct} onChange={handleSetSearchProduct} placeholder="Search by product name..." type="search" value={searchProduct} />
+                                <input className="border-2 focus:border-blue-500 h-[3rem] outline-none px-5 rounded-full flex flex-grow text-gray-950" name="search" onChange={handleSetSearchProduct} placeholder="Search by product name..." type="search" value={searchProduct} />
                                 <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={handleSearchProduct}>Search</button>
-                                <button className="active:scale-95 active:translate-y-1 bg-gray-600 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => {
-                                    setStoreChosen(false)
-                                    setDisplayCart(false)
-                                    setOrderInventory([])
-                                }}>Back</button>
+                                <button className="active:scale-95 active:translate-y-1 bg-gray-600 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={handleBackButton}>
+                                    Back
+                                </button>
                                 {!displayCart && (
-                                    <button className="active:scale-95 active:translate-y-1 bg-gray-600 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => setDisplayCart(true)}>Cart</button>
+                                    <button className="active:scale-95 active:translate-y-1 bg-gray-600 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => setDisplayCart(true)}>
+                                        Cart
+                                    </button>
                                 )}
                             </div>
                         </motion.div>
@@ -111,7 +120,6 @@ export const NewOrder = ({ loggedInUser }) => {
                                         <p className="text-center text-gray-500">{inventory.product?.name}</p>
                                         <p className="text-center text-gray-950">{inventory.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
                                         <div className="flex flex-wrap justify-center">
-                                            {/* <input onChange={handleOrderIventory} type="checkbox" value={inventory.id} /> */}
                                             {orderInventory.some((oi) => oi.inventoryId === inventory.id) ? (
                                                 <button className="button-secondary" onClick={() => handleRemoveFromCart(inventory)}>Remove from cart</button>
                                             ) : (
