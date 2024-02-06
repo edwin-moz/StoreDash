@@ -24,7 +24,9 @@ export const ChatBar = ({ loggedInUser }) => {
     return (
         <div className="bg-stone-100 border bottom-0 drop-shadow-md fixed flex-col hidden md:flex right-10 rounded-t-lg w-[20rem]">
             <div className="border-b-2 cursor-pointer p-2" onClick={() => setShowMessage(!showMessage)}>
-                <p className="text-lg">Messages</p>
+                <p className="text-lg">
+                    Messages
+                </p>
             </div>
             {showMessage && (
                 <div className="flex flex-col">
@@ -52,7 +54,7 @@ export const ChatBar = ({ loggedInUser }) => {
                         <textarea className="px-2 rounded-lg w-full" rows={2} onChange={handleSetMessage} value={message} />
                         <div className="self-end">
                             <button className="bg-green-500 px-3 py-3 rounded-full text-white" onClick={handleSendMessage}>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white dark:text-black"><path d="M7 11L12 6L17 11M12 18V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white dark:text-black"><path d="M7 11L12 6L17 11M12 18V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
                             </button>
                         </div>
                     </div>

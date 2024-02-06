@@ -14,12 +14,13 @@ export const Distributors = () => {
     return (
         <div className="flex flex-col min-h-[87vh] p-10">
             <div className="">
-                <h1 className="font-bold text-3xl text-gray-950 tracking-wide">Distributors</h1>
+                <h1
+                    className="font-bold text-3xl text-gray-950 tracking-wide">Distributors</h1>
             </div>
             <div className="border-t mb-10 mt-10"></div>
             <ul className="flex flex-wrap gap-5 pb-10">
-                {distributors.map((distributor) => (
-                    <li className="bg-white border p-5 rounded-lg shadow-md min-w-[20rem]">
+                {distributors.map((distributor, index) => (
+                    <li className="bg-white border p-5 rounded-lg shadow-md min-w-[20rem]" key={index}>
                         <Link className="font-semibold hover:underline text-blue-600" to={`${distributor.id}`}>{distributor.name}</Link>
                         <p className="font-medium text-gray-500">{distributor.city}, {distributor.state}</p>
                     </li>
