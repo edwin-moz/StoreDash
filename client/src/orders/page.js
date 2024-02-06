@@ -1,4 +1,4 @@
-import { getOrders } from "../managers/orders"
+import { deleteOrder, getOrders } from "../managers/orders"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 export const Orders = ({ loggedInUser }) => {
@@ -19,6 +19,12 @@ export const Orders = ({ loggedInUser }) => {
         })
         setOrders(copy)
     }
+    // handle functino to delete order
+    // const handleDeleteOrder = (orderId) => {
+    //     deleteOrder(orderId).then(() => {
+    //         handleGetOrders()
+    //     })
+    // }
     // useEffect
     useEffect(() => { handleGetOrders() }, [loggedInUser])
     return (
@@ -45,7 +51,7 @@ export const Orders = ({ loggedInUser }) => {
                             <div className="flex gap-3 justify-center">
                                 <p className="font-normal text-gray-500 tracking-wider">Order #</p>
                                 <span className="text-gray-950 tracking-widest">{order.id}</span>
-                                {/* <p>{order.fulfilled ? "fulfilled" : "pending"}</p> */}
+                                {/* <button onClick={() => handleDeleteOrder(order.id)}>Delete order</button> */}
                             </div>
                         </div>
                         <div>
@@ -66,17 +72,11 @@ export const Orders = ({ loggedInUser }) => {
                                             </div>
                                             <p>{inventoryOrder.inventory.product.name}</p>
                                             <p>{inventoryOrder.inventory.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-                                            {/* <p>qty: {inventoryOrder.quantity}</p> */}
                                         </li>
                                     ))}
                                 </ul>
                             )}
                         </div>
-                        {/* <div>
-                                    <div>
-                                        <button>cancel order</button>
-                                    </div>
-                                </div> */}
                     </li>
                 ))}
             </motion.ul>

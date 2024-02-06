@@ -82,4 +82,17 @@ public class OrderController : ControllerBase
         _dbContext.SaveChanges();
         return Created($"api/order/{order.Id}", order);
     }
+    [HttpDelete("{orderId}")]
+    [Authorize]
+    public IActionResult DeleteOrder(int orderId)
+    {
+        Order? order = _dbContext.Orders.SingleOrDefault((order) => order.Id == orderId);
+        if (order == null)
+        {
+            return BadRequest();
+        }
+        _dbContext.Orders.Remove(order);
+        _dbContext.SaveChanges();
+        return NoContent();
+    }
 }

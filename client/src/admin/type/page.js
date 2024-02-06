@@ -1,7 +1,5 @@
 import { useState } from "react"
-import { AddType, deleteType, editType } from "../../managers/types"
-import { FaRegEdit } from "react-icons/fa";
-import { AiOutlineDelete } from "react-icons/ai";
+import { deleteType } from "../../managers/types"
 import { AddProduct } from "./add";
 import { EditProduct } from "./edit";
 export const Types = ({ types, handleGetTypes }) => {
@@ -16,9 +14,9 @@ export const Types = ({ types, handleGetTypes }) => {
     }
     return (
         <div className="gap-5 grid grid-cols-[2fr,1fr]">
-            <ul className="gap-3 grid grid-cols-[2fr,1fr,1fr] max-h-[80vh] min-h-[80vh] overflow-y-scroll">
+            <ul className="gap-3 flex flex-col max-h-[80vh] min-h-[80vh] overflow-y-scroll">
                 {types.map((type, index) => (
-                    <li className="col-span-3 grid grid-cols-subgrid" key={index}>
+                    <li className="gap-3 grid grid-cols-[2fr,1fr,1fr] max-h-[10rem]" key={index}>
                         <div className="bg-white flex items-center justify-center p-5 rounded-lg shadow">
                             <p className="font-medium text-xl">{type.name}</p>
                         </div>

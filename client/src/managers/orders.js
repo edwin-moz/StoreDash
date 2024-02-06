@@ -11,3 +11,9 @@ export const placeOrder = (order) => {
 export const getOrders = (userId) => {
     return fetch(`${api}/${userId}`).then((response) => response.json())
 }
+// function to delete an order
+export const deleteOrder = (orderId) => {
+    return fetch(`${api}/${orderId}`, {
+        method: "DELETE"
+    })
+}
