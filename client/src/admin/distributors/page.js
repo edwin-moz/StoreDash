@@ -23,12 +23,12 @@ export const Distributors = () => {
         handleGetDistributors()
     }, [])
     return (
-        <div className="gap-5 grid grid-cols-2">
+        <div className="gap-5 grid grid-cols-[2fr,1fr]">
             <ul className="flex flex-col gap-3 min-h-[80vh] max-h-[80vh] overflow-y-scroll">
                 {distributors.map((distributor, index) => (
                     <li className="gap-3 grid grid-cols-[2fr,1fr,1fr,1fr] items-center" key={index}>
-                        <div className="bg-white border col-span-2 grid grid-cols-2 max-h-[10rem] p-5 rounded-lg shadow">
-                            <div className="flex flex-col">
+                        <div className="bg-white border col-span-2 grid grid-rows-2 max-h-[10rem] p-5 rounded-lg shadow">
+                            <div className="flex justify-between">
                                 <p className="text-blue-500 truncate">{distributor.name}</p>
                                 <p>{distributor.active ? "Active" : "Unactive"}</p>
                             </div>

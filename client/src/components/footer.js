@@ -13,7 +13,7 @@ export const Footer = ({ loggedInUser }) => {
         }
         setEmail(copy)
     }
-    if (loggedInUser.roles.includes("Admin")) {
+    if (loggedInUser?.roles.includes("Admin")) {
         return
     }
     return (
@@ -27,7 +27,7 @@ export const Footer = ({ loggedInUser }) => {
                 <div className="self-center">
                     <p className="text-sm text-white">&copy; 2024 StoreDash. All Rights Reserved.</p>
                 </div>
-                <form action='https://formsubmit.co/6dd122f2d39b97577f572c81aa59bb7d' target='_blank' className="flex flex-col gap-5 flex-grow max-w-[30rem]" method='POST'>
+                <form action='https://formsubmit.co/conquerxhacks@gmail.com' target='_blank' className="flex flex-col gap-5 flex-grow max-w-[30rem]" method='POST'>
                     <div className="flex flex-wrap">
                         <p className="text-white text-lg">Want to sell your products? <span className="text-blue-400 text-lg"> Contact us here</span></p>
                     </div>

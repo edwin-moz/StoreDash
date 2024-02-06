@@ -79,7 +79,7 @@ export default function Register({ setLoggedInUser }) {
           </div>
         </div>
         <button className="button-primary self-end" onClick={handleSubmit}>Register</button>
-        <p>Already signed up?<Link className="hover:underline text-blue-500" to="/login"> Log in here</Link></p>
+        <p>Already signed up? <Link className="hover:underline text-blue-500" to="/login">Log in here</Link></p>
       </form>
     </div>
   );
