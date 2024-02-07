@@ -74,7 +74,7 @@ export const NewOrder = ({ loggedInUser }) => {
     useEffect(() => {
         handleGetDistributor()
         handleGetStores()
-    }, [distributorId, loggedInUser])
+    }, [distributorId, handleGetDistributor, handleGetStores, loggedInUser])
     // component return
     return (
         <div className="grid grid-cols-1 min-h-[87vh] md:flex">

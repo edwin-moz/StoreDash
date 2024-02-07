@@ -24,7 +24,7 @@ export default function Login({ setLoggedInUser }) {
   };
   // return component
   return (
-    <div className="flex flex-col h-[100vh] md:items-center md:justify-center">
+    <div className="flex flex-col h-[100vh] md:items-center justify-center">
       <motion.div animate={{ x: 0 }} initial={{ x: -999 }} transition={{ duration: 4 }}>
         <p className="hidden md:block text-emerald-600">
           <GiTruck size={36} />
@@ -35,19 +35,19 @@ export default function Login({ setLoggedInUser }) {
         <div className="flex flex-col">
           <label className="text-gray-950 text-sm" htmlFor="email">Email</label>
           <div className="flex flex-wrap gap-3 items-center md:flex-nowrap">
-            <FaEnvelope className="text-gray-500" />
+            <FaEnvelope className="hidden md:flex text-gray-500" />
             <input autoComplete="email" className="border px-3 py-2 rounded-lg w-full" id="email" onChange={(e) => { setEmail(e.target.value); }} type="text" value={email} />
           </div>
         </div>
         <div className="flex flex-col">
           <label className="text-gray-950 text-sm" htmlFor="password">Password</label>
           <div className="flex flex-wrap gap-3 items-center md:flex-nowrap">
-            <FaLock className="text-gray-500" />
+            <FaLock className="hidden md:flex text-gray-500" />
             <input autoComplete="current-password" className="border px-3 py-2 rounded-lg w-full" id="password" onChange={(e) => { setPassword(e.target.value); }} type="password" value={password} />
           </div>
         </div>
-        <div className="my-3 self-end">
-          <button className="button-primary" onClick={handleSubmit}>Login</button>
+        <div className="my-3 md:self-end">
+          <button className="button-primary w-full" onClick={handleSubmit}>Login</button>
         </div>
         <p>Not signed up? <Link className="hover:underline text-blue-500" to="/register">Register here</Link></p>
       </motion.form>

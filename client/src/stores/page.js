@@ -31,14 +31,14 @@ export const Stores = ({ loggedInUser }) => {
         <div className="p-10 min-h-[87vh]">
             <div className="flex flex-wrap gap-10 justify-between">
                 <motion.h1 animate={{ x: 0 }} initial={{ x: -210 }} className="font-bold text-4xl text-gray-950 tracking-wide">My Stores</motion.h1>
-                <button className="active:scale-95 active:translate-y-1 bg-emerald-700 font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full" onClick={() => {
+                <button className={`active:scale-95 active:translate-y-1 bg-emerald-700 ${displayAddStore ? "hidden" : "block"} md:block font-semibold h-[3rem] md:w-[8rem] px-5 rounded-full shadow-md shadow-black/50 text-white tracking-wider transition w-full`} onClick={() => {
                     setDisplayAddStore(true)
                     setDisplayEditStore(false)
                 }}>Add Store</button>
             </div>
             <div className="border-t mt-10 mb-10"></div>
             <div className="flex">
-                <ul className="flex flex-col gap-3 w-full">
+                <ul className={`md:flex ${displayAddStore ? "hidden" : "flex"} flex-col gap-3 md:w-full`}>
                     {stores.map((store, index) => (
                         <motion.li whileHover={{ x: 20 }} className="bg-white border group max-w-[25rem] p-5 rounded-lg shadow-sm" key={index}>
                             <div className="flex justify-between">
@@ -62,8 +62,8 @@ export const Stores = ({ loggedInUser }) => {
                     ))}
                 </ul>
                 {displayAddStore && (
-                    <div>
-                        <AddStore loggedInUser={loggedInUser} handleGetStores={handleGetStores} setDisplayAddStore={setDisplayAddStore} />
+                    <div className="w-full md:w-auto">
+                        <AddStore loggedInUser={loggedInUser} handleGetStores={handleGetStores} displayAddStore={displayAddStore} setDisplayAddStore={setDisplayAddStore} />
                     </div>
                 )}
                 {displayEditStore && (

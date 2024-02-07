@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { addStore } from "../managers/stores"
 import { motion } from "framer-motion"
-export const AddStore = ({ loggedInUser, handleGetStores, setDisplayAddStore }) => {
+export const AddStore = ({ loggedInUser, handleGetStores, displayAddStore, setDisplayAddStore }) => {
     // state
     const [store, setStore] = useState({})
     // handle function for the store form
@@ -38,17 +38,17 @@ export const AddStore = ({ loggedInUser, handleGetStores, setDisplayAddStore }) 
     }
     // component return
     return (
-        <motion.form animate={{ x: 0 }} initial={{ x: 400 }} className="border bg-white flex-col hidden gap-3 md:flex p-5 rounded-lg">
+        <motion.form animate={{ x: 0 }} initial={{ x: 400 }} className={`md:border md:bg-white ${displayAddStore ? "flex" : "hidden"} flex-col gap-3 md:flex md:p-5 rounded-lg`}>
             <p><span className="text-emerald-600">*</span> indicates required field</p>
             <div className="relative">
-                <input className="input-layout peer" id="store-name" name="name" onChange={handleStoreForm} type="text" value={store.name || ""} />
+                <input className="input-layout peer w-full md:w-auto" id="store-name" name="name" onChange={handleStoreForm} type="text" value={store.name || ""} />
                 <label className="label-layout peer-focus:text-gray-950" htmlFor="store-name">* Name</label>
             </div>
             <div className="relative">
                 <input className="input-layout peer w-full" id="street" name="street" onChange={handleStoreForm} type="text" value={store.street || ""} />
                 <label className="label-layout peer-focus:text-gray-950" htmlFor="street">* Street</label>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col md:flex-row gap-3">
                 <div className="relative">
                     <input className="input-layout peer w-full" id="city" name="city" onChange={handleStoreForm} type="text" value={store.city || ""} />
                     <label className="label-layout peer-focus:text-gray-950" htmlFor="city">* City</label>
@@ -62,7 +62,7 @@ export const AddStore = ({ loggedInUser, handleGetStores, setDisplayAddStore }) 
                     <label className="label-layout peer-focus:text-gray-950" htmlFor="zipcode">* Zipcode</label>
                 </div>
             </div>
-            <div className="flex gap-3 w-full">
+            <div className="flex flex-wrap md:flex-nowrap gap-3 w-full">
                 <button className="button-secondary w-full" onClick={() => setDisplayAddStore(false)}>Cancel</button>
                 <button className="button-primary w-full" onClick={handleAddStore}>Submit</button>
             </div>
