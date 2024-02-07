@@ -78,7 +78,7 @@ export default function Register({ setLoggedInUser }) {
             }} type="password" value={confirmPassword} />
           </div>
         </div>
-        <button className="button-primary self-end" onClick={handleSubmit}>Register</button>
+        <button className="button-primary md:self-end" onClick={handleSubmit}>Register</button>
         <p>Already signed up? <Link className="hover:underline text-blue-500" to="/login">Log in here</Link></p>
       </form>
     </div>
