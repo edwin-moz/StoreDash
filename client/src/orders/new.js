@@ -74,11 +74,11 @@ export const NewOrder = ({ loggedInUser }) => {
     useEffect(() => {
         handleGetDistributor()
         handleGetStores()
-    }, [distributorId, handleGetDistributor, handleGetStores, loggedInUser])
+    }, [distributorId, loggedInUser])
     // component return
     return (
         <div className="grid grid-cols-1 min-h-[87vh] md:flex">
-            <div className="flex flex-col w-full">
+            <div className={`${displayCart ? "hidden" : "flex"} flex-col md:flex w-full`}>
                 <motion.div animate={{ opacity: 1 }} className="px-5 sm:px-10 py-3" initial={{ opacity: 0 }} transition={{ duration: 1 }}>
                     <p>Welcome to</p>
                     <h1 className="font-bold text-3xl text-gray-950 tracking-wide">{distributor.name}</h1>
@@ -86,7 +86,7 @@ export const NewOrder = ({ loggedInUser }) => {
                 {!storeChosen && stores.length > 0 && (
                     <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ delay: 0.5, duration: 1 }} className="flex flex-col flex-grow gap-5 items-center justify-center">
                         <p>Select your store to begin</p>
-                        <select className="border-2 h-[3rem] focus:border-2 hover:border-blue-500 rounded-full text-center text-gray-950 w-[30rem]" name="stores" onChange={handleChosenStore}>
+                        <select className="border-2 h-[3rem] focus:border-2 hover:border-blue-500 md:w-[30rem] rounded-full text-center text-gray-950 w-5/6" name="stores" onChange={handleChosenStore}>
                             <option>Choose your store</option>
                             {stores.map((store, index) => (
                                 <option key={index} value={store.id}>{store.name}</option>
@@ -128,7 +128,7 @@ export const NewOrder = ({ loggedInUser }) => {
                                         <p className="text-center text-gray-950">{inventory.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
                                         <div className="flex flex-wrap justify-center">
                                             {orderInventory.some((oi) => oi.inventoryId === inventory.id) ? (
-                                                <button className="button-secondary" onClick={() => handleRemoveFromCart(inventory)}>Remove from cart</button>
+                                                <button className="button-secondary" onClick={() => handleRemoveFromCart(inventory)}>Remove <span className="hidden md:inline-block">from cart</span></button>
                                             ) : (
                                                 <button className="button-primary" onClick={() => handleAddToCart(inventory)}>Add to cart</button>
                                             )}
@@ -141,7 +141,7 @@ export const NewOrder = ({ loggedInUser }) => {
                 )}
             </div>
             {displayCart && (
-                <Cart chosenStoreId={chosenStoreId} distributor={distributor} orderInventory={orderInventory} orderTotal={orderTotal} />
+                <Cart chosenStoreId={chosenStoreId} displayCart={displayCart} setDisplayCart={setDisplayCart} distributor={distributor} orderInventory={orderInventory} orderTotal={orderTotal} />
             )}
         </div>
     )
