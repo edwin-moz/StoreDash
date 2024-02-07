@@ -38,9 +38,9 @@ export const Stores = ({ loggedInUser }) => {
             </div>
             <div className="border-t mt-10 mb-10"></div>
             <div className="flex">
-                <ul className={`md:flex ${displayAddStore ? "hidden" : "flex"} flex-col gap-3 md:w-full`}>
+                <ul className={`md:flex ${displayAddStore || displayEditStore ? "hidden" : "flex"} flex-col gap-3 w-full`}>
                     {stores.map((store, index) => (
-                        <motion.li whileHover={{ x: 20 }} className="bg-white border group max-w-[25rem] p-5 rounded-lg shadow-sm" key={index}>
+                        <motion.li whileHover={{ x: 20 }} className="bg-white border group md:max-w-[25rem] p-5 rounded-lg shadow-sm" key={index}>
                             <div className="flex justify-between">
                                 <div className="flex flex-col">
                                     <p>{store.name}</p>
@@ -67,7 +67,7 @@ export const Stores = ({ loggedInUser }) => {
                     </div>
                 )}
                 {displayEditStore && (
-                    <div>
+                    <div className="w-full md:w-auto">
                         <EditStore chosenStore={chosenStore} handleGetStores={handleGetStores} setDisplayEditStore={setDisplayEditStore} />
                     </div>
                 )}

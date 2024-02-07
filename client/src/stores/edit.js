@@ -51,17 +51,17 @@ export const EditStore = ({ chosenStore, handleGetStores, setDisplayEditStore })
     }, [chosenStore])
     // component return
     return (
-        <motion.form animate={{ x: 0 }} initial={{ x: 400 }} className="border bg-white flex flex-col gap-3 p-5 rounded-lg w-full">
+        <motion.form animate={{ x: 0 }} initial={{ x: 400 }} className="flex flex-col gap-3 md:border md:bg-white md:p-5 rounded-lg w-full">
             <p><span className="text-emerald-600">*</span> indicates required field</p>
             <div className="relative">
-                <input className="input-layout peer" name="name" onChange={handleStoreForm} type="text" value={store.name || ""} />
+                <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleStoreForm} type="text" value={store.name || ""} />
                 <label className="label-layout peer-focus:text-gray-950">* Name</label>
             </div>
             <div className="relative">
                 <input className="input-layout peer w-full" name="street" onChange={handleStoreForm} type="text" value={store.street || ""} />
                 <label className="label-layout peer-focus:text-gray-950">* Street</label>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col md:flex-row gap-3">
                 <div className="relative">
                     <input className="input-layout peer w-full" name="city" onChange={handleStoreForm} type="text" value={store.city || ""} />
                     <label className="label-layout peer-focus:text-gray-950">* City</label>
@@ -75,7 +75,7 @@ export const EditStore = ({ chosenStore, handleGetStores, setDisplayEditStore })
                     <label className="label-layout peer-focus:text-gray-950">* Zipcode</label>
                 </div>
             </div>
-            <div className="flex gap-3 w-full">
+            <div className="flex flex-wrap gap-3 md:flex-nowrap w-full">
                 <button className="button-secondary w-full" onClick={(event) => {
                     event.preventDefault()
                     setDisplayEditStore(false)
