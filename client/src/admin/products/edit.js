@@ -33,6 +33,12 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
                 <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProductToEdit({})}>Clear fields</button>
             </div>
             <div className="flex flex-col justify-center gap-y-3">
+                {/* <div className="bg-gray-500 flex h-12 group items-center relative w-12">
+                    <div className="absolute bg-red-500 flex group-active:left-2 h-5 items-center overflow-hidden rounded-full w-5 z-[999]">
+                        <input className="absolute group-active:left-1 h-6 -left-[3px] peer w-6" type="checkbox" />
+                    </div>
+                </div>
+                <label>* Available</label> */}
                 <div className="relative">
                     <input className="input-layout peer" name="name" onChange={handleEditProductForm} required type="text" value={productToEdit.name || ""} />
                     <label className="label-layout peer-focus:text-gray-950">* Name</label>

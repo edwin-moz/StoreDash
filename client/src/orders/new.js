@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { getDistributor } from "../managers/distributors"
 import { getStores } from "../managers/stores"
 import { motion } from "framer-motion"
@@ -83,7 +83,7 @@ export const NewOrder = ({ loggedInUser }) => {
                     <p>Welcome to</p>
                     <h1 className="font-bold text-3xl text-gray-950 tracking-wide">{distributor.name}</h1>
                 </motion.div>
-                {!storeChosen && (
+                {!storeChosen && stores.length > 0 && (
                     <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ delay: 0.5, duration: 1 }} className="flex flex-col flex-grow gap-5 items-center justify-center">
                         <p>Select your store to begin</p>
                         <select className="border-2 h-[3rem] focus:border-2 hover:border-blue-500 rounded-full text-center text-gray-950 w-[30rem]" name="stores" onChange={handleChosenStore}>
@@ -93,6 +93,13 @@ export const NewOrder = ({ loggedInUser }) => {
                             ))}
                         </select>
                     </motion.div>
+                )}
+                {!storeChosen && stores.length === 0 && (
+                    <div className="flex flex-col flex-grow items-center justify-center">
+                        <p className="text-xl"><span className="font-bold">Opps</span> you dont have any stores yet...</p>
+                        <p className="text-5xl">🤷</p>
+                        <Link className="text-blue-500" to="/stores">Add a new store here</Link>
+                    </div>
                 )}
                 {storeChosen && (
                     <div className="flex flex-col gap-5 flex-grow">
