@@ -18,7 +18,10 @@ public class ProductController : ControllerBase
     [Authorize]
     public IActionResult GetProducts()
     {
-        List<Product> products = _dbContext.Products.OrderBy((product) => product.Name).ToList();
+        List<Product> products = _dbContext.Products
+        .OrderByDescending((product) => product.Available)
+        .ThenBy((product) => product.Name)
+        .ToList();
         return Ok(products.Select((product) => new ProductDTO
         {
             Id = product.Id,
