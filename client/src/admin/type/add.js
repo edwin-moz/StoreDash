@@ -29,7 +29,7 @@ export const AddProduct = ({ displayAddTypeForm, setDisplayAddTypeForm, type, se
                     <label className="label-layout peer-focus:text-gray-950">* Name</label>
                 </div>
             </div>
-            <button className="button-secondary text-2xl" onClick={handleCancelDisplayEditForm}>Cancel</button>
+            <button className="button-secondary md:hidden text-2xl" onClick={handleCancelDisplayEditForm}>Cancel</button>
             <button className="button-primary text-2xl" onClick={handleAddType}>Add</button>
         </div>
     )

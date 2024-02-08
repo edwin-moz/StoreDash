@@ -33,7 +33,7 @@ export const EditProduct = ({ displayEditTypeForm, setDisplayEditTypeForm, handl
                     <label className="label-layout peer-focus:text-gray-950">* Name</label>
                 </div>
             </div>
-            <button className="button-secondary text-2xl" onClick={handleCancelEditTypeForm}>Cancel</button>
+            <button className="button-secondary md:hidden text-2xl" onClick={handleCancelEditTypeForm}>Cancel</button>
             <button className="button-primary text-2xl" onClick={handleEditType}>Edit</button>
         </div>
     )
