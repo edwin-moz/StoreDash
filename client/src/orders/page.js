@@ -35,20 +35,20 @@ export const Orders = ({ loggedInUser }) => {
             <motion.ul animate={{ x: 0 }} initial={{ x: 1500 }} className="flex flex-col gap-5 pb-10 px-10">
                 {orders.map((order, index) => (
                     <li className="bg-white border overflow-hidden rounded-lg" key={index}>
-                        <div className="bg-gray-50 border-b grid grid-cols-4 px-10 py-3">
-                            <div className="flex flex-col items-center">
+                        <div className="bg-gray-50 border-b gap-3 grid grid-cols-2 md:grid-cols-4 px-10 py-3">
+                            <div className="flex flex-col md:items-center">
                                 <p className="font-normal text-gray-500 tracking-wider">Placed on:</p>
                                 <p className="text-gray-950 tracking-widest">{new Date(order.date).toLocaleDateString()}</p>
                             </div>
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col md:items-center">
                                 <p className="font-normal text-gray-500 tracking-wider">Total:</p>
                                 <p className="text-gray-950 tracking-widest">{order.total.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
                             </div>
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col md:items-center">
                                 <p className="font-normal text-gray-500 tracking-wider">Ship to:</p>
                                 <p className="text-gray-950 tracking-widest">{order.store.name}</p>
                             </div>
-                            <div className="flex gap-3 justify-center">
+                            <div className="flex gap-3 md:justify-center">
                                 <p className="font-normal text-gray-500 tracking-wider">Order #</p>
                                 <span className="text-gray-950 tracking-widest">{order.id}</span>
                                 {/* <button onClick={() => handleDeleteOrder(order.id)}>Delete order</button> */}

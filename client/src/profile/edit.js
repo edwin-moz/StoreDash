@@ -27,14 +27,15 @@ export const EditProfile = ({ user, setUser, handletryGetLoggedInUser, setDispla
         })
     }
     return (
-        <motion.div animate={{ x: 0 }} initial={{ x: -100 }} className="self-start">
-            <div className="bg-white border flex flex-col gap-5 p-5 rounded">
+        <motion.div animate={{ x: 0 }} initial={{ x: -100 }} className="self-start md:w-auto w-full">
+            <div className="flex flex-col gap-5 md:bg-white md:border md:p-5 md:rounded">
+                <p><span className="text-emerald-600">*</span> indicates required field</p>
                 <div className="relative">
-                    <input className="input-layout peer" id="firstName" name="firstName" onChange={handleEditForm} type="text" value={user.firstName || ""} />
+                    <input className="input-layout md:w-auto peer w-full" id="firstName" name="firstName" onChange={handleEditForm} type="text" value={user.firstName || ""} />
                     <label className="label-layout peer-focus:text-gray-950" htmlFor="firstName">* First name</label>
                 </div>
                 <div className="relative">
-                    <input className="input-layout peer" id="lastName" name="lastName" onChange={handleEditForm} type="text" value={user.lastName || ""} />
+                    <input className="input-layout md:w-auto peer w-full" id="lastName" name="lastName" onChange={handleEditForm} type="text" value={user.lastName || ""} />
                     <label className="label-layout peer-focus:text-gray-950" htmlFor="lastName">* Last name</label>
                 </div>
                 <div className="relative">
