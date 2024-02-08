@@ -8,6 +8,7 @@ export const Products = ({ types }) => {
     const [products, setProducts] = useState([])
     const [productToEdit, setProductToEdit] = useState({})
     const [displayAddProductForm, setDisplayAddProductForm] = useState(false)
+    const [displayEditProductForm, setDisplayEditProductForm] = useState(false)
     // handle function to get products
     const handleGetProducts = () => {
         getProducts().then(setProducts)
@@ -24,15 +25,19 @@ export const Products = ({ types }) => {
     }
     // handle function to display add product form
     const handleDisplayAddProductForm = () => {
-        console.log("click")
+        setDisplayEditProductForm(false)
         setDisplayAddProductForm(true)
+    }
+    // handle function to display edit product form
+    const handleDisplayEditProductForm = () => {
+        setDisplayEditProductForm(true)
     }
     useEffect(() => {
         handleGetProducts()
     }, [])
     return (
         <div className="gap-5 grid md:grid-cols-[2fr,1fr]">
-            <ul className={`md:flex flex-col gap-3 ${displayAddProductForm ? "hidden" : "flex"} max-h-[80vh] min-h-[80vh] overflow-y-scroll`}>
+            <ul className={`md:flex flex-col gap-3 ${displayAddProductForm || displayEditProductForm ? "hidden" : "flex"} max-h-[80vh] min-h-[80vh] overflow-y-scroll`}>
                 {products.map((product, index) => (
                     <li className="gap-3 grid grid-cols-[2fr,1fr,1fr,1fr] group items-center text-center" key={index}>
                         <div className="bg-white border col-span-2 grid grid-cols-2 md:grid-cols-3 items-center rounded-lg shadow">
@@ -50,7 +55,10 @@ export const Products = ({ types }) => {
                                 </Link>
                             </div>
                         </div>
-                        <button className="bg-emerald-700/20 hover:border-2 hover:border-emerald-600 rounded-lg self-stretch text-emerald-800 text-xl" onClick={() => handleProductToEdit(product)}>
+                        <button className="bg-emerald-700/20 hover:border-2 hover:border-emerald-600 rounded-lg self-stretch text-emerald-800 text-xl" onClick={() => {
+                            handleProductToEdit(product)
+                            handleDisplayEditProductForm(true)
+                        }}>
                             Edit
                         </button>
                         <button className="bg-red-500/20 hover:border-2 hover:border-red-600 rounded-lg self-stretch text-xl text-red-800" onClick={() => handleDeleteProduct(product.id)}>
@@ -61,7 +69,7 @@ export const Products = ({ types }) => {
             </ul>
             <div className="gap-5 grid">
                 <NewProduct displayAddProductForm={displayAddProductForm} setDisplayAddProductForm={setDisplayAddProductForm} handleGetProducts={handleGetProducts} types={types} />
-                <EditProduct handleGetProducts={handleGetProducts} productToEdit={productToEdit} setProductToEdit={setProductToEdit} types={types} />
+                <EditProduct displayEditProductForm={displayEditProductForm} setDisplayEditProductForm={setDisplayEditProductForm} handleGetProducts={handleGetProducts} productToEdit={productToEdit} setProductToEdit={setProductToEdit} types={types} />
             </div>
             <div className="bottom-28 fixed md:hidden right-5">
                 <button className={`bg-emerald-700 ${displayAddProductForm ? "hidden" : "block"} px-3 py-2 rounded-full shadow-black/50 shadow-xl text-white w-24`} onClick={handleDisplayAddProductForm}>Add</button>

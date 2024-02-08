@@ -1,6 +1,5 @@
 import { editProduct } from "../../managers/products"
-
-export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit, types }) => {
+export const EditProduct = ({ displayEditProductForm, setDisplayEditProductForm, handleGetProducts, productToEdit, setProductToEdit, types }) => {
     // handle function for product edit form
     const handleEditProductForm = (event) => {
         const copy = { ...productToEdit }
@@ -26,8 +25,12 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
             handleGetProducts()
         })
     }
+    // handle cancel display edit product form
+    const handleCancelDisplayEditProductForm = () => {
+        setDisplayEditProductForm(false)
+    }
     return (
-        <div className="bg-white border md:flex md:flex-col hidden p-5 rounded-lg shadow">
+        <div className={`${displayEditProductForm ? "block" : "hidden"} md:bg-white md:border md:flex md:flex-col md:shadow md:rounded-lg p-5`}>
             <div className="flex flex-wrap justify-between mb-3">
                 <p className="font-semibold text-xl">Edit a product</p>
                 <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProductToEdit({})}>Clear fields</button>
@@ -40,7 +43,7 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
                 </div>
                 <label>* Available</label> */}
                 <div className="relative">
-                    <input className="input-layout peer" name="name" onChange={handleEditProductForm} required type="text" value={productToEdit.name || ""} />
+                    <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleEditProductForm} required type="text" value={productToEdit.name || ""} />
                     <label className="label-layout peer-focus:text-gray-950">* Name</label>
                 </div>
                 <div className="relative">
@@ -56,6 +59,7 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
                     </select>
                     <label className="label-layout peer-focus:text-gray-950">* Type</label>
                 </div>
+                <button className="button-secondary text-2xl" onClick={handleCancelDisplayEditProductForm}>Cancel</button>
                 <button className="button-primary text-2xl" onClick={handleEditProduct}>Edit</button>
             </div>
         </div>
