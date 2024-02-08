@@ -1,6 +1,6 @@
 import { editDistributor } from "../../managers/distributors"
 
-export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, handleGetDistributors }) => {
+export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, displayEditDistributorForm, setDisplayEditDistributorForm, handleGetDistributors }) => {
     // handle function for edit distributor form
     const handleEditDistributorForm = (event) => {
         const copy = { ...distributorToEdit }
@@ -26,15 +26,19 @@ export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, handl
             handleGetDistributors()
         })
     }
+    // handle function to cancel display edit distributor form
+    const handleCancelDisplayEditDistributorForm = () => {
+        setDisplayEditDistributorForm(false)
+    }
     return (
-        <div className="bg-white border flex flex-col hidden p-5 rounded-lg">
+        <div className={`md:bg-white md:border md:flex flex-col ${displayEditDistributorForm ? "flex" : "hidden"} p-5 md:rounded-lg`}>
             <div className="flex flex-wrap justify-between mb-3">
                 <p className="font-semibold text-xl">Edit</p>
                 <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setDistributorToEdit({})}>Clear fields</button>
             </div>
             <div className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
-                    <input className="input-layout peer" name="name" onChange={handleEditDistributorForm} required type="text" value={distributorToEdit.name || ""} />
+                    <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleEditDistributorForm} required type="text" value={distributorToEdit.name || ""} />
                     <label className="label-layout peer-focus:text-gray-950">* Name</label>
                 </div>
                 <div className="flex gap-3">
@@ -45,7 +49,7 @@ export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, handl
                     <input className="input-layout peer w-full" name="street" onChange={handleEditDistributorForm} required type="text" value={distributorToEdit.street || ""} />
                     <label className="label-layout peer-focus:text-gray-950">* Street</label>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex flex-col md:flex-row gap-3">
                     <div className="relative">
                         <input className="input-layout peer w-full" name="city" onChange={handleEditDistributorForm} required type="text" value={distributorToEdit.city || ""} />
                         <label className="label-layout peer-focus:text-gray-950">* City</label>
@@ -59,6 +63,7 @@ export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, handl
                         <label className="label-layout peer-focus:text-gray-950">* Zipcode</label>
                     </div>
                 </div>
+                <button className="button-secondary text-2xl" onClick={handleCancelDisplayEditDistributorForm}>Cancel</button>
                 <button className="button-primary text-2xl" onClick={handleEditDistributor}>Edit</button>
             </div>
         </div>
