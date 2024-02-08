@@ -59,7 +59,7 @@ export const EditProduct = ({ displayEditProductForm, setDisplayEditProductForm,
                     </select>
                     <label className="label-layout peer-focus:text-gray-950">* Type</label>
                 </div>
-                <button className="button-secondary text-2xl" onClick={handleCancelDisplayEditProductForm}>Cancel</button>
+                <button className="button-secondary md:hidden text-2xl" onClick={handleCancelDisplayEditProductForm}>Cancel</button>
                 <button className="button-primary text-2xl" onClick={handleEditProduct}>Edit</button>
             </div>
         </div>

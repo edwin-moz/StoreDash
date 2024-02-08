@@ -8,6 +8,7 @@ export const Inventory = () => {
     const [distributors, setDistributors] = useState([])
     const [distributor, setDistributor] = useState({})
     const [inventory, setInventory] = useState({})
+    const [displayAddInventory, setDisplayAddInventory] = useState(false)
     // handle function to get distributors
     const handleGetDistributors = () => {
         getDistributors().then(setDistributors)
@@ -44,6 +45,10 @@ export const Inventory = () => {
             handleGetDistributor(inventory.distributorId)
         })
     }
+    // handle display add inventory
+    const handleDisplayAddInventory = () => {
+        setDisplayAddInventory(true)
+    }
     // use effect
     useEffect(() => {
         handleGetDistributors()
@@ -62,8 +67,8 @@ export const Inventory = () => {
                 </label>
             </div>
             {distributor.id ? (
-                <div className="grid grid-cols-[2fr,1fr] py-5">
-                    <ul className="gap-5 grid grid-cols-5 max-h-[70vh] overflow-scroll">
+                <div className="grid md:grid-cols-[2fr,1fr] py-5">
+                    <ul className={`gap-5 md:grid grid-cols-2 ${displayAddInventory ? "hidden" : "grid"} md:grid-cols-5 max-h-[70vh] overflow-scroll`}>
                         {distributor.inventories?.map((inventory, index) => (
                             <li className="bg-white border grid grid-rows-[1fr, 1fr, 1fr, 1fr, 1fr] gap-3 items-center text-center p-5 rounded-lg shadow-sm" key={index}>
                                 <img className="border border-emerald-600 h-20 object-cover rounded-full items-center w-20" src={inventory.product.imageUrl} alt="" />
@@ -78,7 +83,10 @@ export const Inventory = () => {
                         ))}
                     </ul>
                     <div>
-                        <AddInventory handleGetDistributor={handleGetDistributor} inventory={inventory} setInventory={setInventory} />
+                        <AddInventory displayAddInventory={displayAddInventory} setDisplayAddInventory={setDisplayAddInventory} handleGetDistributor={handleGetDistributor} inventory={inventory} setInventory={setInventory} />
+                    </div>
+                    <div className="bottom-28 fixed md:hidden right-5">
+                        <button className={`bg-emerald-700 ${displayAddInventory ? "hidden" : "block"} px-3 py-2 rounded-full shadow-black/50 shadow-xl text-white w-24`} onClick={handleDisplayAddInventory}>Add</button>
                     </div>
                 </div>
             ) : (
