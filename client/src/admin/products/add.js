@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { addProduct } from "../../managers/products"
-export const NewProduct = ({ handleGetProducts, types }) => {
+export const NewProduct = ({ displayAddProductForm, setDisplayAddProductForm, handleGetProducts, types }) => {
     // state
     const [product, setProduct] = useState({ typeId: 'defaultOption' })
     // handle function for add product form
@@ -26,20 +26,26 @@ export const NewProduct = ({ handleGetProducts, types }) => {
         } else {
             addProduct(product).then(() => {
                 setProduct({ typeId: 'defaultOption' })
+                setDisplayAddProductForm(false)
                 handleGetProducts()
             })
         }
     }
+    // handle cancel display add product form
+    const handleCancelDisplayProductForm = () => {
+        setProduct({ typeId: 'defaultOption' })
+        setDisplayAddProductForm(false)
+    }
     // component return
     return (
-        <div className="bg-white border flex flex-col p-5 rounded-lg shadow">
+        <div className={`${displayAddProductForm ? "block" : "hidden"} md:bg-white md:border md:flex md:flex-col p-5 md:rounded-lg md:shadow`}>
             <div className="flex flex-wrap justify-between mb-3">
                 <p className="font-semibold text-xl">Add product</p>
                 <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProduct({})}>Clear fields</button>
             </div>
             <form className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
-                    <input className="input-layout peer" name="name" onChange={handleAddProductForm} required type="text" value={product.name || ""} />
+                    <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleAddProductForm} required type="text" value={product.name || ""} />
                     <label className="label-layout peer-focus:text-gray-950">* Name</label>
                 </div>
                 <div className="relative">
@@ -55,6 +61,7 @@ export const NewProduct = ({ handleGetProducts, types }) => {
                     </select>
                     <label className="label-layout peer-focus:text-gray-950">* Type</label>
                 </div>
+                <button className="button-secondary md:hidden text-2xl" onClick={handleCancelDisplayProductForm}>Cancel</button>
                 <button className="button-primary text-2xl" onClick={handleAddProduct}>Add</button>
             </form>
         </div>

@@ -27,7 +27,7 @@ export const EditProduct = ({ handleGetProducts, productToEdit, setProductToEdit
         })
     }
     return (
-        <div className="bg-white border flex flex-col p-5 rounded-lg shadow">
+        <div className="bg-white border md:flex md:flex-col hidden p-5 rounded-lg shadow">
             <div className="flex flex-wrap justify-between mb-3">
                 <p className="font-semibold text-xl">Edit a product</p>
                 <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProductToEdit({})}>Clear fields</button>

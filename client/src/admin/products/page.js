@@ -7,6 +7,7 @@ export const Products = ({ types }) => {
     // state
     const [products, setProducts] = useState([])
     const [productToEdit, setProductToEdit] = useState({})
+    const [displayAddProductForm, setDisplayAddProductForm] = useState(false)
     // handle function to get products
     const handleGetProducts = () => {
         getProducts().then(setProducts)
@@ -21,16 +22,21 @@ export const Products = ({ types }) => {
             handleGetProducts()
         })
     }
+    // handle function to display add product form
+    const handleDisplayAddProductForm = () => {
+        console.log("click")
+        setDisplayAddProductForm(true)
+    }
     useEffect(() => {
         handleGetProducts()
     }, [])
     return (
-        <div className="gap-5 grid grid-cols-[2fr,1fr]">
-            <ul className="flex flex-col gap-3 max-h-[80vh] min-h-[80vh] overflow-y-scroll">
+        <div className="gap-5 grid md:grid-cols-[2fr,1fr]">
+            <ul className={`md:flex flex-col gap-3 ${displayAddProductForm ? "hidden" : "flex"} max-h-[80vh] min-h-[80vh] overflow-y-scroll`}>
                 {products.map((product, index) => (
                     <li className="gap-3 grid grid-cols-[2fr,1fr,1fr,1fr] group items-center text-center" key={index}>
-                        <div className="bg-white border col-span-2 grid grid-cols-3 items-center rounded-lg shadow">
-                            <div className="p-5">
+                        <div className="bg-white border col-span-2 grid grid-cols-2 md:grid-cols-3 items-center rounded-lg shadow">
+                            <div className="hidden md:block p-5">
                                 <img className="border-2 border-emerald-600 h-20 object-cover rounded-full w-20" src={product.imageUrl} alt="" />
                             </div>
                             <div className="flex flex-col">
@@ -54,8 +60,11 @@ export const Products = ({ types }) => {
                 ))}
             </ul>
             <div className="gap-5 grid">
-                <NewProduct handleGetProducts={handleGetProducts} types={types} />
+                <NewProduct displayAddProductForm={displayAddProductForm} setDisplayAddProductForm={setDisplayAddProductForm} handleGetProducts={handleGetProducts} types={types} />
                 <EditProduct handleGetProducts={handleGetProducts} productToEdit={productToEdit} setProductToEdit={setProductToEdit} types={types} />
+            </div>
+            <div className="bottom-28 fixed md:hidden right-5">
+                <button className={`bg-emerald-700 ${displayAddProductForm ? "hidden" : "block"} px-3 py-2 rounded-full shadow-black/50 shadow-xl text-white w-24`} onClick={handleDisplayAddProductForm}>Add</button>
             </div>
         </div>
     )
