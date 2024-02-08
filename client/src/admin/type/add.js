@@ -1,6 +1,6 @@
 import { AddType } from "../../managers/types"
 
-export const AddProduct = ({ type, setType, handleGetTypes }) => {
+export const AddProduct = ({ displayAddTypeForm, setDisplayAddTypeForm, type, setType, handleGetTypes }) => {
     // handle function for addTypeForm
     const handleAddTypeForm = (event) => {
         setType(event.target.value)
@@ -9,11 +9,16 @@ export const AddProduct = ({ type, setType, handleGetTypes }) => {
     const handleAddType = () => {
         AddType({ name: type }).then(() => {
             setType("")
+            setDisplayAddTypeForm(false)
             handleGetTypes()
         })
     }
+    // handle function to cancel display edit form
+    const handleCancelDisplayEditForm = () => {
+        setDisplayAddTypeForm(false)
+    }
     return (
-        <div className="bg-white border flex flex-col gap-5 p-5 rounded-lg shadow">
+        <div className={`md:bg-white md:border md:flex flex-col ${displayAddTypeForm ? "flex" : "hidden"} gap-5 p-5 md:rounded-lg md:shadow`}>
             <div className="flex flex-wrap justify-between mb-3">
                 <p className="font-semibold text-xl">Add type</p>
                 <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setType("")}>Clear fields</button>
@@ -24,6 +29,7 @@ export const AddProduct = ({ type, setType, handleGetTypes }) => {
                     <label className="label-layout peer-focus:text-gray-950">* Name</label>
                 </div>
             </div>
+            <button className="button-secondary text-2xl" onClick={handleCancelDisplayEditForm}>Cancel</button>
             <button className="button-primary text-2xl" onClick={handleAddType}>Add</button>
         </div>
     )
