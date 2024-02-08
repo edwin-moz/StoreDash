@@ -63,7 +63,7 @@ export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, displ
                         <label className="label-layout peer-focus:text-gray-950">* Zipcode</label>
                     </div>
                 </div>
-                <button className="button-secondary text-2xl" onClick={handleCancelDisplayEditDistributorForm}>Cancel</button>
+                <button className="button-secondary md:hidden text-2xl" onClick={handleCancelDisplayEditDistributorForm}>Cancel</button>
                 <button className="button-primary text-2xl" onClick={handleEditDistributor}>Edit</button>
             </div>
         </div>
