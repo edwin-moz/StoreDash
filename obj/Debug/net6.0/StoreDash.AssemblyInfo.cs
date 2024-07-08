@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StoreDash")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5aff4400ffab6abd84334077c2def59011cd4f35")]
 [assembly: System.Reflection.AssemblyProductAttribute("StoreDash")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StoreDash")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

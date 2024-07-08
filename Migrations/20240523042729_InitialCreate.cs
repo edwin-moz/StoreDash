@@ -68,22 +68,6 @@ namespace StoreDash.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Cancelled = table.Column<bool>(type: "boolean", nullable: false),
-                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    Fulfilled = table.Column<bool>(type: "boolean", nullable: false),
-                    StoreId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -288,6 +272,28 @@ namespace StoreDash.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Cancelled = table.Column<bool>(type: "boolean", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Fulfilled = table.Column<bool>(type: "boolean", nullable: false),
+                    StoreId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Stores_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Stores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "InventoryOrders",
                 columns: table => new
                 {
@@ -306,17 +312,23 @@ namespace StoreDash.Migrations
                         principalTable: "Inventories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_InventoryOrders_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "c22908e5-5263-417f-af8c-cccc6c5e54a3", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "61b88ff9-f094-43c1-a7f0-174709ce8880", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "f3835d5f-cc40-4808-9a68-7172914f9787", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEMkHpx42EhDwWhDD9OLpzQj57u3FtbXMVLBq7epb+rEqZoDntFNgAZIij8YWxuKM5g==", null, false, "00455aff-c57c-4246-b5e6-1da42540704d", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "14a59b62-81e0-4288-bb70-257b495503aa", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEGcP5xiyqmta0+hb3CZ4GF/JHjjom2vXUAgJk9peBHEc7ACD7aQCT10p3b9pTqEH1w==", null, false, "e9e0e7e1-0549-485b-959a-6060a6041a93", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "Distributors",
@@ -344,11 +356,6 @@ namespace StoreDash.Migrations
                     { 19, true, "Health Haven", "Wellness Groceries Galore", "OK", "123 Green Chateau", 24680 },
                     { 20, true, "Nature Nook", "Nature's Bounty Emporium", "LA", "999 Green Cove", 98765 }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Orders",
-                columns: new[] { "Id", "Cancelled", "Date", "Fulfilled", "StoreId" },
-                values: new object[] { 1, false, new DateTime(2024, 1, 19, 11, 22, 39, 572, DateTimeKind.Local).AddTicks(8450), true, 1 });
 
             migrationBuilder.InsertData(
                 table: "Products",
@@ -899,6 +906,11 @@ namespace StoreDash.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "Id", "Cancelled", "Date", "Fulfilled", "StoreId" },
+                values: new object[] { 1, false, new DateTime(2024, 5, 22, 23, 27, 28, 943, DateTimeKind.Local).AddTicks(790), true, 1 });
+
+            migrationBuilder.InsertData(
                 table: "UserProfiles",
                 columns: new[] { "Id", "Address", "FirstName", "IdentityUserId", "LastName" },
                 values: new object[] { 1, "101 Main Street", "Admina", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", "Strator" });
@@ -961,6 +973,16 @@ namespace StoreDash.Migrations
                 column: "InventoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_InventoryOrders_OrderId",
+                table: "InventoryOrders",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_StoreId",
+                table: "Orders",
+                column: "StoreId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserProfiles_IdentityUserId",
                 table: "UserProfiles",
                 column: "IdentityUserId");
@@ -987,12 +1009,6 @@ namespace StoreDash.Migrations
                 name: "InventoryOrders");
 
             migrationBuilder.DropTable(
-                name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Stores");
-
-            migrationBuilder.DropTable(
                 name: "Types");
 
             migrationBuilder.DropTable(
@@ -1005,6 +1021,9 @@ namespace StoreDash.Migrations
                 name: "Inventories");
 
             migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
@@ -1012,6 +1031,9 @@ namespace StoreDash.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Stores");
         }
     }
 }

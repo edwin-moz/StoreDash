@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Views } from "./views/views"
 import { tryGetLoggedInUser } from "./managers/authentication"
+
 function App() {
   // state
   const [loggedInUser, setLoggedInUser] = useState();

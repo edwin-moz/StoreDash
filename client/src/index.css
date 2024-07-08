@@ -3,20 +3,20 @@
 @tailwind utilities;
 
 @layer base {
-    @font-face {
-        font-family: 'gothic';
-        src: url('../public/Century\ Gothic/centurygothic.ttf') format('truetype');
-    }
+  @font-face {
+    font-family: "gothic";
+    src: url("../public/Century\ Gothic/centurygothic.ttf") format("truetype");
+  }
 }
 .input-layout {
-    @apply border border-emerald-700 outline-emerald-700 pl-2 py-2 rounded;
+  @apply border border-emerald-700 outline-emerald-700 pl-2 py-2 rounded;
 }
 .label-layout {
-    @apply absolute bg-white left-3 px-1 pointer-events-none text-xs text-gray-500 -top-2;
+  @apply absolute bg-white left-3 px-1 pointer-events-none text-xs text-gray-500 -top-2;
 }
 .button-primary {
-    @apply active:scale-95 active:translate-y-1 bg-emerald-700 px-3 py-2 rounded-full shadow text-white transition;
+  @apply active:scale-105 active:translate-y-1 bg-emerald-700 hover:scale-110 px-3 py-2 rounded-full shadow text-white transition;
 }
 .button-secondary {
-    @apply active:scale-95 active:translate-y-1 bg-gray-600 px-3 py-2 rounded-full shadow text-white transition;
+  @apply active:scale-95 active:translate-y-1 bg-gray-600 px-3 py-2 rounded-full shadow text-white transition;
 }

@@ -1,21 +1,31 @@
-import { useState } from "react";
-import { register } from "../../managers/authentication";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react"
+import { register } from "../../managers/authentication"
+import { Link, useNavigate } from "react-router-dom"
+import Input from "../input"
+import Button from "../button"
+import AuthForm from "../auth-form"
+
 export default function Register({ setLoggedInUser }) {
   // state
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [userName, setUserName] = useState("")
+  const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmedPassword, setConfirmedPassword] = useState("")
   // hooks
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   // handles
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (password !== confirmPassword) {
+  const handleSetFirstName = (value) => setFirstName(value)
+  const handleSetLastName = (value) => setLastName(value)
+  const handleSetUserName = (value) => setUserName(value)
+  const handleSetEmail = (value) => setEmail(value)
+  const handleSetAddress = (value) => setAddress(value)
+  const handleSetPassword = (value) => setPassword(value)
+  const handleSetConfirmedPassword = (value) => setConfirmedPassword(value)
+  const handleSubmit = () => {
+    if (password !== confirmedPassword) {
       window.alert("passwords dont match")
     } else {
       const newUser = {
@@ -25,62 +35,39 @@ export default function Register({ setLoggedInUser }) {
         email,
         address,
         password,
-      };
+      }
       register(newUser).then((data) => {
         if (data) {
-          setLoggedInUser(data);
-          navigate("/");
+          setLoggedInUser(data)
+          navigate("/")
         } else {
           window.alert("registration failed")
         }
-      });
+      })
     }
-  };
+  }
   // component return
   return (
     <div className="flex items-center justify-center h-[100vh]">
-      <form className="flex flex-col gap-3 md:bg-white md:rounded-lg p-8">
-        <p className="font-bold text-2xl">Sign Up</p>
-        <p><span className="text-emerald-600">*</span> indicates required field</p>
+      <AuthForm formHeader="Register">
         <div className="flex flex-wrap gap-3 md:grid md:grid-cols-2">
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-gray-950 text-sm">First Name</label>
-            <input className="border px-3 py-2 rounded-md w-full" onChange={(e) => { setFirstName(e.target.value); }} type="text" value={firstName} />
-          </div>
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-gray-950 text-sm">Last Name</label>
-            <input className="border px-3 py-2 rounded-md w-full" onChange={(e) => { setLastName(e.target.value); }} type="text" value={lastName} />
-          </div>
+          <Input onChange={handleSetFirstName} value={firstName}>First name</Input>
+          <Input onChange={handleSetLastName} value={lastName}>Last name</Input>
         </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-gray-950 text-sm">Email</label>
-          <input className="border px-3 py-2 rounded-md w-full" onChange={(e) => { setEmail(e.target.value); }} type="email" value={email} />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-gray-950 text-sm">User Name</label>
-          <input className="border px-3 py-2 rounded-md w-full" onChange={(e) => { setUserName(e.target.value); }} type="text" value={userName} />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-gray-950 text-sm">Address</label>
-          <input className="border px-3 py-2 rounded-md w-full" onChange={(e) => { setAddress(e.target.value); }} type="text" value={address} />
-        </div>
+
+        <Input onChange={handleSetEmail} value={email}>Email</Input>
+        <Input onChange={handleSetUserName} value={userName}>Username</Input>
+        <Input onChange={handleSetAddress} value={address}>Address</Input>
+
         <div className="flex flex-wrap gap-3 md:grid md:grid-cols-2">
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-gray-950 text-sm">Password</label>
-            <input className="border px-3 py-2 rounded-md w-full" onChange={(e) => {
-              setPassword(e.target.value);
-            }} type="password" value={password} />
-          </div>
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-gray-950 text-sm">Confirm Password</label>
-            <input className="border px-3 py-2  rounded-md w-full" onChange={(e) => {
-              setConfirmPassword(e.target.value);
-            }} type="password" value={confirmPassword} />
-          </div>
+          <Input onChange={handleSetPassword} value={password}>Password</Input>
+          <Input inputFor="new-password" onChange={handleSetConfirmedPassword} value={confirmedPassword}>Password</Input>
         </div>
-        <button className="button-primary md:self-end" onClick={handleSubmit}>Register</button>
+
+        <Button onClick={handleSubmit}>Register</Button>
+
         <p>Already signed up? <Link className="hover:underline text-blue-500" to="/login">Log in here</Link></p>
-      </form>
+      </AuthForm>
     </div>
-  );
+  )
 }
