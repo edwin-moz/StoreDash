@@ -7,7 +7,6 @@
 /Users/edwin.moz/workspace/csharp/StoreDash/bin/Debug/net6.0/StoreDash.deps.json
 /Users/edwin.moz/workspace/csharp/StoreDash/bin/Debug/net6.0/StoreDash.runtimeconfig.json
 /Users/edwin.moz/workspace/csharp/StoreDash/bin/Debug/net6.0/StoreDash.dll
-/Users/edwin.moz/workspace/csharp/StoreDash/bin/Debug/net6.0/ref/StoreDash.dll
 /Users/edwin.moz/workspace/csharp/StoreDash/bin/Debug/net6.0/StoreDash.pdb
 /Users/edwin.moz/workspace/csharp/StoreDash/bin/Debug/net6.0/Humanizer.dll
 /Users/edwin.moz/workspace/csharp/StoreDash/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
@@ -31,8 +30,15 @@
 /Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/staticwebassets.build.json
 /Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/staticwebassets.development.json
 /Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/scopedcss/bundle/StoreDash.styles.css
-/Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/StoreDash.csproj.CopyComplete
 /Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/StoreDash.dll
 /Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/ref/StoreDash.dll
 /Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/StoreDash.pdb
 /Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/StoreDash.genruntimeconfig.cache
+/Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/StoreDash.sourcelink.json
+/Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/staticwebassets/msbuild.StoreDash.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/staticwebassets/msbuild.build.StoreDash.props
+/Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.StoreDash.props
+/Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.StoreDash.props
+/Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/staticwebassets.pack.json
+/Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/StoreDash.csproj.Up2Date
+/Users/edwin.moz/workspace/csharp/StoreDash/obj/Debug/net6.0/refint/StoreDash.dll

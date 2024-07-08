@@ -37,7 +37,7 @@ export const Distributors = () => {
                         <div className="bg-white border col-span-2 grid grid-rows-2 max-h-[10rem] p-5 rounded-lg shadow">
                             <div className="flex flex-col justify-between md:flex-row">
                                 <p className="text-blue-500 truncate">{distributor.name}</p>
-                                <p>{distributor.active ? "Active" : "Unactive"}</p>
+                                <p>{distributor.active ? "Active" : "Inactive"}</p>
                             </div>
                             <div>
                                 <p className="truncate">{distributor.street}</p>

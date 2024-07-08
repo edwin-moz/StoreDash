@@ -1,4 +1,5 @@
 const _apiUrl = "/api/authorization"
+
 export const login = (email, password) => {
   return fetch(_apiUrl + "/login", {
     method: "POST",
@@ -14,14 +15,17 @@ export const login = (email, password) => {
     }
   })
 }
+
 export const logout = () => {
   return fetch(_apiUrl + "/logout")
 }
+
 export const tryGetLoggedInUser = () => {
   return fetch(_apiUrl + "/me").then((res) => {
     return res.status === 401 ? Promise.resolve(null) : res.json()
   })
 }
+
 export const register = (userProfile) => {
   userProfile.password = btoa(userProfile.password)
   return fetch(_apiUrl + "/register", {

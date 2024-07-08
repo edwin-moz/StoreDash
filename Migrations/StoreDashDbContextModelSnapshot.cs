@@ -51,7 +51,7 @@ namespace StoreDash.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "c22908e5-5263-417f-af8c-cccc6c5e54a3",
+                            ConcurrencyStamp = "61b88ff9-f094-43c1-a7f0-174709ce8880",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -150,13 +150,13 @@ namespace StoreDash.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f3835d5f-cc40-4808-9a68-7172914f9787",
+                            ConcurrencyStamp = "14a59b62-81e0-4288-bb70-257b495503aa",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEMkHpx42EhDwWhDD9OLpzQj57u3FtbXMVLBq7epb+rEqZoDntFNgAZIij8YWxuKM5g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGcP5xiyqmta0+hb3CZ4GF/JHjjom2vXUAgJk9peBHEc7ACD7aQCT10p3b9pTqEH1w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "00455aff-c57c-4246-b5e6-1da42540704d",
+                            SecurityStamp = "e9e0e7e1-0549-485b-959a-6060a6041a93",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -3746,6 +3746,8 @@ namespace StoreDash.Migrations
 
                     b.HasIndex("InventoryId");
 
+                    b.HasIndex("OrderId");
+
                     b.ToTable("InventoryOrders");
 
                     b.HasData(
@@ -3780,6 +3782,8 @@ namespace StoreDash.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("StoreId");
+
                     b.ToTable("Orders");
 
                     b.HasData(
@@ -3787,7 +3791,7 @@ namespace StoreDash.Migrations
                         {
                             Id = 1,
                             Cancelled = false,
-                            Date = new DateTime(2024, 1, 19, 11, 22, 39, 572, DateTimeKind.Local).AddTicks(8450),
+                            Date = new DateTime(2024, 5, 22, 23, 27, 28, 943, DateTimeKind.Local).AddTicks(790),
                             Fulfilled = true,
                             StoreId = 1
                         });
@@ -5229,7 +5233,24 @@ namespace StoreDash.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("StoreDash.Models.Order", null)
+                        .WithMany("InventoryOrders")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Inventory");
+                });
+
+            modelBuilder.Entity("StoreDash.Models.Order", b =>
+                {
+                    b.HasOne("StoreDash.Models.Store", "Store")
+                        .WithMany()
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("StoreDash.Models.UserProfile", b =>
@@ -5244,6 +5265,11 @@ namespace StoreDash.Migrations
             modelBuilder.Entity("StoreDash.Models.Distributor", b =>
                 {
                     b.Navigation("Inventories");
+                });
+
+            modelBuilder.Entity("StoreDash.Models.Order", b =>
+                {
+                    b.Navigation("InventoryOrders");
                 });
 #pragma warning restore 612, 618
         }

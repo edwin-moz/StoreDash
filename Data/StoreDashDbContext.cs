@@ -7,6 +7,7 @@ namespace StoreDash.Data;
 public class StoreDashDbContext : IdentityDbContext<IdentityUser>
 {
     private readonly IConfiguration _configuration;
+
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<Distributor> Distributors { get; set; }
     public DbSet<Inventory> Inventories { get; set; }

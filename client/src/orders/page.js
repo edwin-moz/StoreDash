@@ -20,11 +20,11 @@ export const Orders = ({ loggedInUser }) => {
         setOrders(copy)
     }
     // handle functino to delete order
-    // const handleDeleteOrder = (orderId) => {
-    //     deleteOrder(orderId).then(() => {
-    //         handleGetOrders()
-    //     })
-    // }
+    const handleDeleteOrder = (orderId) => {
+        deleteOrder(orderId).then(() => {
+            handleGetOrders()
+        })
+    }
     // useEffect
     useEffect(() => { handleGetOrders() }, [loggedInUser])
     return (
@@ -51,7 +51,7 @@ export const Orders = ({ loggedInUser }) => {
                             <div className="flex gap-3 md:justify-center">
                                 <p className="font-normal text-gray-500 tracking-wider">Order #</p>
                                 <span className="text-gray-950 tracking-widest">{order.id}</span>
-                                {/* <button onClick={() => handleDeleteOrder(order.id)}>Delete order</button> */}
+                                <button onClick={() => handleDeleteOrder(order.id)}>Delete order</button>
                             </div>
                         </div>
                         <div>
