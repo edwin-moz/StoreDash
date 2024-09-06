@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2BYD/BL8jjrNWJMiu5/x0UPcE8q+9OrSVCiM1UlCBYSu9UXwtAKDZsb0NFv8B4K2FniwvCsrKL/LfYBVPzYhWw==",
+  "dgSpecHash": "C/sEizeieC4=",
   "success": true,
   "projectFilePath": "/Users/edwin.moz/workspace/csharp/StoreDash/StoreDash.csproj",
   "expectedPackageFiles": [
@@ -34,10 +34,7 @@
     "/Users/edwin.moz/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "/Users/edwin.moz/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
     "/Users/edwin.moz/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
-    "/Users/edwin.moz/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "/Users/edwin.moz/.nuget/packages/microsoft.netcore.app.ref/6.0.29/microsoft.netcore.app.ref.6.0.29.nupkg.sha512",
-    "/Users/edwin.moz/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.29/microsoft.aspnetcore.app.ref.6.0.29.nupkg.sha512",
-    "/Users/edwin.moz/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.29/microsoft.netcore.app.host.osx-arm64.6.0.29.nupkg.sha512"
+    "/Users/edwin.moz/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
