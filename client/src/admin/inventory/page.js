@@ -8,6 +8,7 @@ export const Inventory = () => {
     const [distributors, setDistributors] = useState([])
     const [distributor, setDistributor] = useState({})
     const [inventory, setInventory] = useState({})
+    const [displayAddInventory, setDisplayAddInventory] = useState(false)
     // handle function to get distributors
     const handleGetDistributors = () => {
         getDistributors().then(setDistributors)
@@ -44,6 +45,10 @@ export const Inventory = () => {
             handleGetDistributor(inventory.distributorId)
         })
     }
+    // handle display add inventory
+    const handleDisplayAddInventory = () => {
+        setDisplayAddInventory(true)
+    }
     // use effect
     useEffect(() => {
         handleGetDistributors()
@@ -58,12 +63,12 @@ export const Inventory = () => {
                     ))}
                 </select>
                 <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    Select a Type
+                    Select a Distributor
                 </label>
             </div>
             {distributor.id ? (
-                <div className="grid grid-cols-[2fr,1fr] py-5">
-                    <ul className="gap-5 grid grid-cols-5 max-h-[70vh] overflow-scroll">
+                <div className="grid md:grid-cols-[2fr,1fr] py-5">
+                    <ul className={`gap-5 md:grid grid-cols-2 ${displayAddInventory ? "hidden" : "grid"} md:grid-cols-5 max-h-[70vh] overflow-scroll`}>
                         {distributor.inventories?.map((inventory, index) => (
                             <li className="bg-white border grid grid-rows-[1fr, 1fr, 1fr, 1fr, 1fr] gap-3 items-center text-center p-5 rounded-lg shadow-sm" key={index}>
                                 <img className="border border-emerald-600 h-20 object-cover rounded-full items-center w-20" src={inventory.product.imageUrl} alt="" />
@@ -78,7 +83,10 @@ export const Inventory = () => {
                         ))}
                     </ul>
                     <div>
-                        <AddInventory handleGetDistributor={handleGetDistributor} inventory={inventory} setInventory={setInventory} />
+                        <AddInventory displayAddInventory={displayAddInventory} setDisplayAddInventory={setDisplayAddInventory} handleGetDistributor={handleGetDistributor} inventory={inventory} setInventory={setInventory} />
+                    </div>
+                    <div className="bottom-28 fixed md:hidden right-5">
+                        <button className={`bg-emerald-700 ${displayAddInventory ? "hidden" : "block"} px-3 py-2 rounded-full shadow-black/50 shadow-xl text-white w-24`} onClick={handleDisplayAddInventory}>Add</button>
                     </div>
                 </div>
             ) : (
