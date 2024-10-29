@@ -17,35 +17,39 @@ public class DistributorController : ControllerBase
     {
         _dbContext = context;
     }
+
+    // returns all distributors ordered by name
     [HttpGet]
     [Authorize]
     public IActionResult GetDistributors()
     {
         List<Distributor> distributors = _dbContext.Distributors
-        .OrderBy((distributor) => distributor.Name)
-        .ToList();
-        return Ok(
-            distributors.Select((distributor) => new DistributorDTO
-            {
-                Id = distributor.Id,
-                Active = distributor.Active,
-                City = distributor.City,
-                Name = distributor.Name,
-                State = distributor.State,
-                Street = distributor.Street,
-                Zipcode = distributor.Zipcode,
-            })
-        );
+            .OrderBy((distributor) => distributor.Name)
+            .ToList();
+
+        List<DistributorDTO> distributorsDto = distributors.Select((distributor) => new DistributorDTO
+        {
+            Id = distributor.Id,
+            Active = distributor.Active,
+            City = distributor.City,
+            Name = distributor.Name,
+            State = distributor.State,
+            Street = distributor.Street,
+            Zipcode = distributor.Zipcode,
+        }).ToList();
+
+        return Ok(distributorsDto);
     }
+
     [HttpGet("{distributorId}")]
     [Authorize]
     public IActionResult GetDistributor(int distributorId)
     {
         Distributor? distributor = _dbContext.Distributors
-        .Include((distributor) => distributor.Inventories)
-        .ThenInclude((inventory) => inventory.Product)
-        .ToList()
-        .SingleOrDefault((distributor) => distributor.Id == distributorId);
+            .Include((distributor) => distributor.Inventories)
+            .ThenInclude((inventory) => inventory.Product)
+            .ToList()
+            .SingleOrDefault((distributor) => distributor.Id == distributorId);
         if (distributor == null)
         {
             return BadRequest();
