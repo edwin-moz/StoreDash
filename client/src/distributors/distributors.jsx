@@ -9,11 +9,18 @@ import Container from "../components/container"
 export const Distributors = () => {
     // state
     const [distributors, setDistributors] = useState([])
+    const [filteredDistributors, setFilteredDistributors] = useState([])
     // handle function to get get distributors
     const handleGetDistributors = async () => {
         const data = await getDistributors()
 
         setDistributors(data)
+        setFilteredDistributors(data)
+    }
+    const searchDistributors = (event) => {
+        const searchText = event.target.value
+        const updatedFilteredDistributors = distributors.filter((distributor) => distributor.name.toLowerCase().includes(searchText.toLowerCase()))
+        setFilteredDistributors(updatedFilteredDistributors)
     }
     // useEffect
     useEffect(() => {
@@ -25,8 +32,12 @@ export const Distributors = () => {
 
             <Divider />
 
+            <div>
+                <input onChange={searchDistributors} placeholder="Search distributors" type="search" />
+            </div>
+
             <ul className="flex flex-wrap gap-5 pb-10">
-                {distributors.map((distributor, index) => (
+                {filteredDistributors.map((distributor, index) => (
                     <Card key={index}>
                         <Link
                             className="font-semibold hover:underline text-blue-600"

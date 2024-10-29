@@ -14,7 +14,6 @@ builder.Services.AddControllers().AddJsonOptions(opts =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
     {
@@ -35,7 +34,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             return Task.CompletedTask;
         };
     });
-
 builder.Services.AddIdentityCore<IdentityUser>(config =>
             {
                 //for demonstration only - change these for other projects
@@ -54,7 +52,6 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // allows our api endpoints to access the database through Entity Framework Core
 builder.Services.AddNpgsql<StoreDashDbContext>(builder.Configuration["StoreDashDbConnectionString"]);
-
 
 var app = builder.Build();
 
