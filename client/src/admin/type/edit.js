@@ -1,3 +1,4 @@
+import AdminFormHeading from "../../components/admin-form-heading"
 import { editType } from "../../managers/types"
 
 export const EditProduct = ({ displayEditTypeForm, setDisplayEditTypeForm, handleGetTypes, typeToEdit, setTypeToEdit }) => {
@@ -26,6 +27,7 @@ export const EditProduct = ({ displayEditTypeForm, setDisplayEditTypeForm, handl
             <div className="flex flex-wrap justify-between mb-3">
                 <p className="font-semibold text-xl">Edit</p>
                 <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setTypeToEdit({})}>Clear fields</button>
+                <AdminFormHeading formTitle="Edit a type" onClick={() => setTypeToEdit()} />
             </div>
             <div className="flex flex-col justify-center gap-y-3">
                 <div className="relative">

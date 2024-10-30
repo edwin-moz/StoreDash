@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { addProduct } from "../../managers/products"
+import AdminFormHeading from "../../components/admin-form-heading"
 export const NewProduct = ({ displayAddProductForm, setDisplayAddProductForm, handleGetProducts, types }) => {
     // state
     const [product, setProduct] = useState({ typeId: 'defaultOption' })
@@ -40,8 +41,7 @@ export const NewProduct = ({ displayAddProductForm, setDisplayAddProductForm, ha
     return (
         <div className={`${displayAddProductForm ? "block" : "hidden"} md:bg-white md:border md:flex md:flex-col p-5 md:rounded-lg md:shadow`}>
             <div className="flex flex-wrap justify-between mb-3">
-                <p className="font-semibold text-xl">Add product</p>
-                <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProduct({})}>Clear fields</button>
+                <AdminFormHeading formTitle="Add a product" onClick={() => setProduct({})} />
             </div>
             <form className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
