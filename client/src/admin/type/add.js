@@ -1,3 +1,4 @@
+import AdminFormHeading from "../../components/admin-form-heading"
 import { AddType } from "../../managers/types"
 
 export const AddProduct = ({ displayAddTypeForm, setDisplayAddTypeForm, type, setType, handleGetTypes }) => {
@@ -20,9 +21,9 @@ export const AddProduct = ({ displayAddTypeForm, setDisplayAddTypeForm, type, se
     return (
         <div className={`md:bg-white md:border md:flex flex-col ${displayAddTypeForm ? "flex" : "hidden"} gap-5 p-5 md:rounded-lg md:shadow`}>
             <div className="flex flex-wrap justify-between mb-3">
-                <p className="font-semibold text-xl">Add type</p>
-                <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setType("")}>Clear fields</button>
+                <AdminFormHeading formTitle="Add a type" onClick={() => setType("")} />
             </div>
+
             <div className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
                     <input className="input-layout peer" name="name" onChange={handleAddTypeForm} required type="text" value={type || ""} />

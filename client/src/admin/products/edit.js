@@ -1,3 +1,4 @@
+import AdminFormHeading from "../../components/admin-form-heading"
 import { editProduct } from "../../managers/products"
 export const EditProduct = ({ displayEditProductForm, setDisplayEditProductForm, handleGetProducts, productToEdit, setProductToEdit, types }) => {
     // handle function for product edit form
@@ -32,9 +33,9 @@ export const EditProduct = ({ displayEditProductForm, setDisplayEditProductForm,
     return (
         <div className={`${displayEditProductForm ? "block" : "hidden"} md:bg-white md:border md:flex md:flex-col md:shadow md:rounded-lg p-5`}>
             <div className="flex flex-wrap justify-between mb-3">
-                <p className="font-semibold text-xl">Edit a product</p>
-                <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setProductToEdit({})}>Clear fields</button>
+                <AdminFormHeading formTitle="Edit a product" onClick={() => setProductToEdit({})} />
             </div>
+
             <div className="flex flex-col justify-center gap-y-3">
                 {/* <div className="bg-gray-500 flex h-12 group items-center relative w-12">
                     <div className="absolute bg-red-500 flex group-active:left-2 h-5 items-center overflow-hidden rounded-full w-5 z-[999]">

@@ -1,3 +1,4 @@
+import AdminFormHeading from "../../components/admin-form-heading"
 import { editDistributor } from "../../managers/distributors"
 
 export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, displayEditDistributorForm, setDisplayEditDistributorForm, handleGetDistributors }) => {
@@ -33,9 +34,9 @@ export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, displ
     return (
         <div className={`md:bg-white md:border md:flex flex-col ${displayEditDistributorForm ? "flex" : "hidden"} p-5 md:rounded-lg`}>
             <div className="flex flex-wrap justify-between mb-3">
-                <p className="font-semibold text-xl">Edit</p>
-                <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setDistributorToEdit({})}>Clear fields</button>
+                <AdminFormHeading formTitle="Edit a distributor" onClick={() => setDistributorToEdit({})} />
             </div>
+
             <div className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
                     <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleEditDistributorForm} required type="text" value={distributorToEdit.name || ""} />
