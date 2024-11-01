@@ -25,9 +25,7 @@ export const EditProduct = ({ displayEditTypeForm, setDisplayEditTypeForm, handl
     return (
         <div className={`md:bg-white md:border md:flex flex-col ${displayEditTypeForm ? "flex" : "hidden"} gap-5 p-5 md:rounded-lg`}>
             <div className="flex flex-wrap justify-between mb-3">
-                <p className="font-semibold text-xl">Edit</p>
-                <button className="border border-emerald-600 h-[2rem] hover:bg-emerald-700/20 px-5 rounded-full text-emerald-800 transition" onClick={() => setTypeToEdit({})}>Clear fields</button>
-                <AdminFormHeading formTitle="Edit a type" onClick={() => setTypeToEdit()} />
+                <AdminFormHeading formTitle="Edit a type" onClick={() => setTypeToEdit({})} />
             </div>
             <div className="flex flex-col justify-center gap-y-3">
                 <div className="relative">

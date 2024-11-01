@@ -45,6 +45,7 @@ export default function Login() {
 
         <Input
           inputFor="password"
+          inputType="password"
           onChange={handleSetPassword}
           value={password}
         >

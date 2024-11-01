@@ -1,12 +1,19 @@
 import React from "react"
 import { FaEnvelope, FaLock } from "react-icons/fa"
 
-export default function Input({ children, inputFor, onChange, value }) {
+export default function Input({
+  children,
+  inputFor,
+  inputType,
+  onChange,
+  value,
+}) {
   return (
     <div className="flex flex-col">
       <label className="text-gray-950 text-sm" htmlFor={inputFor}>
         {children}
       </label>
+
       <div className="flex flex-wrap gap-3 items-center md:flex-nowrap">
         {inputFor === "email" && (
           <FaEnvelope className="hidden md:flex text-gray-500" />
@@ -21,7 +28,7 @@ export default function Input({ children, inputFor, onChange, value }) {
           onChange={(event) => {
             onChange(event.target.value)
           }}
-          type="text"
+          type={inputType}
           value={value}
         />
       </div>

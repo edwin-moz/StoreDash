@@ -1,4 +1,5 @@
 import AdminFormHeading from "../../components/admin-form-heading"
+import Input from "../../components/input"
 import { addDistributor } from "../../managers/distributors"
 
 export const AddDistributor = ({ distributor, setDistributor, displayAddDistributorForm, setDisplayAddDistributorForm, handleGetDistributors }) => {
@@ -38,6 +39,7 @@ export const AddDistributor = ({ distributor, setDistributor, displayAddDistribu
 
             <div className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
+                    <Input>* Name</Input>
                     <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleAddDistributorForm} required type="text" value={distributor.name || ""} />
                     <label className="label-layout peer-focus:text-gray-950">* Name</label>
                 </div>
