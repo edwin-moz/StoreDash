@@ -31,10 +31,10 @@ export default function Input({
           <FaLock className="hidden md:flex text-gray-500" />
         )}
 
-        <div className="border flex items-center px-3 py-2 rounded-lg w-full">
+        <div className="border flex group items-center overflow-hidden rounded-lg w-full">
           <input
             autoComplete={inputFor}
-            className="outline-none"
+            className="outline-none pl-3 py-2"
             id={inputFor}
             onChange={(event) => {
               onChange(event.target.value)
@@ -45,7 +45,7 @@ export default function Input({
           />
 
           {inputType === "password" && (
-            <button onClick={handlePasswordVisibility}>
+            <button className="px-3" onClick={handlePasswordVisibility}>
               {!showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
             </button>
           )}
