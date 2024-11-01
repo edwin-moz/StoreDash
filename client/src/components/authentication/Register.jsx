@@ -66,7 +66,7 @@ export default function Register() {
           </Input>
         </div>
 
-        <Input onChange={handleSetEmail} value={email}>
+        <Input inputType="email" onChange={handleSetEmail} value={email}>
           Email
         </Input>
         <Input onChange={handleSetUserName} value={userName}>
@@ -77,11 +77,16 @@ export default function Register() {
         </Input>
 
         <div className="flex flex-wrap gap-3 md:grid md:grid-cols-2">
-          <Input onChange={handleSetPassword} value={password}>
+          <Input
+            inputType="password"
+            onChange={handleSetPassword}
+            value={password}
+          >
             Password
           </Input>
           <Input
             inputFor="new-password"
+            inputType="password"
             onChange={handleSetConfirmedPassword}
             value={confirmedPassword}
           >
