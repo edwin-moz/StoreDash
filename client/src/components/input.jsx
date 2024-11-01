@@ -1,5 +1,5 @@
-import React from "react"
-import { FaEnvelope, FaLock } from "react-icons/fa"
+import React, { useState } from "react"
+import { FaEnvelope, FaLock, FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 
 export default function Input({
   children,
@@ -8,6 +8,15 @@ export default function Input({
   onChange,
   value,
 }) {
+  const [showPassword, setShowPassword] = useState(
+    () => inputType !== "password"
+  )
+
+  const handlePasswordVisibility = (event) => {
+    event.preventDefault()
+
+    setShowPassword(!showPassword)
+  }
   return (
     <div className="flex flex-col">
       <label className="text-gray-950 text-sm" htmlFor={inputFor}>
@@ -21,16 +30,26 @@ export default function Input({
         {inputFor === "password" && (
           <FaLock className="hidden md:flex text-gray-500" />
         )}
-        <input
-          autoComplete={inputFor}
-          className="border px-3 py-2 rounded-lg w-full"
-          id={inputFor}
-          onChange={(event) => {
-            onChange(event.target.value)
-          }}
-          type={inputType}
-          value={value}
-        />
+
+        <div className="border flex items-center px-3 py-2 rounded-lg w-full">
+          <input
+            autoComplete={inputFor}
+            className="outline-none"
+            id={inputFor}
+            onChange={(event) => {
+              onChange(event.target.value)
+            }}
+            required
+            type={showPassword ? "text" : "password"}
+            value={value}
+          />
+
+          {inputType === "password" && (
+            <button onClick={handlePasswordVisibility}>
+              {!showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   )

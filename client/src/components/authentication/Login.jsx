@@ -39,7 +39,12 @@ export default function Login() {
       <TruckAnimation />
 
       <AuthForm formHeader="Login">
-        <Input inputFor="email" onChange={handleSetEmail} value={email}>
+        <Input
+          inputFor="email"
+          inputType="email"
+          onChange={handleSetEmail}
+          value={email}
+        >
           Email
         </Input>
 
