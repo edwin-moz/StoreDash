@@ -9,63 +9,63 @@ import AuthLayout from "./auth-layout"
 import { useAuthContext } from "../../lib/hooks"
 
 export default function Login() {
-  const { handleSetUserOnLogin } = useAuthContext()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+    const { handleSetUserOnLogin } = useAuthContext()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
-  const navigate = useNavigate()
+    const navigate = useNavigate()
 
-  const handleSetEmail = (value) => {
-    setEmail(value)
-  }
-  const handleSetPassword = (value) => {
-    setPassword(value)
-  }
-  const handleSubmit = async () => {
-    const data = await login(email, password)
-
-    // TODO setLoggedInUser should be a handle function
-    if (!data) {
-      window.alert("Invalid login")
-    } else {
-      handleSetUserOnLogin(data)
-
-      navigate("/")
+    const handleSetEmail = (event) => {
+        setEmail(event.target.value)
     }
-  }
+    const handleSetPassword = (event) => {
+        setPassword(event.target.value)
+    }
+    const handleSubmit = async () => {
+        const data = await login(email, password)
 
-  return (
-    <AuthLayout>
-      <TruckAnimation />
+        // TODO setLoggedInUser should be a handle function
+        if (!data) {
+            window.alert("Invalid login")
+        } else {
+            handleSetUserOnLogin(data)
 
-      <AuthForm formHeader="Login">
-        <Input
-          inputFor="email"
-          inputType="email"
-          onChange={handleSetEmail}
-          value={email}
-        >
-          Email
-        </Input>
+            navigate("/")
+        }
+    }
 
-        <Input
-          inputFor="password"
-          inputType="password"
-          onChange={handleSetPassword}
-          value={password}
-        >
-          Password
-        </Input>
+    return (
+        <AuthLayout>
+            <TruckAnimation />
 
-        <Button onClick={handleSubmit}>Login</Button>
+            <AuthForm formHeader="Login">
+                <Input
+                    inputFor="email"
+                    inputType="email"
+                    onChange={handleSetEmail}
+                    value={email}
+                >
+                    Email
+                </Input>
 
-        <p>
-          Not signed up?{" "}
-          <Link className="hover:underline text-blue-500" to="/register">
-            Register here
-          </Link>
-        </p>
-      </AuthForm>
-    </AuthLayout>
-  )
+                <Input
+                    inputFor="password"
+                    inputType="password"
+                    onChange={handleSetPassword}
+                    value={password}
+                >
+                    Password
+                </Input>
+
+                <Button onClick={handleSubmit}>Login</Button>
+
+                <p>
+                    Not signed up?{" "}
+                    <Link className="hover:underline text-blue-500" to="/register">
+                        Register here
+                    </Link>
+                </p>
+            </AuthForm>
+        </AuthLayout>
+    )
 }
