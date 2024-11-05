@@ -39,30 +39,24 @@ export const AddDistributor = ({ distributor, setDistributor, displayAddDistribu
 
             <div className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
-                    <Input>* Name</Input>
-                    <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleAddDistributorForm} required type="text" value={distributor.name || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Name</label>
+                    <Input inputName="name" inputStyle="inline" inputType="text" onChange={handleAddDistributorForm} value={distributor.name || ""}>* Name</Input>
                 </div>
 
                 <div className="relative">
-                    <input className="input-layout peer w-full" name="street" onChange={handleAddDistributorForm} required type="text" value={distributor.street || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Street</label>
+                    <Input inputName="street" inputStyle="inline" inputType="text" onChange={handleAddDistributorForm} required value={distributor.street || ""}>* Street</Input>
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-3">
                     <div className="relative">
-                        <input className="input-layout peer w-full" name="city" onChange={handleAddDistributorForm} required type="text" value={distributor.city || ""} />
-                        <label className="label-layout peer-focus:text-gray-950">* City</label>
+                        <Input inputName="city" inputStyle="inline" inputType="text" onChange={handleAddDistributorForm} required value={distributor.city || ""}>* City</Input>
                     </div>
 
                     <div className="relative">
-                        <input className="input-layout peer w-full" name="state" onChange={handleAddDistributorForm} required type="text" value={distributor.state || ""} />
-                        <label className="label-layout peer-focus:text-gray-950">* State</label>
+                        <Input inputName="state" inputStyle="inline" inputType="text" onChange={handleAddDistributorForm} required value={distributor.state || ""}>* State</Input>
                     </div>
 
                     <div className="relative">
-                        <input className="input-layout peer w-full" name="zipcode" onChange={handleAddDistributorForm} required type="number" value={distributor.zipcode || ""} />
-                        <label className="label-layout peer-focus:text-gray-950">* Zipcode</label>
+                        <Input inputName="zipcode" inputStyle="inline" inputType="number" onChange={handleAddDistributorForm} required value={distributor.zipcode || ""}>* Zipcode</Input>
                     </div>
                 </div>
 
