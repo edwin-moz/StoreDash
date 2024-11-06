@@ -1,4 +1,5 @@
 import AdminFormHeading from "../../components/admin-form-heading"
+import Input from "../../components/input"
 import { editDistributor } from "../../managers/distributors"
 
 export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, displayEditDistributorForm, setDisplayEditDistributorForm, handleGetDistributors }) => {
@@ -39,29 +40,32 @@ export const EditDistributor = ({ distributorToEdit, setDistributorToEdit, displ
 
             <div className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
-                    <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleEditDistributorForm} required type="text" value={distributorToEdit.name || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Name</label>
+                    <Input inputName="name" inputStyle="inline" inputType="text" onChange={handleEditDistributorForm} required value={distributorToEdit.name || ""}>* Name</Input>
                 </div>
                 <div className="flex gap-3">
                     <input checked={distributorToEdit.active} name="active" onChange={handleEditDistributorForm} placeholder="Enter a name" type="checkbox" />
                     <label className="text-gray-500">Active?</label>
                 </div>
                 <div className="relative">
-                    <input className="input-layout peer w-full" name="street" onChange={handleEditDistributorForm} required type="text" value={distributorToEdit.street || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Street</label>
+                    <Input inputName="street" inputStyle="inline" inputType="text" onChange={handleEditDistributorForm} required value={distributorToEdit.street || ""}>
+                        * Street
+                    </Input>
                 </div>
                 <div className="flex flex-col md:flex-row gap-3">
                     <div className="relative">
-                        <input className="input-layout peer w-full" name="city" onChange={handleEditDistributorForm} required type="text" value={distributorToEdit.city || ""} />
-                        <label className="label-layout peer-focus:text-gray-950">* City</label>
+                        <Input inputName="city" inputStyle="inline" inputType="text" onChange={handleEditDistributorForm} required value={distributorToEdit.city || ""}>
+                            * City
+                        </Input>
                     </div>
                     <div className="relative">
-                        <input className="input-layout peer w-full" name="state" onChange={handleEditDistributorForm} required type="text" value={distributorToEdit.state || ""} />
-                        <label className="label-layout peer-focus:text-gray-950">* State</label>
+                        <Input inputName="state" inputStyle="inline" inputType="text" onChange={handleEditDistributorForm} required value={distributorToEdit.state || ""}>
+                            * State
+                        </Input>
                     </div>
                     <div className="relative">
-                        <input className="input-layout peer w-full" name="zipcode" onChange={handleEditDistributorForm} required type="number" value={distributorToEdit.zipcode || ""} />
-                        <label className="label-layout peer-focus:text-gray-950">* Zipcode</label>
+                        <Input inputName="zipcode" inputStyle="inline" inputType="number" onChange={handleEditDistributorForm} required value={distributorToEdit.zipcode || ""}>
+                            * Zipcode
+                        </Input>
                     </div>
                 </div>
                 <button className="button-secondary md:hidden text-2xl" onClick={handleCancelDisplayEditDistributorForm}>Cancel</button>

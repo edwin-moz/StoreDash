@@ -1,4 +1,5 @@
 import AdminFormHeading from "../../components/admin-form-heading"
+import Input from "../../components/input"
 import { editType } from "../../managers/types"
 
 export const EditProduct = ({ displayEditTypeForm, setDisplayEditTypeForm, handleGetTypes, typeToEdit, setTypeToEdit }) => {
@@ -29,8 +30,9 @@ export const EditProduct = ({ displayEditTypeForm, setDisplayEditTypeForm, handl
             </div>
             <div className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
-                    <input className="input-layout peer" name="name" onChange={handleEditTypeForm} required type="text" value={typeToEdit.name || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Name</label>
+                    <Input inputName="name" inputStyle="inline" inputType="text" onChange={handleEditTypeForm} required value={typeToEdit.name || ""}>
+                        * Name
+                    </Input>
                 </div>
             </div>
             <button className="button-secondary md:hidden text-2xl" onClick={handleCancelEditTypeForm}>Cancel</button>

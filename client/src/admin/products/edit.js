@@ -1,4 +1,5 @@
 import AdminFormHeading from "../../components/admin-form-heading"
+import Input from "../../components/input"
 import { editProduct } from "../../managers/products"
 export const EditProduct = ({ displayEditProductForm, setDisplayEditProductForm, handleGetProducts, productToEdit, setProductToEdit, types }) => {
     // handle function for product edit form
@@ -44,12 +45,14 @@ export const EditProduct = ({ displayEditProductForm, setDisplayEditProductForm,
                 </div>
                 <label>* Available</label> */}
                 <div className="relative">
-                    <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleEditProductForm} required type="text" value={productToEdit.name || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Name</label>
+                    <Input inputName="name" inputStyle="inline" inputType="text" onChange={handleEditProductForm} required value={productToEdit.name || ""}>
+                        * Name
+                    </Input>
                 </div>
                 <div className="relative">
-                    <input className="input-layout peer w-full" name="imageUrl" onChange={handleEditProductForm} required type="text" value={productToEdit.imageUrl || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Image Url</label>
+                    <Input inputName="imageUrl" inputStyle="inline" inputType="text" onChange={handleEditProductForm} required value={productToEdit.imageUrl || ""}>
+                        * Image URL
+                    </Input>
                 </div>
                 <div className="relative">
                     <select className="input-layout peer w-full" name="typeId" onChange={handleEditProductForm} required type="text" value={productToEdit.typeId || ""}>
