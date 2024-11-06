@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { addProduct } from "../../managers/products"
 import AdminFormHeading from "../../components/admin-form-heading"
+import Input from "../../components/input"
 export const NewProduct = ({ displayAddProductForm, setDisplayAddProductForm, handleGetProducts, types }) => {
     // state
     const [product, setProduct] = useState({ typeId: 'defaultOption' })
@@ -45,12 +46,14 @@ export const NewProduct = ({ displayAddProductForm, setDisplayAddProductForm, ha
             </div>
             <form className="flex flex-col justify-center gap-y-3">
                 <div className="relative">
-                    <input className="input-layout md:w-auto peer w-full" name="name" onChange={handleAddProductForm} required type="text" value={product.name || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Name</label>
+                    <Input inputName="name" inputStyle="inline" inputType="text" onChange={handleAddProductForm} required value={product.name || ""}>
+                        * Name
+                    </Input>
                 </div>
                 <div className="relative">
-                    <input className="input-layout peer w-full" name="imageUrl" onChange={handleAddProductForm} required type="text" value={product.imageUrl || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Image Url</label>
+                    <Input inputName="imageUrl" inputStyle="inline" inputType="text" onChange={handleAddProductForm} required value={product.imageUrl || ""}>
+                        * Image URL
+                    </Input>
                 </div>
                 <div className="relative">
                     <select className="input-layout peer w-full" name="typeId" onChange={handleAddProductForm} required type="text" value={product.typeId || ""}>

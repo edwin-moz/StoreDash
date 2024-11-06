@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Input from "../../components/input"
 import { addInventory } from "../../managers/inventories"
 import { getProducts } from "../../managers/products"
 
@@ -56,8 +57,9 @@ export const AddInventory = ({ displayAddInventory, setDisplayAddInventory, hand
                     <label className="label-layout peer-focus:text-gray-950">* Product</label>
                 </div>
                 <div className="relative">
-                    <input className="input-layout peer w-full" name="price" onChange={handleAddInventoryForm} required type="number" value={inventory.price || ""} />
-                    <label className="label-layout peer-focus:text-gray-950">* Price</label>
+                    <Input inputName="price" inputStyle="inline" inputType="number" onChange={handleAddInventoryForm} required value={inventory.price || ""}>
+                        * Price
+                    </Input>
                 </div>
                 <button className="button-secondary md:hidden text-2xl w-full" onClick={handleCancelDisplayAddInventory}>Cancel</button>
                 <button className="button-primary text-2xl w-full" onClick={handleAddInventory}>Add</button>
