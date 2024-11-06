@@ -8,6 +8,7 @@ export default function Input({
     inputStyle,
     inputType,
     onChange,
+    placeholder,
     value,
 }) {
     const [showPassword, setShowPassword] = useState(
@@ -41,6 +42,7 @@ export default function Input({
                         id={inputFor}
                         name={inputFor || inputName}
                         onChange={onChange}
+                        placeholder={placeholder}
                         required
                         type={showPassword ? "text" : "password"}
                         value={value}
