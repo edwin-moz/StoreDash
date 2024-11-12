@@ -12,46 +12,47 @@ import { Footer } from "../components/footer"
 import { Admin } from "../admin/page"
 import { ChatBar } from "../components/chatbar"
 import { Distributors } from "../distributors/distributors"
+import DistributorContextProvider from "../contexts/distributor-context-provider"
 
 export default function Views() {
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <Navbar />
+    return (
+        <Routes>
+            <Route
+                path="/"
+                element={
+                    <>
+                        <Navbar />
 
-            <AuthorizedRoute>
-              <Outlet />
-            </AuthorizedRoute>
+                        <AuthorizedRoute>
+                            <Outlet />
+                        </AuthorizedRoute>
 
-            <Footer />
+                        <Footer />
 
-            <ChatBar />
-          </>
-        }
-      >
-        <Route index element={<Distributors />} />
+                        <ChatBar />
+                    </>
+                }
+            >
+                <Route index element={<Distributors />} />
 
-        <Route path=":distributorId" element={<NewOrder />} />
+                <Route path=":distributorId" element={<NewOrder />} />
 
-        <Route path="orders" element={<Orders />} />
+                <Route path="orders" element={<Orders />} />
 
-        <Route path="stores">
-          <Route index element={<Stores />} />
+                <Route path="stores">
+                    <Route index element={<Stores />} />
 
-          <Route path="new" element={<AddStore />} />
-        </Route>
+                    <Route path="new" element={<AddStore />} />
+                </Route>
 
-        <Route path="profile" element={<Profile />} />
+                <Route path="profile" element={<Profile />} />
 
-        <Route path="admin" element={<Admin />} />
-      </Route>
+                <Route path="admin" element={<Admin />} />
+            </Route>
 
-      <Route path="register" element={<Register />} />
+            <Route path="register" element={<Register />} />
 
-      <Route path="login" element={<Login />} />
-    </Routes>
-  )
+            <Route path="login" element={<Login />} />
+        </Routes>
+    )
 }
