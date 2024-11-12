@@ -1,34 +1,20 @@
-import { useEffect, useState } from "react"
-import { deleteDistributor, getDistributors } from "../../managers/distributors"
+import { useState } from "react"
+import { useDistributorContext } from "../../lib/hooks";
 import { AddDistributor } from "./add";
 import { EditDistributor } from "./edit";
 export const Distributors = () => {
+    // hooks
+    const { distributors, handleDeleteDistributor, handleGetAndSetDistributors } = useDistributorContext()
     // state
-    const [distributors, setDistributors] = useState([])
     const [distributor, setDistributor] = useState({})
     const [distributorToEdit, setDistributorToEdit] = useState({})
     const [displayAddDistributorForm, setDisplayAddDistributorForm] = useState(false)
     const [displayEditDistributorForm, setDisplayEditDistributorForm] = useState(false)
-    // handle functio to get distributors
-    const handleGetDistributors = () => {
-        getDistributors().then(setDistributors)
-    }
-    // handle function for edit distributor form
-    // handle function to delete a distributor
-    const handleDeleteDistributor = (distributorId) => {
-        deleteDistributor(distributorId).then(() => {
-            handleGetDistributors()
-        })
-    }
     // handle function to display add distributor form
     const handleDisplayAddDistributorForm = () => {
         setDisplayEditDistributorForm(false)
         setDisplayAddDistributorForm(true)
     }
-    // use effect
-    useEffect(() => {
-        handleGetDistributors()
-    }, [])
     return (
         <div className="gap-5 grid md:grid-cols-[2fr,1fr]">
             <ul className={`md:flex flex-col gap-3 ${displayAddDistributorForm || displayEditDistributorForm ? "hidden" : "flex"} min-h-[80vh] max-h-[80vh] overflow-y-scroll`}>
@@ -59,8 +45,20 @@ export const Distributors = () => {
                 ))}
             </ul>
             <div className="gap-5 grid">
-                <AddDistributor distributor={distributor} setDistributor={setDistributor} displayAddDistributorForm={displayAddDistributorForm} setDisplayAddDistributorForm={setDisplayAddDistributorForm} handleGetDistributors={handleGetDistributors} />
-                <EditDistributor distributorToEdit={distributorToEdit} setDistributorToEdit={setDistributorToEdit} displayEditDistributorForm={displayEditDistributorForm} setDisplayEditDistributorForm={setDisplayEditDistributorForm} handleGetDistributors={handleGetDistributors} />
+                <AddDistributor
+                    distributor={distributor}
+                    setDistributor={setDistributor}
+                    displayAddDistributorForm={displayAddDistributorForm}
+                    setDisplayAddDistributorForm={setDisplayAddDistributorForm}
+                    handleGetDistributors={handleGetAndSetDistributors}
+                />
+                <EditDistributor
+                    distributorToEdit={distributorToEdit}
+                    setDistributorToEdit={setDistributorToEdit}
+                    displayEditDistributorForm={displayEditDistributorForm}
+                    setDisplayEditDistributorForm={setDisplayEditDistributorForm}
+                    handleGetDistributors={handleGetAndSetDistributors}
+                />
             </div>
             <div className="bottom-28 fixed md:hidden right-5">
                 <button className={`bg-emerald-700 ${'displayAddTypeForm ? "hidden" : "block"'} px-3 py-2 rounded-full shadow-black/50 shadow-xl text-white w-24`} onClick={handleDisplayAddDistributorForm}>Add</button>
