@@ -1,62 +1,63 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using StoreDash.Data;
 using StoreDash.Models;
-using StoreDash.ModelsDTO;
+using StoreDash.Data.Interfaces;
 
 namespace StoreDash.Controllers;
+
 [ApiController]
 [Route("api/[controller]")]
 public class TypeController : ControllerBase
 {
-    private StoreDashDbContext _dbContext;
-    public TypeController(StoreDashDbContext context)
+    private readonly ITypeRepository typeRepository;
+
+    public TypeController(ITypeRepository typeRepository)
     {
-        _dbContext = context;
+        this.typeRepository = typeRepository;
     }
+
     [HttpGet]
     [Authorize]
     public IActionResult GetTypes()
     {
-        List<Types> types = _dbContext.Types.OrderBy((type) => type.Name).ToList();
-        return Ok(types.Select((type) => new TypesDTO
-        {
-            Id = type.Id,
-            Name = type.Name
-        }));
+        List<Types> types = typeRepository.Get();
+
+        return Ok(types);
     }
+
     [HttpPost]
     [Authorize]
     public IActionResult AddType(Types type)
     {
-        _dbContext.Add(type);
-        _dbContext.SaveChanges();
-        return Created($"api/type/{type.Id}", type);
+        Types results = typeRepository.Post(type);
+
+        return Created($"api/type/{results.Id}", type);
     }
+
     [HttpPut("{typeId}")]
     [Authorize]
     public IActionResult EditType(int typeId, Types type)
     {
-        Types? typeToEdit = _dbContext.Types.SingleOrDefault((type) => type.Id == typeId);
-        if (typeToEdit == null)
+        Types? results = typeRepository.Put(type);
+
+        if (results == null)
         {
             return BadRequest();
         }
-        typeToEdit.Name = type.Name;
-        _dbContext.SaveChanges();
+
         return NoContent();
     }
     [HttpDelete("{typeId}")]
     [Authorize]
     public IActionResult DeleteType(int typeId)
     {
-        Types? type = _dbContext.Types.SingleOrDefault((type) => type.Id == typeId);
-        if (type == null)
+        bool results = typeRepository.Delete(typeId);
+
+        if (results)
         {
-            return BadRequest();
+            return NoContent();
         }
-        _dbContext.Types.Remove(type);
-        _dbContext.SaveChanges();
-        return NoContent();
+
+        return BadRequest();
     }
 }

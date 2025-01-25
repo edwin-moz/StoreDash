@@ -4,10 +4,8 @@ import { AddDistributor } from "./add";
 import { EditDistributor } from "./edit";
 export const Distributors = () => {
     // hooks
-    const { distributors, handleDeleteDistributor, handleGetAndSetDistributors } = useDistributorContext()
+    const { distributors, distributorToAdd, distributorToEdit, handleDeleteDistributor, handleGetAndSetDistributors, handleSetDistributorToAdd, handleSetDistributorToEdit } = useDistributorContext()
     // state
-    const [distributor, setDistributor] = useState({})
-    const [distributorToEdit, setDistributorToEdit] = useState({})
     const [displayAddDistributorForm, setDisplayAddDistributorForm] = useState(false)
     const [displayEditDistributorForm, setDisplayEditDistributorForm] = useState(false)
     // handle function to display add distributor form
@@ -34,7 +32,8 @@ export const Distributors = () => {
                         </div>
                         <button className="bg-emerald-700/20 hover:border-2 hover:border-emerald-600 rounded-lg self-stretch text-emerald-800 text-xl" onClick={() => {
                             setDisplayEditDistributorForm(true)
-                            setDistributorToEdit(distributor)
+
+                            handleSetDistributorToEdit(distributor)
                         }}>
                             Edit
                         </button>
@@ -46,15 +45,15 @@ export const Distributors = () => {
             </ul>
             <div className="gap-5 grid">
                 <AddDistributor
-                    distributor={distributor}
-                    setDistributor={setDistributor}
+                    distributor={distributorToAdd}
+                    setDistributor={handleSetDistributorToAdd}
                     displayAddDistributorForm={displayAddDistributorForm}
                     setDisplayAddDistributorForm={setDisplayAddDistributorForm}
                     handleGetDistributors={handleGetAndSetDistributors}
                 />
                 <EditDistributor
                     distributorToEdit={distributorToEdit}
-                    setDistributorToEdit={setDistributorToEdit}
+                    setDistributorToEdit={handleSetDistributorToEdit}
                     displayEditDistributorForm={displayEditDistributorForm}
                     setDisplayEditDistributorForm={setDisplayEditDistributorForm}
                     handleGetDistributors={handleGetAndSetDistributors}

@@ -33,7 +33,11 @@ export default function Views() {
                     </>
                 }
             >
-                <Route index element={<Distributors />} />
+                <Route index element={
+                    <DistributorContextProvider>
+                        <Distributors />
+                    </DistributorContextProvider>
+                } />
 
                 <Route path=":distributorId" element={<NewOrder />} />
 

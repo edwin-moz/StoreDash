@@ -1,19 +1,31 @@
-const api = "/api/order"
-// function to post a new order
-export const placeOrder = (order) => {
-    return fetch(api, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(order)
-    })
-}
-// function to get all of the logged in user's ordes
-export const getOrders = (userId) => {
-    return fetch(`${api}/${userId}`).then((response) => response.json())
-}
-// function to delete an order
-export const deleteOrder = (orderId) => {
-    return fetch(`${api}/${orderId}`, {
+const ORDER_API_URL = "/api/order"
+
+export const deleteOrder = async (orderId) => {
+    const endpointUrl = `${ORDER_API_URL}/${orderId}`
+
+    const response = await fetch(endpointUrl, {
         method: "DELETE"
     })
+
+    return response.json()
 }
+
+export const getOrders = async (userId) => {
+    const endpointUrl = `${ORDER_API_URL}/${userId}`
+
+    const response = await fetch(endpointUrl)
+
+    return response.json()
+}
+
+export const placeOrder = async (order) => {
+    const response = await fetch(ORDER_API_URL, {
+        body: JSON.stringify(order),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+    })
+
+    return response.json()
+}
+
+

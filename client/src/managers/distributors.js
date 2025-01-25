@@ -1,30 +1,48 @@
-const api = "/api/distributor"
-// funtion to add a distributor
-export const addDistributor = (distributor) => {
-    return fetch(api, {
+const DISTRIBUTOR_API_URL = "/api/distributor"
+// this file is meant ONLY to fetch and return the data
+export const addDistributor = async (distributor) => {
+    const response = await fetch(DISTRIBUTOR_API_URL, {
+        body: JSON.stringify(distributor),
+        headers: { "Content-Type": "application/json" },
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(distributor)
     })
+
+    return response.json()
 }
-// funtion to get a distributor;s inventory
-export const getDistributor = (distributorId) => {
-    return fetch(`${api}/${distributorId}`).then((response) => response.json())
-}
-// function to get the list of distributors
-export const getDistributors = () => {
-    return fetch(api).then((response) => response.json())
-}
-// function to edit a distributor
-export const editDistributor = (distributor) => {
-    return fetch(`${api}/${distributor.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(distributor)
-    })
-}
-export const deleteDistributor = (distributorId) => {
-    return fetch(`${api}/${distributorId}`, {
+
+export const deleteDistributor = async (distributorId) => {
+    const endpointUrl = `${DISTRIBUTOR_API_URL}/${distributorId}`
+
+    const response = await fetch(endpointUrl, {
         method: "DELETE"
     })
+
+    return response.json()
 }
+
+export const getDistributor = async (distributorId) => {
+    const endpointUrl = `${DISTRIBUTOR_API_URL}/${distributorId}`
+
+    const response = await fetch(endpointUrl)
+
+    return response.json()
+}
+
+export const getDistributors = async () => {
+    const response = await fetch(DISTRIBUTOR_API_URL)
+
+    return response.json()
+}
+
+export const editDistributor = async (distributor) => {
+    const endpointUrl = `${DISTRIBUTOR_API_URL}/${distributor.id}`
+
+    const response = await fetch(endpointUrl, {
+        body: JSON.stringify(distributor),
+        headers: { "Content-Type": "application/json" },
+        method: "PUT",
+    })
+
+    return response.json()
+}
+

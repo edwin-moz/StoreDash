@@ -10,6 +10,7 @@ import { useDistributorContext } from "../lib/hooks"
 export const Distributors = () => {
     // hooks
     const { distributors } = useDistributorContext()
+    console.log(distributors)
     // state
     const [searchText, setSearchText] = useState("")
     // derived state
@@ -26,7 +27,13 @@ export const Distributors = () => {
             <Divider />
 
             <div className="pb-10">
-                <Input inputStyle="inline" inputType="search" onChange={handleSearchTextChange} placeholder="Search distributors" value={searchText}></Input>
+                <Input
+                    inputStyle="inline"
+                    inputType="search"
+                    onChange={handleSearchTextChange}
+                    placeholder="Search distributors"
+                    value={searchText}
+                />
             </div>
 
             <ul className="flex flex-wrap gap-5 pb-10">
